@@ -1,0 +1,53 @@
+import { notFound } from "next/navigation";
+import { SaintDetail } from "@/components/saint-detail";
+import type { Saint } from "@/lib/saints-data";
+
+export const dynamic = "force-dynamic";
+
+async function getSaint(slug: string): Promise<Saint> {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
+  const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(slug)}`, {
+    cache: "no-store",
+  });
+
+  if (res.status === 404) notFound();
+  if (!res.ok) throw new Error(`Error al traer santo: ${res.status}`);
+
+  const api = (await res.json()) as any;
+
+  // Map: tu backend usa imageUrl, tu UI (SaintDetail) usa image
+  return {
+    id: api.id ?? slug,
+    slug: api.slug ?? slug,
+    name: api.name ?? "Santo",
+    country: api.country ?? null,
+
+    title: api.title ?? null,
+    feastDay: api.feastDay ?? null,
+    birthYear: api.birthYear ?? null,
+    deathYear: api.deathYear ?? null,
+    canonizationYear: api.canonizationYear ?? null,
+    biography: api.biography ?? null,
+
+    image: api.imageUrl ?? api.image ?? null,
+
+    continent: api.continent ?? "",
+    coordinates: Array.isArray(api.coordinates) ? api.coordinates : [0, 0],
+
+    patronOf: Array.isArray(api.patronOf) ? api.patronOf : [],
+    symbols: Array.isArray(api.symbols) ? api.symbols : [],
+    miracles: Array.isArray(api.miracles) ? api.miracles : [],
+    prayers: Array.isArray(api.prayers) ? api.prayers : [],
+  };
+}
+
+export default async function SaintPage({ params }: { params: { slug: string } }) {
+  const saint = await getSaint(params.slug);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <SaintDetail saint={saint} />
+    </div>
+  );
+}

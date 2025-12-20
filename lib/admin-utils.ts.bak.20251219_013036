@@ -1,0 +1,72 @@
+// ===============================
+// ✅ API REAL (Backend Acutis)
+// ===============================
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
+export type MiracleApi = {
+  id: string;
+  saintId: string;
+  title: string;
+  details: string | null;
+  type: string | null;
+  date: string | null;
+  location: string | null;
+  witnesses: string | null; // en DB es string? (por ahora)
+  approved: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+// Normaliza tu form (que usa description/verified/witnesses[]) al backend (details/approved/witnesses string)
+export function mapFormToApiMiracle(input: any) {
+  const witnessesValue =
+    Array.isArray(input?.witnesses) ? input.witnesses.filter(Boolean).join(", ") : input?.witnesses;
+
+  return {
+    title: input?.title ?? "",
+    details: input?.details ?? input?.description ?? null,
+    type: input?.type ?? null,
+    date: input?.date ?? null,
+    location: input?.location ?? null,
+    witnesses: witnessesValue ?? null,
+    approved: typeof input?.approved === "boolean" ? input.approved : input?.verified ?? false,
+  };
+}
+
+export async function apiGetMiraclesBySaintId(saintId: string): Promise<MiracleApi[]> {
+  const res = await fetch(`${API_BASE}/saints/${saintId}/miracles`, { cache: "no-store" });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+export async function apiCreateMiracle(saintId: string, formData: any): Promise<MiracleApi> {
+  const payload = mapFormToApiMiracle(formData);
+
+  const res = await fetch(`${API_BASE}/saints/${saintId}/miracles`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+export async function apiUpdateMiracle(miracleId: string, formData: any): Promise<MiracleApi> {
+  const payload = mapFormToApiMiracle(formData);
+
+  const res = await fetch(`${API_BASE}/miracles/${miracleId}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+export async function apiDeleteMiracle(miracleId: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/miracles/${miracleId}`, { method: "DELETE" });
+  if (!res.ok) throw new Error(await res.text());
+}
