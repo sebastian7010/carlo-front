@@ -9,6 +9,7 @@ import { AdminMiraclesList } from "@/components/admin-miracles-list";
 import { useRouter } from "next/navigation";
 import { AdminMiraclesStatsCard } from "@/components/admin-miracles-stats-card"
 import { AdminPrayersStatsCard } from "@/components/admin-prayers-stats-card"
+import { AdminPrayersList } from "@/components/admin-prayers-list";
 
 
 type Saint = {
@@ -24,7 +25,7 @@ type AdminDashboardProps = {
   saints?: Saint[]; // opcional para evitar crasheos si el padre no lo manda
 };
 
-type TabKey = "resumen" | "santos" | "milagros" | "config";
+type TabKey = "resumen" | "santos" | "milagros" | "oraciones" | "config";
 
 export function AdminDashboard({ saints }: AdminDashboardProps) {
   const [tab, setTab] = useState<TabKey>("resumen");
@@ -87,6 +88,15 @@ function closeModal() {
         </Button>
         <Button
           type="button"
+          variant={tab === "oraciones" ? "default" : "outline"}
+          className={tab === "oraciones" ? "" : "bg-transparent"}
+          onClick={() => setTab("oraciones")}
+        >
+          Oraciones
+        </Button>
+
+        <Button
+          type="button"
           variant={tab === "config" ? "default" : "outline"}
           className={tab === "config" ? "" : "bg-transparent"}
           onClick={() => setTab("config")}
@@ -121,7 +131,11 @@ function closeModal() {
                 <Button type="button" onClick={() => setTab("santos")}>
                   + Agregar / Gestionar Santos
                 </Button>
-                <Button type="button" variant="outline" className="bg-transparent" onClick={() => setTab("milagros")}>
+                
+                <Button type="button" variant="outline" className="bg-transparent" onClick={() => setTab("oraciones")}>
+                  + Agregar / Gestionar Oraciones
+                </Button>
+<Button type="button" variant="outline" className="bg-transparent" onClick={() => setTab("milagros")}>
                   Registrar Milagro (próximo)
                 </Button>
                 <Button type="button" variant="outline" className="bg-transparent" onClick={() => setTab("config")}>
@@ -150,6 +164,8 @@ function closeModal() {
 )}
 
       {tab === "milagros" && <AdminMiraclesList />}
+
+      {tab === "oraciones" && <AdminPrayersList />}
 
       {tab === "config" && (
         <Card>

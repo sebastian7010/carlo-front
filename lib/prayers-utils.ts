@@ -1,3 +1,9 @@
+
+function withAdminKey(headers: Record<string, string>) {
+  const k = process.env.NEXT_PUBLIC_ADMIN_KEY;
+  return k ? { ...headers, "x-admin-key": k } : headers;
+}
+
 export type PrayerApi = {
   id: string
   title: string
@@ -45,7 +51,7 @@ export async function createPrayer(data: PrayerFormData): Promise<PrayerApi> {
   const base = getBaseUrl()
   const res = await fetch(`${base}/prayers`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: withAdminKey({ "Content-Type": "application/json", ...(process.env.NEXT_PUBLIC_ADMIN_KEY ? { "x-admin-key": process.env.NEXT_PUBLIC_ADMIN_KEY } : {}) }),
     body: JSON.stringify(data),
   })
   return (await jsonOrThrow(res)) as PrayerApi
@@ -55,7 +61,7 @@ export async function updatePrayer(id: string, data: PrayerPatchData): Promise<P
   const base = getBaseUrl()
   const res = await fetch(`${base}/prayers/${id}`, {
     method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    headers: withAdminKey({ "Content-Type": "application/json", ...(process.env.NEXT_PUBLIC_ADMIN_KEY ? { "x-admin-key": process.env.NEXT_PUBLIC_ADMIN_KEY } : {}) }),
     body: JSON.stringify(data),
   })
   return (await jsonOrThrow(res)) as PrayerApi

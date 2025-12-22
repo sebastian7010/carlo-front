@@ -1,3 +1,9 @@
+
+function withAdminKey(headers: Record<string, string>) {
+  const k = process.env.NEXT_PUBLIC_ADMIN_KEY;
+  return k ? { ...headers, "x-admin-key": k } : headers;
+}
+
 export type SaintFormData = {
   id?: string;
   slug?: string;
@@ -66,7 +72,7 @@ export async function saveSaint(
 
     const res = await fetch(url, {
       method,
-      headers: { "Content-Type": "application/json" },
+      headers: withAdminKey({ "Content-Type": "application/json" }),
       body: JSON.stringify(payload),
       credentials: "include",
     });
@@ -177,7 +183,7 @@ export async function createMiracle(saintId: string, formData: MiracleFormData):
 
   const res = await fetch(`${baseUrl}/saints/${saintId}/miracles`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: withAdminKey({ "Content-Type": "application/json" }),
     body: JSON.stringify(payload),
     credentials: "include",
   });
@@ -218,7 +224,7 @@ export async function updateMiracle(
 
   const res = await fetch(`${baseUrl}/miracles/${miracleId}`, {
     method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    headers: withAdminKey({ "Content-Type": "application/json" }),
     credentials: "include",
     body: JSON.stringify(payload),
   });
@@ -277,7 +283,7 @@ export async function createPrayer(formData: PrayerFormData): Promise<PrayerApi>
   const baseUrl = getBaseUrl()
   const res = await fetch(`${baseUrl}/prayers`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: withAdminKey({ "Content-Type": "application/json" }),
     credentials: "include",
     body: JSON.stringify(formData),
   })
@@ -292,7 +298,7 @@ export async function updatePrayer(prayerId: string, formData: Partial<PrayerFor
   const baseUrl = getBaseUrl()
   const res = await fetch(`${baseUrl}/prayers/${prayerId}`, {
     method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    headers: withAdminKey({ "Content-Type": "application/json" }),
     credentials: "include",
     body: JSON.stringify(formData),
   })
