@@ -1,40 +1,96 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { MapPin, Calendar, Filter } from "lucide-react"
-import { saints } from "@/lib/saints-data"
+
+type ApiSaint = {
+  id: string
+  slug: string
+  name: string
+  country: string | null
+  continent: string | null
+  lat: number | null
+  lng: number | null
+  feastDay?: string | null
+  imageUrl?: string | null
+}
+
+function norm(s: string) {
+  return (s || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+}
+
+function canonContinent(c: string | null) {
+  const v = norm(c || "")
+  if (!v) return { key: "desconocido", label: "Desconocido" }
+  if (v.includes("europa")) return { key: "europa", label: "Europa" }
+  if (v.includes("asia")) return { key: "asia", label: "Asia" }
+  if (v.includes("america")) return { key: "america", label: "América" }
+  if (v.includes("africa")) return { key: "africa", label: "África" }
+  if (v.includes("oceania")) return { key: "oceania", label: "Oceanía" }
+  return { key: v, label: c || "Desconocido" }
+}
 
 export function SaintsMapSidebar() {
   const [selectedContinent, setSelectedContinent] = useState<string>("all")
+  const [saints, setSaints] = useState<ApiSaint[]>([])
+  const [error, setError] = useState<string | null>(null)
 
-  // Filtrar santos por continente
-  const filteredSaints =
-    selectedContinent === "all"
-      ? saints
-      : saints.filter((saint) => saint.continent.toLowerCase() === selectedContinent.toLowerCase())
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
-  // Agrupar por continente para estadísticas
-  const continentStats = saints.reduce(
-    (acc, saint) => {
-      const continent = saint.continent
-      if (!acc[continent]) {
-        acc[continent] = 0
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        setError(null)
+        const res = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+        if (!res.ok) throw new Error(`HTTP_${res.status}`)
+        const data = (await res.json()) as ApiSaint[]
+        if (!cancelled) setSaints(Array.isArray(data) ? data : [])
+      } catch (e: any) {
+        if (!cancelled) setError(e?.message || "Error cargando santos")
       }
-      acc[continent]++
-      return acc
-    },
-    {} as Record<string, number>,
-  )
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [baseUrl])
+
+  const filteredSaints = useMemo(() => {
+    if (selectedContinent === "all") return saints
+    return saints.filter((s) => canonContinent(s.continent).key === selectedContinent)
+  }, [saints, selectedContinent])
+
+  const continentStats = useMemo(() => {
+    const acc: Record<string, { label: string; count: number }> = {}
+    for (const s of saints) {
+      const c = canonContinent(s.continent)
+      if (!acc[c.key]) acc[c.key] = { label: c.label, count: 0 }
+      acc[c.key].count++
+    }
+    // orden bonito: Europa/Asia/América/África/Oceanía/otros
+    const order = ["europa", "asia", "america", "africa", "oceania", "desconocido"]
+    const entries = Object.entries(acc)
+    entries.sort((a, b) => {
+      const ia = order.indexOf(a[0])
+      const ib = order.indexOf(b[0])
+      if (ia !== -1 || ib !== -1) return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib)
+      return a[1].label.localeCompare(b[1].label)
+    })
+    return entries
+  }, [saints])
 
   return (
     <div className="space-y-6">
-      {/* Filtros */}
+      {/* Filtro */}
       <Card>
         <CardHeader>
           <CardTitle className="font-playfair flex items-center gap-2 text-lg">
@@ -51,32 +107,39 @@ export function SaintsMapSidebar() {
               <SelectItem value="all">Todos los continentes</SelectItem>
               <SelectItem value="europa">Europa</SelectItem>
               <SelectItem value="asia">Asia</SelectItem>
-              <SelectItem value="africa">África</SelectItem>
               <SelectItem value="america">América</SelectItem>
+              <SelectItem value="africa">África</SelectItem>
               <SelectItem value="oceania">Oceanía</SelectItem>
+              <SelectItem value="desconocido">Desconocido</SelectItem>
             </SelectContent>
           </Select>
+
+          {error && (
+            <p className="mt-3 text-xs text-destructive">
+              Error: <span className="font-mono">{error}</span>
+            </p>
+          )}
         </CardContent>
       </Card>
 
-      {/* Estadísticas por continente */}
+      {/* Estadísticas */}
       <Card>
         <CardHeader>
           <CardTitle className="font-playfair text-lg">Estadísticas Globales</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
-            {Object.entries(continentStats).map(([continent, count]) => (
-              <div key={continent} className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">{continent}</span>
-                <Badge variant="outline">{count} santos</Badge>
+            {continentStats.map(([key, v]) => (
+              <div key={key} className="flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">{v.label}</span>
+                <Badge variant="outline">{v.count} santos</Badge>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
 
-      {/* Lista de santos filtrados */}
+      {/* Lista */}
       <Card>
         <CardHeader>
           <CardTitle className="font-playfair text-lg">
@@ -86,32 +149,54 @@ export function SaintsMapSidebar() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4 max-h-96 overflow-y-auto">
-            {filteredSaints.map((saint) => (
-              <div key={saint.id} className="flex gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-                  <Image src={saint.image || "/placeholder.svg"} alt={saint.name} fill className="object-cover" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-medium text-sm truncate">{saint.name}</h4>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground mb-1">
-                    <MapPin className="h-3 w-3" />
-                    <span>{saint.country}</span>
+            {filteredSaints.map((saint) => {
+              const country = saint.country?.trim() || "Desconocido"
+              const feastDay = saint.feastDay?.trim() || "—"
+              const img = saint.imageUrl || "/placeholder.svg"
+              const hasCoords = typeof saint.lat === "number" && typeof saint.lng === "number"
+
+              return (
+                <div key={saint.id} className="flex gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-muted">
+                    <img
+                      src={img}
+                      alt={saint.name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        ;(e.currentTarget as HTMLImageElement).src = "/placeholder.svg"
+                      }}
+                    />
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground mb-2">
-                    <Calendar className="h-3 w-3" />
-                    <span>{saint.feastDay}</span>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-medium text-sm truncate">{saint.name}</h4>
+
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground mb-1">
+                      <MapPin className="h-3 w-3" />
+                      <span className="truncate">
+                        {country}
+                        {!hasCoords && <span className="ml-2 text-[10px] opacity-70">(sin ubicación)</span>}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground mb-2">
+                      <Calendar className="h-3 w-3" />
+                      <span>{feastDay}</span>
+                    </div>
+
+                    <Button asChild size="sm" variant="outline" className="w-full text-xs bg-transparent">
+                      <Link href={`/santos/${saint.slug}`}>Ver Detalles</Link>
+                    </Button>
                   </div>
-                  <Button asChild size="sm" variant="outline" className="w-full text-xs bg-transparent">
-                    <Link href={`/santos/${saint.slug}`}>Ver Detalles</Link>
-                  </Button>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </CardContent>
       </Card>
 
-      {/* Información adicional */}
+      {/* Info */}
       <Card>
         <CardHeader>
           <CardTitle className="font-playfair text-lg">¿Sabías que...?</CardTitle>

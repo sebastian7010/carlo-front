@@ -18,6 +18,9 @@ export type Saint = {
   biography?: string | null;
   createdAt: string;
   updatedAt: string;
+  continent?: string | null;
+  lat?: number | null;
+  lng?: number | null;
 };
 
 type Props = {
@@ -36,6 +39,9 @@ export function AdminSaintsModal({ open, onClose, saint }: Props) {
       slug: saint?.slug ?? "",
       name: saint?.name ?? "",
       country: (saint?.country ?? "") as string,
+      continent: (saint?.continent ?? "") as string,
+      lat: (saint?.lat ?? "") as any,
+      lng: (saint?.lng ?? "") as any,
       title: (saint?.title ?? "") as string,
       feastDay: (saint?.feastDay ?? "") as string,
       imageUrl: (saint?.imageUrl ?? "") as string,
@@ -46,6 +52,9 @@ export function AdminSaintsModal({ open, onClose, saint }: Props) {
   const [slug, setSlug] = useState(initial.slug);
   const [name, setName] = useState(initial.name);
   const [country, setCountry] = useState(initial.country);
+  const [continent, setContinent] = useState((initial as any).continent || "");
+  const [lat, setLat] = useState(String((initial as any).lat ?? ""));
+  const [lng, setLng] = useState(String((initial as any).lng ?? ""));
   const [title, setTitle] = useState(initial.title);
   const [feastDay, setFeastDay] = useState(initial.feastDay);
   const [imageUrl, setImageUrl] = useState(initial.imageUrl);
@@ -87,11 +96,28 @@ export function AdminSaintsModal({ open, onClose, saint }: Props) {
     const safeSlug = slug.trim() || slugify(name);
 
     setLoading(true);
+    const latNum = lat.trim() === "" ? null : Number(lat);
+    const lngNum = lng.trim() === "" ? null : Number(lng);
+
+    if ((latNum === null) !== (lngNum === null)) {
+      setMsg("Debes llenar lat y lng juntos (o dejar ambos vacíos).");
+      setLoading(false);
+      return;
+    }
+    if ((latNum !== null && Number.isNaN(latNum)) || (lngNum !== null && Number.isNaN(lngNum))) {
+      setMsg("lat/lng deben ser números.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const payload = {
         slug: safeSlug,
         name: name.trim(),
         country: country.trim() || null,
+        continent: continent.trim() || null,
+        lat: latNum,
+        lng: lngNum,
         title: title.trim() || null,
         feastDay: feastDay.trim() || null,
         imageUrl: imageUrl.trim() || null,
@@ -163,6 +189,43 @@ export function AdminSaintsModal({ open, onClose, saint }: Props) {
             <Label htmlFor="country">País</Label>
             <Input id="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="ej: Italia" />
           </div>
+
+          <div className="grid gap-2">
+            <Label htmlFor="continent">Continente</Label>
+            <Input
+              id="continent"
+              value={continent}
+              onChange={(e) => setContinent(e.target.value)}
+              placeholder="ej: Europa"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="lat">Latitud</Label>
+              <Input
+                id="lat"
+                type="number"
+                step="any"
+                value={lat}
+                onChange={(e) => setLat(e.target.value)}
+                placeholder="ej: 41.8719"
+              />
+            </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="lng">Longitud</Label>
+              <Input
+                id="lng"
+                type="number"
+                step="any"
+                value={lng}
+                onChange={(e) => setLng(e.target.value)}
+                placeholder="ej: 12.5674"
+              />
+            </div>
+          </div>
+
 
           <div className="grid gap-2">
             <Label htmlFor="title">Título (Beato / Santo / etc.)</Label>
