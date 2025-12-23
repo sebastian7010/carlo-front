@@ -6,9 +6,26 @@ import { PrayersCategories } from "@/components/prayers-categories";
 import { FeaturedPrayers } from "@/components/featured-prayers";
 import { PrayersResults } from "@/components/prayers-results";
 import { ScrollToResults } from "@/components/scroll-to-results";
-import { getApprovedPrayers } from "@/lib/prayers-utils";
 
 export const dynamic = "force-dynamic";
+
+type DbPrayer = {
+  id: string;
+  title: string;
+  content: string;
+  category: string | null;
+  approved: boolean;
+  saintName: string | null;
+  occasion: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type Saint = {
+  id: string;
+  name: string;
+  slug: string;
+};
 
 function slugify(input: string) {
   return input
@@ -20,12 +37,28 @@ function slugify(input: string) {
     .replace(/[^a-z0-9\-]/g, "");
 }
 
+async function getApprovedPrayers(): Promise<DbPrayer[]> {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL?.trim() || "http://localhost:3001";
+  const res = await fetch(`${baseUrl}/prayers/approved`, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Error cargando oraciones aprobadas: ${res.status}`);
+  return res.json();
+}
+
+async function getSaintNames(): Promise<string[]> {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL?.trim() || "http://localhost:3001";
+  const res = await fetch(`${baseUrl}/saints`, { cache: "no-store" });
+  if (!res.ok) return [];
+  const saints = (await res.json()) as Saint[];
+  return Array.from(new Set((saints || []).map((s) => s.name).filter(Boolean))).sort();
+}
+
 export default async function OracionesPage({
   searchParams,
 }: {
   searchParams?: Record<string, string | string[]>;
 }) {
   const approvedPrayers = await getApprovedPrayers();
+  const saintsFromApi = await getSaintNames();
 
   const qRaw = (searchParams?.q ?? searchParams?.query ?? "") as string;
   const santoRaw = (searchParams?.santo ?? searchParams?.saint ?? "") as string;
@@ -38,18 +71,20 @@ export default async function OracionesPage({
   const categoria = (categoriaRaw || "").toString().trim();
 
   const categories = Array.from(
-    new Set(approvedPrayers.map((p: any) => p.category).filter(Boolean))
-  ) as string[];
-
-  const saints = Array.from(
-    new Set(approvedPrayers.map((p: any) => p.saintName).filter(Boolean))
+    new Set(approvedPrayers.map((p) => p.category).filter(Boolean))
   ) as string[];
 
   const occasions = Array.from(
-    new Set(approvedPrayers.map((p: any) => p.occasion).filter(Boolean))
+    new Set(approvedPrayers.map((p) => p.occasion).filter(Boolean))
   ) as string[];
 
-  let filtered = approvedPrayers as any[];
+  const saintsFromPrayers = Array.from(
+    new Set(approvedPrayers.map((p) => p.saintName).filter(Boolean))
+  ) as string[];
+
+  const saints = (saintsFromApi.length ? saintsFromApi : saintsFromPrayers).sort();
+
+  let filtered = approvedPrayers as DbPrayer[];
 
   if (q) {
     const qq = q.toLowerCase();
@@ -72,8 +107,16 @@ export default async function OracionesPage({
 
   if (categoria) {
     const c = slugify(categoria);
-    filtered = filtered.filter((p) => slugify(p.category ?? "") === c);
+    filtered = filtered.filter((p) => {
+      const pc = slugify(p.category ?? "");
+      return pc.includes(c) || c.includes(pc); // match flexible
+    });
   }
+
+  // Destacadas: últimas 4 por updatedAt (dataset real)
+  const featured = [...approvedPrayers]
+    .sort((a, b) => +new Date(b.updatedAt) - +new Date(a.updatedAt))
+    .slice(0, 4);
 
   return (
     <div className="min-h-screen bg-background">
@@ -85,16 +128,18 @@ export default async function OracionesPage({
         <PrayersSearch
           saints={saints}
           occasions={occasions}
+          categories={categories}
           initialQuery={q}
           initialSaint={santo}
           initialOccasion={ocasion}
+          initialCategory={categoria}
         />
 
-        <PrayersCategories />
+        <PrayersCategories prayers={approvedPrayers} />
 
         <ScrollToResults />
 
-        <FeaturedPrayers prayers={filtered} />
+        <FeaturedPrayers prayers={featured} />
 
         <div id="resultados">
           <PrayersResults prayers={filtered} />

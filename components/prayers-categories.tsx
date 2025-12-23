@@ -1,110 +1,134 @@
-import Link from "next/link"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Heart, Shield, Sun, Anchor, Flame, Crown } from "lucide-react"
-import { prayersData } from "@/lib/prayers-data"
+"use client";
 
-const prayerCategories = [
+import { useMemo } from "react";
+import { useRouter } from "next/navigation";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
+export type DbPrayer = {
+  id: string;
+  title: string;
+  content: string;
+  category?: string | null;
+};
+
+type CategoryCard = {
+  title: string;
+  description: string;
+  tags: string[];
+};
+
+const CATEGORIES: CategoryCard[] = [
   {
     title: "Protección y Fortaleza",
-    icon: Shield,
-    color: "text-secondary",
-    occasions: ["Protección", "Fortaleza", "Valor", "Perseverancia"],
     description: "Oraciones para pedir protección divina y fortaleza espiritual",
+    tags: ["Protección", "Fortaleza", "Valor"],
   },
   {
     title: "Sanación y Consuelo",
-    icon: Heart,
-    color: "text-accent",
-    occasions: ["Sanación", "Consuelo", "Enfermedad", "Dolor"],
     description: "Oraciones para momentos de enfermedad y necesidad de consuelo",
+    tags: ["Sanación", "Consuelo", "Enfermedad"],
   },
   {
     title: "Gratitud y Alabanza",
-    icon: Sun,
-    color: "text-primary",
-    occasions: ["Gratitud", "Alabanza", "Acción de gracias", "Bendición"],
     description: "Oraciones de agradecimiento y alabanza a Dios",
+    tags: ["Gratitud", "Alabanza", "Acción de gracias"],
   },
   {
     title: "Guía y Sabiduría",
-    icon: Anchor,
-    color: "text-secondary",
-    occasions: ["Guía", "Sabiduría", "Discernimiento", "Decisiones"],
     description: "Oraciones para pedir guía divina y sabiduría",
+    tags: ["Guía", "Sabiduría", "Discernimiento"],
   },
   {
     title: "Intercesión y Petición",
-    icon: Flame,
-    color: "text-accent",
-    occasions: ["Intercesión", "Petición", "Necesidades", "Familia"],
     description: "Oraciones de intercesión por otros y peticiones especiales",
+    tags: ["Intercesión", "Petición", "Necesidades"],
   },
   {
     title: "Devoción Mariana",
-    icon: Crown,
-    color: "text-primary",
-    occasions: ["Virgen María", "Rosario", "Advocaciones marianas"],
     description: "Oraciones dedicadas a la Santísima Virgen María",
+    tags: ["Virgen María", "Rosario", "Advocaciones marianas"],
   },
-]
+];
 
-export function PrayersCategories() {
+function slugify(input: string) {
+  return input
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\-]/g, "");
+}
+
+export function PrayersCategories({ prayers }: { prayers: DbPrayer[] }) {
+  const router = useRouter();
+
+  const counts = useMemo(() => {
+    const arr = prayers || [];
+    return CATEGORIES.map((cat) => {
+      const tagSlugs = cat.tags.map(slugify);
+      const n = arr.filter((p) => {
+        const c = slugify(p.category || "");
+        if (!c) return false;
+        // match flexible: category contains any tag, or tag contains category
+        return tagSlugs.some((t) => c.includes(t) || t.includes(c));
+      }).length;
+      return n;
+    });
+  }, [prayers]);
+
+  function explore(cat: CategoryCard) {
+    // usamos el primer tag como filtro base (suele ser “Protección”, “Sanación”, etc.)
+    const categoria = cat.tags[0] || cat.title;
+    const params = new URLSearchParams();
+    params.set("categoria", categoria);
+    router.push(`/oraciones?${params.toString()}#resultados`);
+  }
+
   return (
-    <div className="space-y-8 mb-12">
+    <div className="space-y-6">
       <div className="text-center">
-        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Categorías de Oraciones</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+        <h2 className="font-playfair text-3xl font-bold text-foreground mb-2">
+          Categorías de Oraciones
+        </h2>
+        <p className="text-muted-foreground">
           Explora oraciones organizadas por temas y necesidades espirituales
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {prayerCategories.map((category, index) => {
-          const IconComponent = category.icon
-          const categoryCount = prayersData.filter((prayer) =>
-            category.occasions.some((occasion) => prayer.occasion.toLowerCase().includes(occasion.toLowerCase())),
-          ).length
+        {CATEGORIES.map((cat, idx) => (
+          <Card key={cat.title} className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="text-xl">{cat.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">{cat.description}</p>
+            </CardHeader>
 
-          return (
-            <Card key={index} className="group hover:shadow-lg transition-all duration-300 cursor-pointer">
-              <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-4 p-3 rounded-full bg-muted group-hover:bg-primary/10 transition-colors">
-                  <IconComponent className={`h-8 w-8 ${category.color}`} />
-                </div>
-                <CardTitle className="font-playfair text-xl">{category.title}</CardTitle>
-                <p className="text-sm text-muted-foreground">{category.description}</p>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <div className="space-y-4">
-                  <div className="flex flex-wrap gap-1">
-                    {category.occasions.slice(0, 3).map((occasion, occasionIndex) => (
-                      <Badge key={occasionIndex} variant="outline" className="text-xs">
-                        {occasion}
-                      </Badge>
-                    ))}
-                    {category.occasions.length > 3 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{category.occasions.length - 3}
-                      </Badge>
-                    )}
-                  </div>
+            <CardContent className="space-y-4">
+              <div className="flex flex-wrap gap-2">
+                {cat.tags.slice(0, 3).map((t) => (
+                  <Badge key={t} variant="secondary">
+                    {t}
+                  </Badge>
+                ))}
+                {cat.tags.length > 3 ? (
+                  <Badge variant="outline">+{cat.tags.length - 3}</Badge>
+                ) : null}
+              </div>
 
-                  <div className="text-center">
-                    <p className="text-sm text-muted-foreground mb-3">{categoryCount} oraciones disponibles</p>
-                    <Link
-                      href={`/oraciones?categoria=${category.title.toLowerCase().replace(/\s+/g, "-")}`}
-                      className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full"
-                    >
-                      Explorar Oraciones
-                    </Link>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )
-        })}
+              <div className="text-sm text-muted-foreground">
+                {counts[idx]} oraciones disponibles
+              </div>
+
+              <Button variant="outline" className="w-full" onClick={() => explore(cat)}>
+                Explorar Oraciones
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
-  )
+  );
 }
