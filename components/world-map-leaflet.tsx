@@ -23,6 +23,7 @@ export function WorldMapLeaflet() {
   const markersLayerRef = useRef<any>(null)
   const iconRef = useRef<any>(null)
 
+  const leafletMapRef = useRef<any>(null)
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null)
   const [map, setMap] = useState<any>(null)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -93,6 +94,16 @@ export function WorldMapLeaflet() {
 
       const L = (window as any).L
 
+      // ✅ evita doble init (StrictMode/FastRefresh)
+      if (!mapRef.current) return
+      if (leafletMapRef.current) return
+
+      // ✅ si Fast Refresh dejó el contenedor “sucio”, limpia el id interno
+      const container: any = mapRef.current
+      if (container && container._leaflet_id) {
+        container._leaflet_id = null
+      }
+
       const leafletMap = L.map(mapRef.current, {
         center: [20, 0],
         zoom: 2,
@@ -104,6 +115,8 @@ export function WorldMapLeaflet() {
         dragging: true,
       })
 
+
+      leafletMapRef.current = leafletMap
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         maxZoom: 19,
@@ -146,10 +159,13 @@ export function WorldMapLeaflet() {
 
     return () => {
       try {
-        if (map) map.remove()
+        if (leafletMapRef.current) {
+          leafletMapRef.current.remove()
+          leafletMapRef.current = null
+        }
       } catch {}
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      markersLayerRef.current = null
+    }// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // 3) Pintar marcadores cada vez que cambian los santos con coords
