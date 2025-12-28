@@ -1,13 +1,16 @@
 "use client"
 
 import { useState } from "react"
+import { useLanguage } from "@/contexts/language-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Search, Filter } from "lucide-react"
 
 export function SaintsFilters() {
-  const [searchTerm, setSearchTerm] = useState("")
+  
+  const { t } = useLanguage()
+const [searchTerm, setSearchTerm] = useState("")
   const [selectedContinent, setSelectedContinent] = useState("")
   const [selectedCentury, setSelectedCentury] = useState("")
 
@@ -15,14 +18,14 @@ export function SaintsFilters() {
     <div className="bg-card rounded-lg p-6 mb-8 border">
       <div className="flex items-center gap-2 mb-4">
         <Filter className="h-5 w-5 text-primary" />
-        <h2 className="font-playfair text-lg font-semibold">Filtrar Santos</h2>
+        <h2 className="font-playfair text-lg font-semibold">{t("saints.filters.title")}</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
           <Input
-            placeholder="Buscar por nombre..."
+            placeholder={t("saints.filters.searchPlaceholder")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -31,7 +34,7 @@ export function SaintsFilters() {
 
         <Select value={selectedContinent} onValueChange={setSelectedContinent}>
           <SelectTrigger>
-            <SelectValue placeholder="Continente" />
+            <SelectValue placeholder={t("saints.filters.continentPlaceholder")} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="europa">Europa</SelectItem>
@@ -44,7 +47,7 @@ export function SaintsFilters() {
 
         <Select value={selectedCentury} onValueChange={setSelectedCentury}>
           <SelectTrigger>
-            <SelectValue placeholder="Siglo" />
+            <SelectValue placeholder={t("saints.filters.centuryPlaceholder")} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="1-5">Siglos I-V</SelectItem>

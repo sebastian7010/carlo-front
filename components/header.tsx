@@ -26,9 +26,7 @@ export function Header() {
           {/* Logo - responsive */}
           <Link href="/" className="flex items-center space-x-1.5 sm:space-x-2">
             <Cross className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
-            <span className="font-playfair text-base sm:text-xl font-bold text-foreground truncate max-w-[140px] sm:max-w-none">
-              Santos y Milagros
-            </span>
+            <span className="font-playfair text-base sm:text-xl font-bold text-foreground truncate max-w-[140px] sm:max-w-none">{t("brand.title")}</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,6 +1,19 @@
 export const translations: Record<string, Record<string, string>> = {
 
   es: {
+    "pages.verses.title": 'Versículos para el Alma',
+    "pages.symbols.title": 'Símbolos Católicos',
+    "pages.eucharist.title": 'La Sagrada Eucaristía',
+    "pages.map.title": 'Mapa Mundial de Santos',
+    "pages.miracles.title": 'Milagros de los Santos',
+    "pages.saints.title": 'Vidas de los Santos',
+    "saints.filters.clear": 'Limpiar Filtros',
+    "saints.filters.centuryPlaceholder": 'Siglo',
+    "saints.filters.continentPlaceholder": 'Continente',
+    "saints.filters.searchPlaceholder": 'Buscar por nombre...',
+    "saints.filters.title": 'Filtrar Santos',
+    "saints.subtitle": 'Descubre las historias extraordinarias de hombres y mujeres que dedicaron sus vidas a Dios y se convirtieron en ejemplos de santidad para toda la humanidad.',
+    "brand.title": 'Santos y Milagros',
     // Navigation
     "nav.home": "Inicio",
     "nav.saints": "Santos",
