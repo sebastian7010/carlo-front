@@ -44,3 +44,9 @@ nul
 *.bak.*
 str
 patch_*.py
+
+# backups/scripts
+*.bak
+*.bak*
+*.py
+str
