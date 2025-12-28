@@ -1,4 +1,7 @@
+"use client"
+
 import { Header } from "@/components/header";
+import { useLanguage } from "@/contexts/language-context"
 import { Footer } from "@/components/footer";
 import { SaintsList } from "@/components/saints-list";
 import { SaintsFilters } from "@/components/saints-filters";
@@ -32,7 +35,9 @@ async function getSaints(): Promise<Saint[]> {
 }
 
 export default async function SaintsPage() {
-  const saints = await getSaints();
+  
+  const { t } = useLanguage()
+const saints = await getSaints();
 
   return (
     <div className="min-h-screen bg-background">
@@ -40,9 +45,7 @@ export default async function SaintsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12">
           <div className="ornate-divider w-32 mx-auto mb-8"></div>
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Vidas de los Santos
-          </h1>
+          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">{t("pages.saints.title")}</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             Descubre las historias extraordinarias de hombres y mujeres que dedicaron sus vidas a Dios y se convirtieron
             en ejemplos de santidad para toda la humanidad.

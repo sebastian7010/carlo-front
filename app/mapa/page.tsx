@@ -1,17 +1,22 @@
+"use client"
+
 import { Header } from "@/components/header"
+import { useLanguage } from "@/contexts/language-context"
 import { Footer } from "@/components/footer"
 import { WorldMapLeaflet } from "@/components/world-map-leaflet"
 import { MapLegend } from "@/components/map-legend"
 import { SaintsMapSidebar } from "@/components/saints-map-sidebar"
 
 export default function MapPage() {
-  return (
+  
+  const { t } = useLanguage()
+return (
     <div className="min-h-screen bg-background">
       <Header />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-8">
           <div className="ornate-divider w-32 mx-auto mb-6"></div>
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Mapa Mundial de Santos</h1>
+          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">{t("pages.map.title")}</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             Explora santos de todo el mundo con nuestro mapa interactivo de alta precisión. Haz clic en los marcadores
             para descubrir los santos de cada región y conocer sus historias extraordinarias.
