@@ -38,3 +38,4 @@ next-env.d.ts
 # --- generated backups / megabash junk ---
 *.bak_*
 nul
+_archive/

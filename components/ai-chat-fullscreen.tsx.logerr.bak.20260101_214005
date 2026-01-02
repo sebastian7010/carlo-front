@@ -8,7 +8,6 @@ import { useUser, type ChatMessage } from "@/contexts/user-context"
 import { ChatSidebar } from "@/components/chat-sidebar"
 import { AuthModal } from "@/components/auth-modal"
 import { Send, Sparkles, User, Cross, BookOpen, Heart, Compass, ArrowDown, Menu } from "lucide-react"
-import { postAiChat } from "@/lib/ai-client";
 
 export function AIChatFullscreen() {
   const { t, language } = useLanguage()
@@ -24,7 +23,7 @@ export function AIChatFullscreen() {
   // Sincronizar mensajes con la conversación actual
   useEffect(() => {
     if (currentConversation) {
-      setMessages(currentConversation.messages)
+      setMessages((prev) => (prev.length ? prev : currentConversation.messages))
     } else {
       setMessages([])
     }
@@ -227,48 +226,47 @@ export function AIChatFullscreen() {
     }
 
     try {
-          const { answer } = await postAiChat({
-            message: userMessage.content,
-            lang: language || "es",
-            sessionId: convId,
-          })
+      const { answer } = await postAiChat({
+        message: userMessage.content,
+        lang: language || "es",
+      })
 
-          const assistantMessage: ChatMessage = {
-            id: (Date.now() + 1).toString(),
-            role: "assistant",
-            content: answer,
-            timestamp: new Date(),
-          }
+      const assistantMessage: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        role: "assistant",
+        content: answer,
+        timestamp: new Date(),
+      }
 
-          const updatedMessages = [...newMessages, assistantMessage]
-          setMessages(updatedMessages)
+      const updatedMessages = [...newMessages, assistantMessage]
+      setMessages(updatedMessages)
 
-          if (convId && isAuthenticated) {
-            updateConversation(convId, updatedMessages)
-          }
-        } catch (e: any) {
-          const msg =
-            e?.status === 429
-              ? "Estoy recibiendo muchas solicitudes ahora mismo. Intenta de nuevo en unos segundos."
-              : "Tuve un problema respondiendo. Intenta de nuevo."
+      if (convId && isAuthenticated) {
+        updateConversation(convId, updatedMessages)
+      }
+    } catch (e: any) {
+      const msg =
+        e?.status === 429
+          ? "Estoy recibiendo muchas solicitudes ahora mismo. Intenta de nuevo en unos segundos."
+          : "Tuve un problema respondiendo. Intenta de nuevo."
 
-          const assistantMessage: ChatMessage = {
-            id: (Date.now() + 1).toString(),
-            role: "assistant",
-            content: msg,
-            timestamp: new Date(),
-          }
+      const assistantMessage: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        role: "assistant",
+        content: msg,
+        timestamp: new Date(),
+      }
 
-          const updatedMessages = [...newMessages, assistantMessage]
-          setMessages(updatedMessages)
+      const updatedMessages = [...newMessages, assistantMessage]
+      setMessages(updatedMessages)
 
-          if (convId && isAuthenticated) {
-            updateConversation(convId, updatedMessages)
-          }
-        } finally {
-          setIsTyping(false)
-        }
-  }
+      if (convId && isAuthenticated) {
+        updateConversation(convId, updatedMessages)
+      }
+    } finally {
+      setIsTyping(false)
+    }
+}
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {

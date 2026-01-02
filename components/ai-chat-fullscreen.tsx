@@ -1,5 +1,6 @@
 "use client"
 
+import { postAiChat } from "@/lib/ai-client";
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
@@ -23,7 +24,7 @@ export function AIChatFullscreen() {
   // Sincronizar mensajes con la conversación actual
   useEffect(() => {
     if (currentConversation) {
-      setMessages(currentConversation.messages)
+      setMessages((prev) => (prev.length ? prev : currentConversation.messages))
     } else {
       setMessages([])
     }
@@ -225,24 +226,49 @@ export function AIChatFullscreen() {
       updateConversation(convId, newMessages)
     }
 
-    setTimeout(() => {
+    try {
+      const { answer } = await postAiChat({
+        message: userMessage.content,
+        lang: language || "es",
+      })
+
       const assistantMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content:
-          t("ai.demoResponse") ||
-          "Esta es una respuesta de demostración. Conecta tu backend con OpenAI para obtener respuestas reales sobre catolicismo, santos, salmos y oraciones.",
+        content: answer,
         timestamp: new Date(),
       }
+
       const updatedMessages = [...newMessages, assistantMessage]
       setMessages(updatedMessages)
-      setIsTyping(false)
 
       if (convId && isAuthenticated) {
         updateConversation(convId, updatedMessages)
       }
-    }, 1500)
-  }
+    } catch (e: any) {
+          console.error("AI UI error (fullscreen):", e);
+const msg =
+        e?.status === 429
+          ? "Estoy recibiendo muchas solicitudes ahora mismo. Intenta de nuevo en unos segundos."
+          : "Tuve un problema respondiendo. Intenta de nuevo."
+
+      const assistantMessage: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        role: "assistant",
+        content: msg,
+        timestamp: new Date(),
+      }
+
+      const updatedMessages = [...newMessages, assistantMessage]
+      setMessages(updatedMessages)
+
+      if (convId && isAuthenticated) {
+        updateConversation(convId, updatedMessages)
+      }
+    } finally {
+      setIsTyping(false)
+    }
+}
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {

@@ -1,5 +1,6 @@
 "use client"
 
+import { postAiChat } from "@/lib/ai-client";
 import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
@@ -21,7 +22,7 @@ interface QuickQuestion {
 }
 
 export function AIChat() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
   const [isTyping, setIsTyping] = useState(false)
@@ -79,18 +80,39 @@ export function AIChat() {
     setInput("")
     setIsTyping(true)
 
-    setTimeout(() => {
+    try {
+      const { answer } = await postAiChat({
+        message: userMessage.content,
+        lang: (language as any) || "es",
+      })
+
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content:
-          "Esta es una respuesta de demostración. Conecta tu backend con OpenAI para obtener respuestas reales sobre catolicismo, santos, salmos y oraciones.",
+        content: answer,
         timestamp: new Date(),
       }
+
       setMessages((prev) => [...prev, assistantMessage])
+    } catch (e: any) {
+      console.error("AI UI error (chat):", e);
+const msg =
+        e?.status === 429
+          ? "Estoy recibiendo muchas solicitudes ahora mismo. Intenta de nuevo en unos segundos."
+          : "Tuve un problema respondiendo. Intenta de nuevo."
+
+      const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: "assistant",
+        content: msg,
+        timestamp: new Date(),
+      }
+
+      setMessages((prev) => [...prev, assistantMessage])
+    } finally {
       setIsTyping(false)
-    }, 1500)
-  }
+    }
+}
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/30">
