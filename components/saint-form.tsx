@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/t";
+
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -263,7 +265,7 @@ export function SaintForm({ onClose, saint }: SaintFormProps) {
             </div>
 
             <div>
-              <Label htmlFor="continent">Continente *</Label>
+              <Label htmlFor="continent"><T k="saints.continent" /> *</Label>
               <Select value={formData.continent} onValueChange={(value) => handleInputChange("continent", value)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Seleccionar continente" />

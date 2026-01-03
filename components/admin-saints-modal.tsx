@@ -1,3 +1,5 @@
+import { T } from "@/components/t";
+
 'use client';
 
 import { useEffect, useMemo, useState } from "react";
@@ -191,7 +193,7 @@ export function AdminSaintsModal({ open, onClose, saint }: Props) {
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="continent">Continente</Label>
+            <Label htmlFor="continent"><T k="saints.continent" /></Label>
             <Input
               id="continent"
               value={continent}

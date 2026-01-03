@@ -1,4 +1,6 @@
-"use client"
+"use client";
+import { T } from "@/components/t";
+
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -130,7 +132,7 @@ export function SaintMatcherResults({ results, onReset }: SaintMatcherResultsPro
               Ver más oraciones
             </Button>
             <Button variant="outline" size="sm">
-              Explorar otros santos
+              <T k="footer.explore" /> otros santos
             </Button>
           </div>
         </CardContent>

@@ -1,0 +1,7 @@
+components/admin-miracles-list.tsx
+components/admin-prayers-list.tsx
+components/miracles-list.tsx
+components/prayers-categories.tsx
+components/prayers-search.tsx
+components/saint-matcher-results.tsx
+components/world-map-leaflet.tsx

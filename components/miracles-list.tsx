@@ -1,4 +1,6 @@
-"use client"
+"use client";
+import { T } from "@/components/t";
+
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -215,7 +217,7 @@ export function MiraclesList() {
               }}
               disabled={loading}
             >
-              Limpiar Filtros
+              <T k="saints.clearFilters" />
             </Button>
           </div>
 

@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/t";
+
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
@@ -108,7 +110,7 @@ export function SaintsList({ saints }: Props) {
                 ) : null}
 
                 <Button asChild className="w-full bg-transparent" variant="outline">
-                  <Link href={`/santos/${saint.slug}`}>Ver Biografía Completa</Link>
+                  <Link href={`/santos/${saint.slug}`}><T k="saints.viewFullBio" /></Link>
                 </Button>
               </CardContent>
             </Card>

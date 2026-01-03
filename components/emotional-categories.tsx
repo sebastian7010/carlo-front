@@ -1,3 +1,5 @@
+import { T } from "@/components/t";
+
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -92,7 +94,7 @@ export function EmotionalCategories() {
                       href={`/versiculos?categoria=${category.title.toLowerCase().replace(/\s+/g, "-")}`}
                       className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full"
                     >
-                      Explorar Versículos
+                      <T k="footer.explore" /> Versículos
                     </Link>
                   </div>
                 </div>

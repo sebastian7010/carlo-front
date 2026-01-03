@@ -1,0 +1,8 @@
+app/santos/page.tsx
+components/admin-saints-modal.tsx
+components/emotional-categories.tsx
+components/miracles-list.tsx
+components/prayers-categories.tsx
+components/saint-form.tsx
+components/saint-matcher-results.tsx
+components/saints-list.tsx

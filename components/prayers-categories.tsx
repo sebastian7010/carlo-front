@@ -1,4 +1,6 @@
 "use client";
+import { T } from "@/components/t";
+
 
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
@@ -123,7 +125,7 @@ export function PrayersCategories({ prayers }: { prayers: DbPrayer[] }) {
               </div>
 
               <Button variant="outline" className="w-full" onClick={() => explore(cat)}>
-                Explorar Oraciones
+                <T k="footer.explore" /> Oraciones
               </Button>
             </CardContent>
           </Card>

@@ -51,11 +51,11 @@ const [searchTerm, setSearchTerm] = useState("")
             <SelectValue placeholder={t("saints.filters.centuryPlaceholder")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="1-5">Siglos I-V</SelectItem>
-            <SelectItem value="6-10">Siglos VI-X</SelectItem>
-            <SelectItem value="11-15">Siglos XI-XV</SelectItem>
-            <SelectItem value="16-20">Siglos XVI-XX</SelectItem>
-            <SelectItem value="21">Siglo XXI</SelectItem>
+            <SelectItem value="1-5"><T k="saints.century" />s I-V</SelectItem>
+            <SelectItem value="6-10"><T k="saints.century" />s VI-X</SelectItem>
+            <SelectItem value="11-15"><T k="saints.century" />s XI-XV</SelectItem>
+            <SelectItem value="16-20"><T k="saints.century" />s XVI-XX</SelectItem>
+            <SelectItem value="21"><T k="saints.century" /> XXI</SelectItem>
           </SelectContent>
         </Select>
 
@@ -67,7 +67,7 @@ const [searchTerm, setSearchTerm] = useState("")
             setSelectedCentury("")
           }}
         >
-          Limpiar Filtros
+          <T k="saints.clearFilters" />
         </Button>
       </div>
     </div>
