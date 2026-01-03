@@ -1,0 +1,622 @@
+=============================
+0) Archivos clave i18n
+=============================
+-rw-r--r-- 1 sebas 197609 2343 Jan  2 23:31 components/language-selector.tsx
+-rw-r--r-- 1 sebas 197609 1190 Dec 31 14:58 contexts/language-context.tsx
+-rw-r--r-- 1 sebas 197609   1620 Jan  2 23:20 lib/i18n.ts
+-rw-r--r-- 1 sebas 197609 182704 Dec 31 14:58 lib/translations.ts
+-rw-r--r-- 1 sebas 197609 1493 Dec 31 14:57 app/layout.tsx
+-rw-r--r-- 1 sebas 197609  743 Dec 31 14:57 app/page.tsx
+
+=============================
+1) Dónde se define languages[] y defaultLanguage
+=============================
+contexts/language-context.tsx:18:    const defaultLanguage = "es";
+contexts/language-context.tsx:21:      const currentDict = translations[language] || translations[defaultLanguage] || {};
+contexts/language-context.tsx:22:      const fallbackDict = translations[defaultLanguage] || {};
+lib/i18n.ts:3:export const languages = [
+lib/i18n.ts:4:  { code: "es" as const, name: "Español", flag: "🇪🇸" },
+lib/i18n.ts:5:  { code: "en" as const, name: "English", flag: "🇺🇸" },
+lib/i18n.ts:6:  { code: "zh" as const, name: "中文", flag: "🇨🇳" },
+lib/i18n.ts:7:  { code: "hi" as const, name: "हिन्दी", flag: "🇮🇳" },
+lib/i18n.ts:8:  { code: "ar" as const, name: "العربية", flag: "🇸🇦" },
+lib/i18n.ts:9:  { code: "pt" as const, name: "Português", flag: "🇧🇷" },
+lib/i18n.ts:10:  { code: "ru" as const, name: "Русский", flag: "🇷🇺" },
+lib/i18n.ts:11:  { code: "fr" as const, name: "Français", flag: "🇫🇷" },
+lib/i18n.ts:12:  { code: "ja" as const, name: "日本語", flag: "🇯🇵" },
+lib/i18n.ts:13:  { code: "de" as const, name: "Deutsch", flag: "🇩🇪" },
+lib/i18n.ts:14:  { code: "ko" as const, name: "한국어", flag: "🇰🇷" },
+lib/i18n.ts:15:  { code: "it" as const, name: "Italiano", flag: "🇮🇹" },
+lib/i18n.ts:16:  { code: "tr" as const, name: "Türkçe", flag: "🇹🇷" },
+lib/i18n.ts:17:  { code: "vi" as const, name: "Tiếng Việt", flag: "🇻🇳" },
+lib/i18n.ts:18:  { code: "pl" as const, name: "Polski", flag: "🇵🇱" },
+lib/i18n.ts:22:export type LanguageCode = (typeof languages)[number]["code"]
+lib/i18n.ts:25:export const defaultLanguage: LanguageCode = "es"
+lib/i18n.ts:31:// export type TranslationLanguageCode = keyof typeof translations
+lib/translations.ts:3252:export type LanguageCode = keyof typeof translations
+lib/translations.ts.bak.20251219_012110:3239:export type LanguageCode = keyof typeof translations
+
+=============================
+2) Contexto y uso: useLanguage / setLanguage / t(
+=============================
+components/ai-chat-fullscreen.tsx:7:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat-fullscreen.tsx:14:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx:355:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx:456:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx:472:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx:483:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:6:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:13:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:233:          t("ai.demoResponse") ||
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:329:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:430:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:446:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:457:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:6:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:13:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:353:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:454:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:470:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:481:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat.tsx:8:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat.tsx:25:  const { t, language } = useLanguage()
+components/ai-chat.tsx:124:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx:126:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx:127:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx:140:                {t(q.labelKey)}
+components/ai-chat.tsx:153:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx:154:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx:218:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx:229:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/ai-chat.tsx.bak_20260101_213132:7:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat.tsx.bak_20260101_213132:24:  const { t } = useLanguage()
+components/ai-chat.tsx.bak_20260101_213132:102:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx.bak_20260101_213132:104:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx.bak_20260101_213132:105:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:118:                {t(q.labelKey)}
+components/ai-chat.tsx.bak_20260101_213132:131:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:132:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:196:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx.bak_20260101_213132:207:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:7:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat.tsx.logerr.bak.20260101_214018:24:  const { t, language } = useLanguage()
+components/ai-chat.tsx.logerr.bak.20260101_214018:122:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx.logerr.bak.20260101_214018:124:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx.logerr.bak.20260101_214018:125:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:138:                {t(q.labelKey)}
+components/ai-chat.tsx.logerr.bak.20260101_214018:151:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:152:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:216:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx.logerr.bak.20260101_214018:227:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/auth-modal.tsx:9:import { useLanguage } from "@/contexts/language-context"
+components/auth-modal.tsx:19:  const { language } = useLanguage()
+components/auth-modal.tsx:31:  const translations: Record<
+components/auth-modal.tsx:276:  const t = translations[language] || translations.es
+components/chat-sidebar.tsx:6:import { useLanguage } from "@/contexts/language-context"
+components/chat-sidebar.tsx:25:  const { language } = useLanguage()
+components/chat-sidebar.tsx:29:  const translations: Record<
+components/chat-sidebar.tsx:178:  const t = translations[language] || translations.es
+components/dynamic-metadata.tsx:3:import { useLanguage } from "@/contexts/language-context"
+components/dynamic-metadata.tsx:7:  const { t, language } = useLanguage()
+components/dynamic-metadata.tsx:11:    document.title = t("metadata.title")
+components/dynamic-metadata.tsx:16:      metaDescription.setAttribute("content", t("metadata.description"))
+components/dynamic-metadata.tsx:22:      metaKeywords.setAttribute("content", t("metadata.keywords"))
+components/featured-sections.tsx:7:import { useLanguage } from "@/contexts/language-context"
+components/featured-sections.tsx:10:  const { t } = useLanguage()
+components/featured-sections.tsx:69:          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-foreground mb-4">{t("featured.title")}</h2>
+components/featured-sections.tsx:70:          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("featured.subtitle")}</p>
+components/featured-sections.tsx:93:                  <CardTitle className="font-playfair text-xl">{t(section.titleKey)}</CardTitle>
+components/featured-sections.tsx:96:                      {t("featured.new")}
+components/featured-sections.tsx:101:                  <p className="text-muted-foreground mb-6 text-pretty">{t(section.descriptionKey)}</p>
+components/featured-sections.tsx:108:                      {section.featured ? t("featured.discoverNow") : t("featured.explore")}
+components/footer.tsx:5:import { useLanguage } from "@/contexts/language-context"
+components/footer.tsx:8:  const { t } = useLanguage()
+components/footer.tsx:20:            <p className="text-muted-foreground text-pretty max-w-md">{t("footer.description")}</p>
+components/footer.tsx:25:            <h3 className="font-playfair font-semibold text-foreground mb-4">{t("footer.explore")}</h3>
+components/footer.tsx:29:                  {t("footer.saints")}
+components/footer.tsx:34:                  {t("footer.worldMap")}
+components/footer.tsx:39:                  {t("footer.prayers")}
+components/footer.tsx:44:                  {t("footer.verses")}
+components/footer.tsx:52:            <h3 className="font-playfair font-semibold text-foreground mb-4">{t("footer.resources")}</h3>
+components/footer.tsx:56:                  {t("footer.eucharist")}
+components/footer.tsx:61:                  {t("footer.symbols")}
+components/footer.tsx:66:                  {t("footer.miracles")}
+components/footer.tsx:75:            {t("footer.madeWith")} <Heart className="h-4 w-4 text-secondary" /> {t("footer.forGlory")}
+components/header.tsx:8:import { useLanguage } from "@/contexts/language-context"
+components/header.tsx:12:  const { t } = useLanguage()
+components/header.tsx:15:    { name: t("nav.saints"), href: "/santos" },
+components/header.tsx:16:    { name: t("nav.miracles"), href: "/milagros" },
+components/header.tsx:17:    { name: t("nav.prayers"), href: "/oraciones" },
+components/header.tsx:18:    { name: t("nav.map"), href: "/mapa" },
+components/header.tsx:19:    { name: t("nav.eucharist"), href: "/eucaristia" },
+components/header.tsx:29:            <span className="font-playfair text-base sm:text-xl font-bold text-foreground truncate max-w-[140px] sm:max-w-none">{t("brand.title")}</span>
+components/hero.tsx:5:import { useLanguage } from "@/contexts/language-context"
+components/hero.tsx:9:  const { t } = useLanguage()
+components/hero.tsx:18:          <p className="text-sm font-medium text-primary uppercase tracking-widest mb-1">{t("hero.dedication")}</p>
+components/hero.tsx:19:          <p className="text-xs text-muted-foreground font-light">{t("hero.dedicationDates")}</p>
+components/hero.tsx:27:          <span className="text-sm font-medium text-primary">{t("hero.aiPowered")}</span>
+components/hero.tsx:31:          {t("hero.title")}
+components/hero.tsx:35:          {t("hero.subtitle")}
+components/hero.tsx:42:              {t("hero.startChat")}
+components/hero.tsx:47:            <Link href="/descubre-tu-santo">{t("hero.discoverSaint")}</Link>
+components/interactive-invitations.tsx:9:import { useLanguage } from "@/contexts/language-context"
+components/interactive-invitations.tsx:13:  const { t } = useLanguage()
+components/interactive-invitations.tsx:77:            {t("invitations.exploreDiscover")}
+components/interactive-invitations.tsx:80:            {t("invitations.title")}
+components/interactive-invitations.tsx:82:          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">{t("invitations.subtitle")}</p>
+components/interactive-invitations.tsx:109:                          {t(invitation.titleKey)}
+components/interactive-invitations.tsx:114:                      <p className="text-muted-foreground mb-3 text-pretty">{t(invitation.descriptionKey)}</p>
+components/interactive-invitations.tsx:119:                          {t(invitation.statsKey)}
+components/interactive-invitations.tsx:125:                          <p className="text-sm text-muted-foreground">{t(invitation.previewKey)}</p>
+components/interactive-invitations.tsx:136:                          {t(invitation.actionKey)}
+components/interactive-invitations.tsx:153:                {t("invitations.notSure.title")}
+components/interactive-invitations.tsx:155:              <p className="text-muted-foreground">{t("invitations.notSure.description")}</p>
+components/interactive-invitations.tsx:162:                  {t("invitations.discoverSaint")}
+components/interactive-invitations.tsx:168:                  {t("invitations.exploreMap")}
+components/interactive-invitations.tsx:188:                <div className="text-sm text-muted-foreground">{t(stat.labelKey)}</div>
+components/language-selector.tsx:6:import { useLanguage } from "@/contexts/language-context"
+components/language-selector.tsx:11:  const { language, setLanguage, t } = useLanguage()
+components/language-selector.tsx:40:                {t("selectLanguage")}
+components/language-selector.tsx:47:                    setLanguage(lang.code)
+components/language-selector.tsx.bak.20260102_232447:6:import { useLanguage } from "@/contexts/language-context"
+components/language-selector.tsx.bak.20260102_232447:11:  const { language, setLanguage, t } = useLanguage()
+components/language-selector.tsx.bak.20260102_232447:38:                {t("selectLanguage")}
+components/language-selector.tsx.bak.20260102_232447:45:                    setLanguage(lang.code)
+components/saints-filters.tsx:4:import { useLanguage } from "@/contexts/language-context"
+components/saints-filters.tsx:12:  const { t } = useLanguage()
+components/saints-filters.tsx:21:        <h2 className="font-playfair text-lg font-semibold">{t("saints.filters.title")}</h2>
+components/saints-filters.tsx:28:            placeholder={t("saints.filters.searchPlaceholder")}
+components/saints-filters.tsx:37:            <SelectValue placeholder={t("saints.filters.continentPlaceholder")} />
+components/saints-filters.tsx:50:            <SelectValue placeholder={t("saints.filters.centuryPlaceholder")} />
+components/scripture-search.tsx:9:import { useLanguage } from "@/contexts/language-context"
+components/scripture-search.tsx:14:  const { t } = useLanguage()
+components/scripture-search.tsx:17:    t("scriptureSearch.suggestions.fear"),
+components/scripture-search.tsx:18:    t("scriptureSearch.suggestions.anxiety"),
+components/scripture-search.tsx:19:    t("scriptureSearch.suggestions.sadness"),
+components/scripture-search.tsx:20:    t("scriptureSearch.suggestions.joy"),
+components/scripture-search.tsx:21:    t("scriptureSearch.suggestions.hope"),
+components/scripture-search.tsx:22:    t("scriptureSearch.suggestions.gratitude"),
+components/scripture-search.tsx:23:    t("scriptureSearch.suggestions.forgiveness"),
+components/scripture-search.tsx:24:    t("scriptureSearch.suggestions.love"),
+components/scripture-search.tsx:25:    t("scriptureSearch.suggestions.peace"),
+components/scripture-search.tsx:26:    t("scriptureSearch.suggestions.strength"),
+components/scripture-search.tsx:45:            {t("scriptureSearch.title")}
+components/scripture-search.tsx:47:          <p className="text-lg text-muted-foreground">{t("scriptureSearch.subtitle")}</p>
+components/scripture-search.tsx:52:            <CardTitle className="text-center font-playfair">{t("scriptureSearch.cardTitle")}</CardTitle>
+components/scripture-search.tsx:60:                  placeholder={t("scriptureSearch.placeholder")}
+components/scripture-search.tsx:87:                {t("scriptureSearch.searchButton")}
+contexts/language-context.tsx:4:import { translations } from "@/lib/translations";
+contexts/language-context.tsx:14:export function LanguageProvider({ children }: { children: React.ReactNode }) {
+contexts/language-context.tsx:21:      const currentDict = translations[language] || translations[defaultLanguage] || {};
+contexts/language-context.tsx:22:      const fallbackDict = translations[defaultLanguage] || {};
+contexts/language-context.tsx:32:export function useLanguage() {
+contexts/language-context.tsx:34:  if (!ctx) throw new Error("useLanguage debe usarse dentro de <LanguageProvider>");
+lib/i18n.ts:1:import type { translations } from "./translations"
+lib/i18n.ts:30:// (Opcional) si quieres asegurar que translations tiene esas keys:
+lib/i18n.ts:31:// export type TranslationLanguageCode = keyof typeof translations
+lib/translations-utils.ts:9:      return t(`saints.patronOf.${key}`) || patron
+lib/translations-utils.ts:16:      return t(`saints.symbols.${key}`) || symbol
+lib/translations-utils.ts:25:    category: t(`prayers.categories.${prayer.category.toLowerCase()}`) || prayer.category,
+lib/translations-utils.ts:26:    occasion: t(`prayers.occasions.${prayer.occasion.toLowerCase().replace(/\s+/g, "")}`) || prayer.occasion,
+lib/translations-utils.ts:34:    status: miracle.verified ? t("miracles.status.verified") : t("miracles.status.investigating"),
+lib/translations.ts:1:export const translations: Record<string, Record<string, string>> = {
+lib/translations.ts:3251:export type TranslationKey = keyof typeof translations.es
+lib/translations.ts:3252:export type LanguageCode = keyof typeof translations
+lib/translations.ts.bak.20251219_012110:1:export const translations: Record<string, Record<string, string>> = {
+lib/translations.ts.bak.20251219_012110:3238:export type TranslationKey = keyof typeof translations.es
+lib/translations.ts.bak.20251219_012110:3239:export type LanguageCode = keyof typeof translations
+app/layout.tsx:6:import { LanguageProvider } from "@/contexts/language-context"
+app/layout.tsx:39:          <LanguageProvider>
+app/layout.tsx:45:          </LanguageProvider>
+
+=============================
+3) Persistencia (localStorage/cookies/query)
+=============================
+components/saints-map-sidebar.tsx:86:      return a[1].label.localeCompare(b[1].label)
+contexts/user-context.tsx:48:    // Cargar usuario y conversaciones del localStorage
+contexts/user-context.tsx:49:    const savedUser = localStorage.getItem("catholic_user")
+contexts/user-context.tsx:50:    const savedConversations = localStorage.getItem("catholic_conversations")
+contexts/user-context.tsx:51:    const savedCurrentId = localStorage.getItem("catholic_current_conversation")
+contexts/user-context.tsx:76:      localStorage.setItem("catholic_user", JSON.stringify(user))
+contexts/user-context.tsx:78:      localStorage.removeItem("catholic_user")
+contexts/user-context.tsx:84:      localStorage.setItem("catholic_conversations", JSON.stringify(conversations))
+contexts/user-context.tsx:90:      localStorage.setItem("catholic_current_conversation", currentConversation.id)
+contexts/user-context.tsx:96:    const savedUsers = JSON.parse(localStorage.getItem("catholic_users") || "[]")
+contexts/user-context.tsx:107:    const savedUsers = JSON.parse(localStorage.getItem("catholic_users") || "[]")
+contexts/user-context.tsx:122:    localStorage.setItem("catholic_users", JSON.stringify(savedUsers))
+contexts/user-context.tsx:131:    localStorage.removeItem("catholic_user")
+contexts/user-context.tsx:132:    localStorage.removeItem("catholic_conversations")
+contexts/user-context.tsx:133:    localStorage.removeItem("catholic_current_conversation")
+lib/admin-utils.ts.bak.fix.20251219_013158:77:      // por si luego usas cookies/sesión en admin
+lib/auth.tsx:21:    const authStatus = localStorage.getItem("catholic_admin_auth")
+lib/auth.tsx:22:    const authTime = localStorage.getItem("catholic_admin_time")
+lib/auth.tsx:30:        localStorage.removeItem("catholic_admin_auth")
+lib/auth.tsx:31:        localStorage.removeItem("catholic_admin_time")
+lib/auth.tsx:40:      localStorage.setItem("catholic_admin_auth", "true")
+lib/auth.tsx:41:      localStorage.setItem("catholic_admin_time", Date.now().toString())
+lib/auth.tsx:49:    localStorage.removeItem("catholic_admin_auth")
+lib/auth.tsx:50:    localStorage.removeItem("catholic_admin_time")
+
+=============================
+4) CÓDIGOS de idioma (ojo si tienes ES/US/CN vs es/en/zh)
+   -> esto detecta códigos raros tipo us/cn/jp/br/sa/in
+=============================
+
+=============================
+5) HARD-CODED TEXT (lo que NO cambia de idioma)
+   -> busca frases típicas en español que salen en UI
+=============================
+components/admin-dashboard.tsx:87:          Milagros
+components/admin-dashboard.tsx:95:          Oraciones
+components/admin-dashboard.tsx:136:                  + Agregar / Gestionar Oraciones
+components/admin-dashboard.tsx.bak.20251219_022144:83:          Milagros
+components/admin-dashboard.tsx.bak.20251219_022144:108:              <p className="text-sm text-muted-foreground">Milagros</p>
+components/admin-dashboard.tsx.bak.20251219_022144:116:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-dashboard.tsx.bak.20251219_022144:160:            <h3 className="text-lg font-semibold">Milagros</h3>
+components/admin-dashboard.tsx.bak.cardfix.20251220_033614:85:          Milagros
+components/admin-dashboard.tsx.bak.cardfix.20251220_033614:115:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-dashboard.tsx.bak.cardheader.20251220_033432:85:          Milagros
+components/admin-dashboard.tsx.bak.cardheader.20251220_033432:115:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-dashboard.tsx.bak.miracles_stats.20251220_030237:84:          Milagros
+components/admin-dashboard.tsx.bak.miracles_stats.20251220_030237:109:              <p className="text-sm text-muted-foreground">Milagros</p>
+components/admin-dashboard.tsx.bak.miracles_stats.20251220_030237:117:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-dashboard.tsx.bak.prayers.20251220_044530:85:          Milagros
+components/admin-dashboard.tsx.bak.prayers.20251220_044530:115:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-dashboard.tsx.bak.restore_cards.20251220_045301:86:          Milagros
+components/admin-dashboard.tsx.bak.restore_summary.20251220_044940:86:          Milagros
+components/admin-dashboard.tsx.bak.santos.20251220_033242:85:          Milagros
+components/admin-dashboard.tsx.bak.santos.20251220_033242:104:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-miracles-list.tsx:236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx:249:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx:261:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.20251219_224616:79:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.20251219_224616:93:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.20251219_224616:105:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:246:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:258:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:249:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:261:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:249:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:261:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:144:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:158:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:170:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:160:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:174:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:186:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:160:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:174:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:186:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:144:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:265:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:277:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:246:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:258:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:257:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:269:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:246:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:258:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:249:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:261:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:221:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:235:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:247:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-stats-card.tsx:32:        <CardTitle className="text-sm font-medium">Milagros</CardTitle>
+components/admin-prayers-list.tsx:133:      alert("Oración eliminada.")
+components/admin-prayers-list.tsx:153:          <h2 className="font-playfair text-3xl font-bold">Gestión de Oraciones</h2>
+components/admin-prayers-list.tsx:155:            {loading ? "Cargando..." : `${items.length} oraciones • ${approvedCount} aprobadas`}
+components/admin-prayers-list.tsx:162:          Nueva Oración
+components/admin-prayers-list.tsx:170:          placeholder="Buscar oraciones..."
+components/admin-prayers-list.tsx:223:                <div className="text-lg font-semibold">Nueva Oración</div>
+components/admin-prayers-list.tsx:276:                <div className="text-lg font-semibold">Editar Oración</div>
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:125:      alert("Oración eliminada.")
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:145:          <h2 className="font-playfair text-3xl font-bold">Gestión de Oraciones</h2>
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:147:            {loading ? "Cargando..." : `${items.length} oraciones • ${approvedCount} aprobadas`}
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:154:          Nueva Oración
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:160:        <Input className="pl-10" placeholder="Buscar oraciones..." value={search} onChange={(e) => setSearch(e.target.value)} />
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:210:                <div className="text-lg font-semibold">Nueva Oración</div>
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:263:                <div className="text-lg font-semibold">Editar Oración</div>
+components/admin-prayers-stats-card.tsx:32:        <CardTitle className="text-sm font-medium">Oraciones</CardTitle>
+components/admin-saints-list.tsx:89:            placeholder="Buscar santos..."
+components/admin-saints-list.tsx.bak:85:            placeholder="Buscar santos..."
+components/ai-chat-fullscreen.tsx:483:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:457:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:481:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/emotional-categories.tsx:63:          Explora versículos organizados por diferentes estados emocionales y situaciones de la vida
+components/emotional-categories.tsx:95:                      Explorar Versículos
+components/eucharist-introduction.tsx:11:            ¿Qué es la Eucaristía?
+components/eucharist-introduction.tsx:16:            La Eucaristía es el sacramento central de la fe católica, instituido por Jesucristo en la Última Cena. En
+components/eucharist-meaning.tsx:27:      "La Eucaristía hace presente el sacrificio de Cristo en la cruz, actualizado de manera incruenta en cada Misa.",
+components/eucharist-prayers.tsx:7:    title: "Oración antes de la Comunión",
+components/eucharist-prayers.tsx:12:    title: "Oración después de la Comunión",
+components/eucharist-prayers.tsx:22:    title: "Oración de Acción de Gracias",
+components/eucharist-prayers.tsx:32:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Oraciones Eucarísticas</h2>
+components/eucharist-prayers.tsx:34:          Oraciones tradicionales para acompañar la recepción de la Sagrada Eucaristía
+components/eucharist-steps.tsx:29:      "Oración sobre las ofrendas",
+components/eucharist-steps.tsx:58:      "Oración después de la comunión",
+components/eucharist-steps.tsx:68:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Cómo se Celebra la Eucaristía</h2>
+components/featured-prayers.tsx:7:    title: "Oración de San Francisco de Asís",
+components/featured-prayers.tsx:14:    title: "Oración de Santa Teresa de Jesús",
+components/featured-prayers.tsx:21:    title: "Oración de San Ignacio de Loyola",
+components/featured-prayers.tsx:28:    title: "Oración de Santa Teresita del Niño Jesús",
+components/featured-prayers.tsx:42:          Oraciones Destacadas
+components/featured-prayers.tsx:76:          <CardTitle className="font-playfair text-xl text-center">Cómo Orar con los Santos</CardTitle>
+components/featured-prayers.tsx:87:              <h4 className="font-medium text-foreground mb-2">2. Oración</h4>
+components/footer.tsx:18:              <span className="font-playfair text-xl font-bold text-foreground">Santos y Milagros</span>
+components/miracles-list.tsx:155:            Filtrar Milagros
+components/miracles-list.tsx:163:                placeholder="Buscar milagros..."
+components/miracles-list.tsx:227:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.api.20251220_005126:45:            Filtrar Milagros
+components/miracles-list.tsx.bak.api.20251220_005126:53:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.badgetype.20251220_005849:155:            Filtrar Milagros
+components/miracles-list.tsx.bak.badgetype.20251220_005849:163:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.badgetype.20251220_005849:227:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:150:            Filtrar Milagros
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:158:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:222:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.sorttype.20251220_005554:134:            Filtrar Milagros
+components/miracles-list.tsx.bak.sorttype.20251220_005554:142:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.sorttype.20251220_005554:191:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.sortverified.20251220_005836:151:            Filtrar Milagros
+components/miracles-list.tsx.bak.sortverified.20251220_005836:159:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.sortverified.20251220_005836:223:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.truefalse.20251220_005257:134:            Filtrar Milagros
+components/miracles-list.tsx.bak.truefalse.20251220_005257:142:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.truefalse.20251220_005257:191:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.useglobal.20251220_010659:155:            Filtrar Milagros
+components/miracles-list.tsx.bak.useglobal.20251220_010659:163:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.useglobal.20251220_010659:227:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/prayer-form.tsx:36:          <h2 className="font-playfair text-3xl font-bold">{prayer ? "Editar Oración" : "Nueva Oración"}</h2>
+components/prayer-form.tsx:53:          <CardTitle>Información de la Oración</CardTitle>
+components/prayer-form.tsx:57:            <Label htmlFor="title">Título de la Oración *</Label>
+components/prayer-form.tsx:62:              placeholder="Oración de San Francisco"
+components/prayer-form.tsx:77:            <Label htmlFor="text">Texto Completo de la Oración *</Label>
+components/prayers-categories.tsx:25:    description: "Oraciones para pedir protección divina y fortaleza espiritual",
+components/prayers-categories.tsx:30:    description: "Oraciones para momentos de enfermedad y necesidad de consuelo",
+components/prayers-categories.tsx:35:    description: "Oraciones de agradecimiento y alabanza a Dios",
+components/prayers-categories.tsx:40:    description: "Oraciones para pedir guía divina y sabiduría",
+components/prayers-categories.tsx:45:    description: "Oraciones de intercesión por otros y peticiones especiales",
+components/prayers-categories.tsx:50:    description: "Oraciones dedicadas a la Santísima Virgen María",
+components/prayers-categories.tsx:94:          Categorías de Oraciones
+components/prayers-categories.tsx:97:          Explora oraciones organizadas por temas y necesidades espirituales
+components/prayers-categories.tsx:126:                Explorar Oraciones
+components/prayers-introduction.tsx:11:            El Poder de la Oración de los Santos
+components/prayers-introduction.tsx:32:              Cómo Usar Esta Biblioteca
+components/prayers-introduction.tsx:38:              <li>• Explora las categorías temáticas</li>
+components/prayers-search.tsx:77:            Buscar Oraciones
+components/prayers-search.tsx:102:              placeholder="Buscar por título o contenido…"
+components/prayers-search.tsx:142:              Buscar
+components/prayers-search.tsx:178:                  Tip: también puedes entrar por “Categorías de Oraciones” y te baja a resultados automáticamente.
+components/saint-detail.tsx:140:      {/* Milagros */}
+components/saint-detail.tsx:146:              Milagros Documentados
+components/saint-detail.tsx:182:      {/* Oraciones */}
+components/saint-detail.tsx:188:              Oraciones
+components/saint-form.tsx:437:      {/* Milagros y Oraciones */}
+components/saint-form.tsx:441:            <CardTitle>Milagros ({miracles.length})</CardTitle>
+components/saint-form.tsx:465:            <CardTitle>Oraciones ({prayers.length})</CardTitle>
+components/saint-matcher-results.tsx:102:                  Oración sugerida
+components/saint-matcher-results.tsx:133:              Explorar otros santos
+components/scripture-search-advanced.tsx:76:  // Buscar versículos
+components/scripture-search-advanced.tsx:156:              {isSearching ? "Buscando..." : "Buscar Versículos"}
+components/scripture-search-advanced.tsx:224:                        <p className="text-sm font-medium text-foreground mb-2">Oración sugerida:</p>
+components/symbols-gallery.tsx:94:          Explora los símbolos más importantes de la tradición católica y descubre su profundo significado espiritual
+components/world-map-leaflet.tsx:240:            <p className="text-sm text-muted-foreground">Cargando mapa mundial...</p>
+lib/prayers-data.ts:15:    title: "Oración por la Paz",
+lib/prayers-data.ts:45:    title: "Oración del Amor",
+lib/prayers-data.ts:55:    title: "Oración por los Pobres",
+lib/prayers-data.ts:65:    title: "Oración por la Familia",
+lib/prayers-data.ts:75:    title: "Oración por los Enfermos",
+lib/prayers-data.ts:85:    title: "Oración por la Sabiduría",
+lib/prayers-data.ts:95:    title: "Oración por la Pureza",
+lib/prayers-data.ts:105:    title: "Oración por los Viajeros",
+lib/prayers-data.ts:115:    title: "Oración por la Esperanza",
+lib/prayers-data.ts:125:    title: "Oración Mariana",
+lib/saints-data.ts:84:        title: "Oración de San Francisco",
+lib/saints-data.ts:138:        title: "Oración de la Madre Teresa",
+lib/saints-data.ts:186:        title: "Oración a San Juan Pablo II",
+lib/saints-data.ts:221:        title: "Oración a San Martín de Porres",
+lib/saints-data.ts:258:        title: "Oración a Santa Juana de Arco",
+lib/translations.ts:8:    "pages.miracles.title": 'Milagros de los Santos',
+lib/translations.ts:13:    "saints.filters.searchPlaceholder": 'Buscar por nombre...',
+lib/translations.ts:16:    "brand.title": 'Santos y Milagros',
+lib/translations.ts:20:    "nav.prayers": "Oraciones",
+lib/translations.ts:21:    "nav.miracles": "Milagros",
+lib/translations.ts:27:    "common.loading": "Cargando...",
+lib/translations.ts:29:    "common.search": "Buscar",
+lib/translations.ts:45:    "meta.title": "Sitio Católico - Fe, Santos y Oraciones",
+lib/translations.ts:54:    "home.featured.prayers": "Oraciones Populares",
+lib/translations.ts:55:    "home.featured.miracles": "Milagros Recientes",
+lib/translations.ts:65:    "prayers.title": "Oraciones Católicas",
+lib/translations.ts:66:    "prayers.description": "Oraciones para fortalecer tu fe y conexión espiritual",
+lib/translations.ts:68:    "prayers.text": "Texto de la Oración",
+lib/translations.ts:71:    "miracles.title": "Milagros",
+lib/translations.ts:89:    "hero.exploreSaints": "Explorar Santos",
+lib/translations.ts:90:    "hero.searchVerses": "Buscar Versículos",
+lib/translations.ts:96:    "featured.title": "Explora Nuestra Fe",
+lib/translations.ts:102:    "featured.saintsMap.description": "Explora santos por países en nuestro mapa mundial interactivo",
+lib/translations.ts:105:    "featured.miracles.title": "Milagros",
+lib/translations.ts:107:    "featured.eucharist.title": "La Eucaristía",
+lib/translations.ts:111:    "featured.prayers.title": "Oraciones",
+lib/translations.ts:115:    "featured.explore": "Explorar",
+lib/translations.ts:123:    "miracles.page.title": "Milagros de los Santos",
+lib/translations.ts:128:    "prayers.page.title": "Biblioteca de Oraciones",
+lib/translations.ts:140:      "Explora santos de todo el mundo con nuestro mapa interactivo de alta precisión. Haz clic en los marcadores para descubrir los santos de cada región y conocer sus historias extraordinarias.",
+lib/translations.ts:150:      "Explora el rico simbolismo de la fe católica y descubre el profundo significado espiritual detrás de cada símbolo sagrado.",
+lib/translations.ts:159:    "invitations.exploreDiscover": "Explora y Descubre",
+lib/translations.ts:165:    "invitations.worldMap.title": "Explora Santos del Mundo",
+lib/translations.ts:173:    "invitations.emotionalVerses.action": "Buscar Consuelo",
+lib/translations.ts:183:    "invitations.exploreMap": "Explorar Mapa",
+lib/translations.ts:206:    "footer.explore": "Explorar",
+lib/translations.ts:209:    "footer.prayers": "Oraciones",
+lib/translations.ts:212:    "footer.eucharist": "La Eucaristía",
+lib/translations.ts:214:    "footer.miracles": "Milagros",
+lib/translations.ts:220:    "scriptureSearch.cardTitle": "¿Cómo te sientes hoy?",
+lib/translations.ts:222:    "scriptureSearch.searchButton": "Buscar Versículos",
+lib/translations.ts:1095:    "common.search": "Buscar",
+lib/translations.ts:1121:    "home.featured.miracles": "Milagros Recentes",
+lib/translations.ts:1153:    "hero.exploreSaints": "Explorar Santos",
+lib/translations.ts:1154:    "hero.searchVerses": "Buscar Versículos",
+lib/translations.ts:1178:    "featured.explore": "Explorar",
+lib/translations.ts:1246:    "invitations.exploreMap": "Explorar Mapa",
+lib/translations.ts:1268:    "footer.explore": "Explorar",
+lib/translations.ts:1284:    "scriptureSearch.searchButton": "Buscar Versículos",
+lib/translations.ts.bak.20251219_012110:7:    "nav.prayers": "Oraciones",
+lib/translations.ts.bak.20251219_012110:8:    "nav.miracles": "Milagros",
+lib/translations.ts.bak.20251219_012110:14:    "common.loading": "Cargando...",
+lib/translations.ts.bak.20251219_012110:16:    "common.search": "Buscar",
+lib/translations.ts.bak.20251219_012110:32:    "meta.title": "Sitio Católico - Fe, Santos y Oraciones",
+lib/translations.ts.bak.20251219_012110:41:    "home.featured.prayers": "Oraciones Populares",
+lib/translations.ts.bak.20251219_012110:42:    "home.featured.miracles": "Milagros Recientes",
+lib/translations.ts.bak.20251219_012110:52:    "prayers.title": "Oraciones Católicas",
+lib/translations.ts.bak.20251219_012110:53:    "prayers.description": "Oraciones para fortalecer tu fe y conexión espiritual",
+lib/translations.ts.bak.20251219_012110:55:    "prayers.text": "Texto de la Oración",
+lib/translations.ts.bak.20251219_012110:58:    "miracles.title": "Milagros",
+lib/translations.ts.bak.20251219_012110:76:    "hero.exploreSaints": "Explorar Santos",
+lib/translations.ts.bak.20251219_012110:77:    "hero.searchVerses": "Buscar Versículos",
+lib/translations.ts.bak.20251219_012110:83:    "featured.title": "Explora Nuestra Fe",
+lib/translations.ts.bak.20251219_012110:89:    "featured.saintsMap.description": "Explora santos por países en nuestro mapa mundial interactivo",
+lib/translations.ts.bak.20251219_012110:92:    "featured.miracles.title": "Milagros",
+lib/translations.ts.bak.20251219_012110:94:    "featured.eucharist.title": "La Eucaristía",
+lib/translations.ts.bak.20251219_012110:98:    "featured.prayers.title": "Oraciones",
+lib/translations.ts.bak.20251219_012110:102:    "featured.explore": "Explorar",
+lib/translations.ts.bak.20251219_012110:110:    "miracles.page.title": "Milagros de los Santos",
+lib/translations.ts.bak.20251219_012110:115:    "prayers.page.title": "Biblioteca de Oraciones",
+lib/translations.ts.bak.20251219_012110:127:      "Explora santos de todo el mundo con nuestro mapa interactivo de alta precisión. Haz clic en los marcadores para descubrir los santos de cada región y conocer sus historias extraordinarias.",
+lib/translations.ts.bak.20251219_012110:137:      "Explora el rico simbolismo de la fe católica y descubre el profundo significado espiritual detrás de cada símbolo sagrado.",
+lib/translations.ts.bak.20251219_012110:146:    "invitations.exploreDiscover": "Explora y Descubre",
+lib/translations.ts.bak.20251219_012110:152:    "invitations.worldMap.title": "Explora Santos del Mundo",
+lib/translations.ts.bak.20251219_012110:160:    "invitations.emotionalVerses.action": "Buscar Consuelo",
+lib/translations.ts.bak.20251219_012110:170:    "invitations.exploreMap": "Explorar Mapa",
+lib/translations.ts.bak.20251219_012110:193:    "footer.explore": "Explorar",
+lib/translations.ts.bak.20251219_012110:196:    "footer.prayers": "Oraciones",
+lib/translations.ts.bak.20251219_012110:199:    "footer.eucharist": "La Eucaristía",
+lib/translations.ts.bak.20251219_012110:201:    "footer.miracles": "Milagros",
+lib/translations.ts.bak.20251219_012110:207:    "scriptureSearch.cardTitle": "¿Cómo te sientes hoy?",
+lib/translations.ts.bak.20251219_012110:209:    "scriptureSearch.searchButton": "Buscar Versículos",
+lib/translations.ts.bak.20251219_012110:1082:    "common.search": "Buscar",
+lib/translations.ts.bak.20251219_012110:1108:    "home.featured.miracles": "Milagros Recentes",
+lib/translations.ts.bak.20251219_012110:1140:    "hero.exploreSaints": "Explorar Santos",
+lib/translations.ts.bak.20251219_012110:1141:    "hero.searchVerses": "Buscar Versículos",
+lib/translations.ts.bak.20251219_012110:1165:    "featured.explore": "Explorar",
+lib/translations.ts.bak.20251219_012110:1233:    "invitations.exploreMap": "Explorar Mapa",
+lib/translations.ts.bak.20251219_012110:1255:    "footer.explore": "Explorar",
+lib/translations.ts.bak.20251219_012110:1271:    "scriptureSearch.searchButton": "Buscar Versículos",
+app/descubre-tu-santo/page.tsx:15:          <Suspense fallback={<div className="text-center py-8">Cargando...</div>}>
+app/mapa/page.tsx:16:            Explora santos de todo el mundo con nuestro mapa interactivo de alta precisión. Haz clic en los marcadores
+app/milagros/page.tsx:12:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Milagros de los Santos</h1>
+app/oraciones/page.tsx:55:export default async function OracionesPage({
+app/simbolos/page.tsx:16:            Explora el rico simbolismo de la fe católica y descubre el profundo significado espiritual detrás de cada
+
+=============================
+6) Archivos que NO usan t() pero tienen mucho texto (candidatos a traducir)
+=============================
+components/admin-dashboard.tsx
+components/admin-header.tsx
+components/admin-miracles-list.tsx
+components/admin-miracles-stats-card.tsx
+components/admin-prayers-list.tsx
+components/admin-prayers-stats-card.tsx
+components/admin-saints-create.tsx
+components/admin-saints-list.tsx
+components/admin-saints-modal.tsx
+components/auth-modal.tsx
+components/chat-sidebar.tsx
+components/emotional-categories.tsx
+components/eucharist-introduction.tsx
+components/eucharist-meaning.tsx
+components/eucharist-prayers.tsx
+components/eucharist-steps.tsx
+components/featured-prayers.tsx
+components/featured-verses.tsx
+components/map-legend.tsx
+components/miracle-form.tsx
+components/miracles-list.tsx
+components/prayer-form.tsx
+components/prayers-categories.tsx
+components/prayers-introduction.tsx
+components/prayers-results.tsx
+components/prayers-search.tsx
+components/protected-route.tsx
+components/saint-detail.tsx
+components/saint-form.tsx
+components/saint-matcher-form.tsx
+components/saint-matcher-introduction.tsx
+components/saint-matcher-results.tsx
+components/saints-list.tsx
+components/saints-map-sidebar.tsx
+components/scripture-search-advanced.tsx
+components/scroll-to-results.tsx
+components/secret-access.tsx
+components/symbols-categories.tsx
+components/symbols-gallery.tsx
+components/symbols-introduction.tsx
+components/ui/alert.tsx
+components/ui/badge.tsx
+components/ui/button.tsx
+components/ui/card.tsx
+components/ui/checkbox.tsx
+components/ui/input.tsx
+components/ui/label.tsx
+components/ui/progress.tsx
+components/ui/select.tsx
+components/ui/separator.tsx
+components/ui/tabs.tsx
+components/ui/textarea.tsx
+components/world-map-leaflet.tsx
+components/world-map.tsx
+app/admin/layout.tsx
+app/admin/oraciones/page.tsx
+app/admin/page.tsx
+app/descubre-tu-santo/page.tsx
+app/eucaristia/page.tsx
+app/layout.tsx
+app/mapa/page.tsx
+app/milagros/page.tsx
+app/oraciones/page.tsx
+app/page.tsx
+app/sanctum/layout.tsx
+app/sanctum/portal/page.tsx
+app/santos/page.tsx
+app/santos/[slug]/page.tsx
+app/simbolos/page.tsx
+app/versiculos/page.tsx
+lib/admin-utils.ts
+lib/ai-client.ts
+lib/auth.tsx
+lib/i18n.ts
+lib/prayers-data.ts
+lib/prayers-utils.ts
+lib/saints-data.ts
+lib/scripture-data.ts
+lib/translations.ts
+lib/utils.ts
+
+=============================
+FIN
+=============================

@@ -16,9 +16,17 @@ export const languages = [
   { code: "tr" as const, name: "Türkçe", flag: "🇹🇷" },
   { code: "vi" as const, name: "Tiếng Việt", flag: "🇻🇳" },
   { code: "pl" as const, name: "Polski", flag: "🇵🇱" },
-]
+] as const
 
-export const defaultLanguage = "es"
+// ✅ Tipo de códigos basado en el array (fuente única de verdad)
+export type LanguageCode = (typeof languages)[number]["code"]
 
-export type Language = (typeof languages)[0]
-export type LanguageCode = keyof typeof translations
+// ✅ Default language tipado
+export const defaultLanguage: LanguageCode = "es"
+
+// ✅ Tipo de un item completo (por si lo necesitas)
+export type Language = (typeof languages)[number]
+
+// (Opcional) si quieres asegurar que translations tiene esas keys:
+// export type TranslationLanguageCode = keyof typeof translations
+// y podrías comparar/validar en runtime si algún día lo necesitas.

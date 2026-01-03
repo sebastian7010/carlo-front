@@ -1,0 +1,1135 @@
+=============================
+A) DÓNDE ESTÁN LAS TRADUCCIONES (keys)
+=============================
+lib/i18n.ts:22:export type LanguageCode = (typeof languages)[number]["code"]
+lib/i18n.ts:25:export const defaultLanguage: LanguageCode = "es"
+lib/i18n.ts:31:// export type TranslationLanguageCode = keyof typeof translations
+lib/translations.ts:1:export const translations: Record<string, Record<string, string>> = {
+lib/translations.ts:42:    selectLanguage: "Seleccionar idioma",
+lib/translations.ts:118:    "saints.page.title": "Vidas de los Santos",
+lib/translations.ts:123:    "miracles.page.title": "Milagros de los Santos",
+lib/translations.ts:138:    "map.page.title": "Mapa Mundial de Santos",
+lib/translations.ts:143:    "eucharist.page.title": "La Sagrada Eucaristía",
+lib/translations.ts:261:    selectLanguage: "Select Language",
+lib/translations.ts:334:    "saints.page.title": "Lives of the Saints",
+lib/translations.ts:339:    "miracles.page.title": "Miracles of the Saints",
+lib/translations.ts:354:    "map.page.title": "World Map of Saints",
+lib/translations.ts:359:    "eucharist.page.title": "The Holy Eucharist",
+lib/translations.ts:477:    selectLanguage: "选择语言",
+lib/translations.ts:548:    "saints.page.title": "圣人传记",
+lib/translations.ts:552:    "miracles.page.title": "圣人奇迹",
+lib/translations.ts:564:    "map.page.title": "世界圣人地图",
+lib/translations.ts:569:    "eucharist.page.title": "神圣圣体",
+lib/translations.ts:683:    selectLanguage: "भाषा चुनें",
+lib/translations.ts:755:    "saints.page.title": "संतों का जीवन",
+lib/translations.ts:760:    "miracles.page.title": "संतों के चमत्कार",
+lib/translations.ts:774:    "map.page.title": "विश्व संत मानचित्र",
+lib/translations.ts:779:    "eucharist.page.title": "पवित्र यूकेरिस्ट",
+lib/translations.ts:896:    selectLanguage: "اختر اللغة",
+lib/translations.ts:968:    "saints.page.title": "حياة القديسين",
+lib/translations.ts:973:    "miracles.page.title": "معجزات القديسين",
+lib/translations.ts:987:    "map.page.title": "خريطة العالم للقديسين",
+lib/translations.ts:992:    "eucharist.page.title": "القربان المقدس",
+lib/translations.ts:1108:    selectLanguage: "Selecionar Idioma",
+lib/translations.ts:1181:    "saints.page.title": "Vidas dos Santos",
+lib/translations.ts:1186:    "miracles.page.title": "Milagres dos Santos",
+lib/translations.ts:1201:    "map.page.title": "Mapa Mundial de Santos",
+lib/translations.ts:1206:    "eucharist.page.title": "A Sagrada Eucaristia",
+lib/translations.ts:1323:    selectLanguage: "Выбрать язык",
+lib/translations.ts:1396:    "saints.page.title": "Жития святых",
+lib/translations.ts:1401:    "miracles.page.title": "Чудеса святых",
+lib/translations.ts:1416:    "map.page.title": "Карта мира святых",
+lib/translations.ts:1421:    "eucharist.page.title": "Святая Евхаристия",
+lib/translations.ts:1542:    selectLanguage: "Sélectionner la langue",
+lib/translations.ts:1615:    "saints.page.title": "Vies des Saints",
+lib/translations.ts:1620:    "miracles.page.title": "Miracles des Saints",
+lib/translations.ts:1635:    "map.page.title": "Carte Mondiale des Saints",
+lib/translations.ts:1640:    "eucharist.page.title": "La Sainte Eucharistie",
+lib/translations.ts:1761:    selectLanguage: "言語を選択",
+lib/translations.ts:1833:    "saints.page.title": "聖人たちの生涯",
+lib/translations.ts:1837:    "miracles.page.title": "聖人たちの奇跡",
+lib/translations.ts:1851:    "map.page.title": "世界聖人地図",
+lib/translations.ts:1856:    "eucharist.page.title": "聖なる聖体",
+lib/translations.ts:1974:    selectLanguage: "Sprache auswählen",
+lib/translations.ts:2048:    "saints.page.title": "Leben der Heiligen",
+lib/translations.ts:2053:    "miracles.page.title": "Wunder der Heiligen",
+lib/translations.ts:2068:    "map.page.title": "Weltkarte der Heiligen",
+lib/translations.ts:2073:    "eucharist.page.title": "Die Heilige Eucharistie",
+lib/translations.ts:2195:    selectLanguage: "언어 선택",
+lib/translations.ts:2267:    "saints.page.title": "성인들의 삶",
+lib/translations.ts:2272:    "miracles.page.title": "성인들의 기적",
+lib/translations.ts:2286:    "map.page.title": "세계 성인 지도",
+lib/translations.ts:2291:    "eucharist.page.title": "성스러운 성체성사",
+lib/translations.ts:2407:    selectLanguage: "Seleziona lingua",
+lib/translations.ts:2480:    "saints.page.title": "Vite dei Santi",
+lib/translations.ts:2485:    "miracles.page.title": "Miracoli dei Santi",
+lib/translations.ts:2500:    "map.page.title": "Mappa Mondiale dei Santi",
+lib/translations.ts:2505:    "eucharist.page.title": "La Sacra Eucaristia",
+lib/translations.ts:2623:    selectLanguage: "Dil seçin",
+lib/translations.ts:2695:    "saints.page.title": "Azizlerin Hayatları",
+lib/translations.ts:2700:    "miracles.page.title": "Azizlerin Mucizeleri",
+lib/translations.ts:2715:    "map.page.title": "Dünya Azizler Haritası",
+lib/translations.ts:2720:    "eucharist.page.title": "Kutsal Ökaristi",
+lib/translations.ts:2839:    selectLanguage: "Chọn ngôn ngữ",
+lib/translations.ts:2913:    "saints.page.title": "Cuộc Đời Các Thánh",
+lib/translations.ts:2918:    "miracles.page.title": "Phép Lạ của Các Thánh",
+lib/translations.ts:2933:    "map.page.title": "Bản Đồ Thế Giới Các Thánh",
+lib/translations.ts:2938:    "eucharist.page.title": "Thánh Thể Cực Thánh",
+lib/translations.ts:3058:    selectLanguage: "Wybierz język",
+lib/translations.ts:3131:    "saints.page.title": "Żywoty Świętych",
+lib/translations.ts:3136:    "miracles.page.title": "Cuda Świętych",
+lib/translations.ts:3151:    "map.page.title": "Mapa Świata Świętych",
+lib/translations.ts:3156:    "eucharist.page.title": "Najświętsza Eucharystia",
+lib/translations.ts:3251:export type TranslationKey = keyof typeof translations.es
+lib/translations.ts:3252:export type LanguageCode = keyof typeof translations
+lib/translations.ts.bak.20251219_012110:1:export const translations: Record<string, Record<string, string>> = {
+lib/translations.ts.bak.20251219_012110:29:    selectLanguage: "Seleccionar idioma",
+lib/translations.ts.bak.20251219_012110:105:    "saints.page.title": "Vidas de los Santos",
+lib/translations.ts.bak.20251219_012110:110:    "miracles.page.title": "Milagros de los Santos",
+lib/translations.ts.bak.20251219_012110:125:    "map.page.title": "Mapa Mundial de Santos",
+lib/translations.ts.bak.20251219_012110:130:    "eucharist.page.title": "La Sagrada Eucaristía",
+lib/translations.ts.bak.20251219_012110:248:    selectLanguage: "Select Language",
+lib/translations.ts.bak.20251219_012110:321:    "saints.page.title": "Lives of the Saints",
+lib/translations.ts.bak.20251219_012110:326:    "miracles.page.title": "Miracles of the Saints",
+lib/translations.ts.bak.20251219_012110:341:    "map.page.title": "World Map of Saints",
+lib/translations.ts.bak.20251219_012110:346:    "eucharist.page.title": "The Holy Eucharist",
+lib/translations.ts.bak.20251219_012110:464:    selectLanguage: "选择语言",
+lib/translations.ts.bak.20251219_012110:535:    "saints.page.title": "圣人传记",
+lib/translations.ts.bak.20251219_012110:539:    "miracles.page.title": "圣人奇迹",
+lib/translations.ts.bak.20251219_012110:551:    "map.page.title": "世界圣人地图",
+lib/translations.ts.bak.20251219_012110:556:    "eucharist.page.title": "神圣圣体",
+lib/translations.ts.bak.20251219_012110:670:    selectLanguage: "भाषा चुनें",
+lib/translations.ts.bak.20251219_012110:742:    "saints.page.title": "संतों का जीवन",
+lib/translations.ts.bak.20251219_012110:747:    "miracles.page.title": "संतों के चमत्कार",
+lib/translations.ts.bak.20251219_012110:761:    "map.page.title": "विश्व संत मानचित्र",
+lib/translations.ts.bak.20251219_012110:766:    "eucharist.page.title": "पवित्र यूकेरिस्ट",
+lib/translations.ts.bak.20251219_012110:883:    selectLanguage: "اختر اللغة",
+lib/translations.ts.bak.20251219_012110:955:    "saints.page.title": "حياة القديسين",
+lib/translations.ts.bak.20251219_012110:960:    "miracles.page.title": "معجزات القديسين",
+lib/translations.ts.bak.20251219_012110:974:    "map.page.title": "خريطة العالم للقديسين",
+lib/translations.ts.bak.20251219_012110:979:    "eucharist.page.title": "القربان المقدس",
+lib/translations.ts.bak.20251219_012110:1095:    selectLanguage: "Selecionar Idioma",
+lib/translations.ts.bak.20251219_012110:1168:    "saints.page.title": "Vidas dos Santos",
+lib/translations.ts.bak.20251219_012110:1173:    "miracles.page.title": "Milagres dos Santos",
+lib/translations.ts.bak.20251219_012110:1188:    "map.page.title": "Mapa Mundial de Santos",
+lib/translations.ts.bak.20251219_012110:1193:    "eucharist.page.title": "A Sagrada Eucaristia",
+lib/translations.ts.bak.20251219_012110:1310:    selectLanguage: "Выбрать язык",
+lib/translations.ts.bak.20251219_012110:1383:    "saints.page.title": "Жития святых",
+lib/translations.ts.bak.20251219_012110:1388:    "miracles.page.title": "Чудеса святых",
+lib/translations.ts.bak.20251219_012110:1403:    "map.page.title": "Карта мира святых",
+lib/translations.ts.bak.20251219_012110:1408:    "eucharist.page.title": "Святая Евхаристия",
+lib/translations.ts.bak.20251219_012110:1529:    selectLanguage: "Sélectionner la langue",
+lib/translations.ts.bak.20251219_012110:1602:    "saints.page.title": "Vies des Saints",
+lib/translations.ts.bak.20251219_012110:1607:    "miracles.page.title": "Miracles des Saints",
+lib/translations.ts.bak.20251219_012110:1622:    "map.page.title": "Carte Mondiale des Saints",
+lib/translations.ts.bak.20251219_012110:1627:    "eucharist.page.title": "La Sainte Eucharistie",
+lib/translations.ts.bak.20251219_012110:1748:    selectLanguage: "言語を選択",
+lib/translations.ts.bak.20251219_012110:1820:    "saints.page.title": "聖人たちの生涯",
+lib/translations.ts.bak.20251219_012110:1824:    "miracles.page.title": "聖人たちの奇跡",
+lib/translations.ts.bak.20251219_012110:1838:    "map.page.title": "世界聖人地図",
+lib/translations.ts.bak.20251219_012110:1843:    "eucharist.page.title": "聖なる聖体",
+lib/translations.ts.bak.20251219_012110:1961:    selectLanguage: "Sprache auswählen",
+lib/translations.ts.bak.20251219_012110:2035:    "saints.page.title": "Leben der Heiligen",
+lib/translations.ts.bak.20251219_012110:2040:    "miracles.page.title": "Wunder der Heiligen",
+lib/translations.ts.bak.20251219_012110:2055:    "map.page.title": "Weltkarte der Heiligen",
+lib/translations.ts.bak.20251219_012110:2060:    "eucharist.page.title": "Die Heilige Eucharistie",
+lib/translations.ts.bak.20251219_012110:2182:    selectLanguage: "언어 선택",
+lib/translations.ts.bak.20251219_012110:2254:    "saints.page.title": "성인들의 삶",
+lib/translations.ts.bak.20251219_012110:2259:    "miracles.page.title": "성인들의 기적",
+lib/translations.ts.bak.20251219_012110:2273:    "map.page.title": "세계 성인 지도",
+lib/translations.ts.bak.20251219_012110:2278:    "eucharist.page.title": "성스러운 성체성사",
+lib/translations.ts.bak.20251219_012110:2394:    selectLanguage: "Seleziona lingua",
+lib/translations.ts.bak.20251219_012110:2467:    "saints.page.title": "Vite dei Santi",
+lib/translations.ts.bak.20251219_012110:2472:    "miracles.page.title": "Miracoli dei Santi",
+lib/translations.ts.bak.20251219_012110:2487:    "map.page.title": "Mappa Mondiale dei Santi",
+lib/translations.ts.bak.20251219_012110:2492:    "eucharist.page.title": "La Sacra Eucaristia",
+lib/translations.ts.bak.20251219_012110:2610:    selectLanguage: "Dil seçin",
+lib/translations.ts.bak.20251219_012110:2682:    "saints.page.title": "Azizlerin Hayatları",
+lib/translations.ts.bak.20251219_012110:2687:    "miracles.page.title": "Azizlerin Mucizeleri",
+lib/translations.ts.bak.20251219_012110:2702:    "map.page.title": "Dünya Azizler Haritası",
+lib/translations.ts.bak.20251219_012110:2707:    "eucharist.page.title": "Kutsal Ökaristi",
+lib/translations.ts.bak.20251219_012110:2826:    selectLanguage: "Chọn ngôn ngữ",
+lib/translations.ts.bak.20251219_012110:2900:    "saints.page.title": "Cuộc Đời Các Thánh",
+lib/translations.ts.bak.20251219_012110:2905:    "miracles.page.title": "Phép Lạ của Các Thánh",
+lib/translations.ts.bak.20251219_012110:2920:    "map.page.title": "Bản Đồ Thế Giới Các Thánh",
+lib/translations.ts.bak.20251219_012110:2925:    "eucharist.page.title": "Thánh Thể Cực Thánh",
+lib/translations.ts.bak.20251219_012110:3045:    selectLanguage: "Wybierz język",
+lib/translations.ts.bak.20251219_012110:3118:    "saints.page.title": "Żywoty Świętych",
+lib/translations.ts.bak.20251219_012110:3123:    "miracles.page.title": "Cuda Świętych",
+lib/translations.ts.bak.20251219_012110:3138:    "map.page.title": "Mapa Świata Świętych",
+lib/translations.ts.bak.20251219_012110:3143:    "eucharist.page.title": "Najświętsza Eucharystia",
+lib/translations.ts.bak.20251219_012110:3238:export type TranslationKey = keyof typeof translations.es
+lib/translations.ts.bak.20251219_012110:3239:export type LanguageCode = keyof typeof translations
+
+=============================
+B) CONTEXTO: LanguageProvider / useLanguage / t()
+=============================
+app/layout.tsx:6:import { LanguageProvider } from "@/contexts/language-context"
+app/layout.tsx:39:          <LanguageProvider>
+app/layout.tsx:45:          </LanguageProvider>
+components/ai-chat-fullscreen.tsx:14:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx:355:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx:456:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx:472:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx:483:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:13:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:233:          t("ai.demoResponse") ||
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:329:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:430:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:446:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:457:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:13:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:353:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:454:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:470:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:481:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat.tsx:25:  const { t, language } = useLanguage()
+components/ai-chat.tsx:124:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx:126:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx:127:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx:140:                {t(q.labelKey)}
+components/ai-chat.tsx:153:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx:154:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx:218:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx:229:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/ai-chat.tsx.bak_20260101_213132:24:  const { t } = useLanguage()
+components/ai-chat.tsx.bak_20260101_213132:102:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx.bak_20260101_213132:104:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx.bak_20260101_213132:105:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:118:                {t(q.labelKey)}
+components/ai-chat.tsx.bak_20260101_213132:131:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:132:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:196:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx.bak_20260101_213132:207:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:24:  const { t, language } = useLanguage()
+components/ai-chat.tsx.logerr.bak.20260101_214018:122:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx.logerr.bak.20260101_214018:124:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx.logerr.bak.20260101_214018:125:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:138:                {t(q.labelKey)}
+components/ai-chat.tsx.logerr.bak.20260101_214018:151:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:152:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:216:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx.logerr.bak.20260101_214018:227:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/auth-modal.tsx:19:  const { language } = useLanguage()
+components/chat-sidebar.tsx:25:  const { language } = useLanguage()
+components/dynamic-metadata.tsx:7:  const { t, language } = useLanguage()
+components/dynamic-metadata.tsx:11:    document.title = t("metadata.title")
+components/dynamic-metadata.tsx:16:      metaDescription.setAttribute("content", t("metadata.description"))
+components/dynamic-metadata.tsx:22:      metaKeywords.setAttribute("content", t("metadata.keywords"))
+components/featured-sections.tsx:10:  const { t } = useLanguage()
+components/featured-sections.tsx:69:          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-foreground mb-4">{t("featured.title")}</h2>
+components/featured-sections.tsx:70:          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("featured.subtitle")}</p>
+components/featured-sections.tsx:93:                  <CardTitle className="font-playfair text-xl">{t(section.titleKey)}</CardTitle>
+components/featured-sections.tsx:96:                      {t("featured.new")}
+components/featured-sections.tsx:101:                  <p className="text-muted-foreground mb-6 text-pretty">{t(section.descriptionKey)}</p>
+components/featured-sections.tsx:108:                      {section.featured ? t("featured.discoverNow") : t("featured.explore")}
+components/footer.tsx:8:  const { t } = useLanguage()
+components/footer.tsx:20:            <p className="text-muted-foreground text-pretty max-w-md">{t("footer.description")}</p>
+components/footer.tsx:25:            <h3 className="font-playfair font-semibold text-foreground mb-4">{t("footer.explore")}</h3>
+components/footer.tsx:29:                  {t("footer.saints")}
+components/footer.tsx:34:                  {t("footer.worldMap")}
+components/footer.tsx:39:                  {t("footer.prayers")}
+components/footer.tsx:44:                  {t("footer.verses")}
+components/footer.tsx:52:            <h3 className="font-playfair font-semibold text-foreground mb-4">{t("footer.resources")}</h3>
+components/footer.tsx:56:                  {t("footer.eucharist")}
+components/footer.tsx:61:                  {t("footer.symbols")}
+components/footer.tsx:66:                  {t("footer.miracles")}
+components/footer.tsx:75:            {t("footer.madeWith")} <Heart className="h-4 w-4 text-secondary" /> {t("footer.forGlory")}
+components/header.tsx:12:  const { t } = useLanguage()
+components/header.tsx:15:    { name: t("nav.saints"), href: "/santos" },
+components/header.tsx:16:    { name: t("nav.miracles"), href: "/milagros" },
+components/header.tsx:17:    { name: t("nav.prayers"), href: "/oraciones" },
+components/header.tsx:18:    { name: t("nav.map"), href: "/mapa" },
+components/header.tsx:19:    { name: t("nav.eucharist"), href: "/eucaristia" },
+components/header.tsx:29:            <span className="font-playfair text-base sm:text-xl font-bold text-foreground truncate max-w-[140px] sm:max-w-none">{t("brand.title")}</span>
+components/hero.tsx:9:  const { t } = useLanguage()
+components/hero.tsx:18:          <p className="text-sm font-medium text-primary uppercase tracking-widest mb-1">{t("hero.dedication")}</p>
+components/hero.tsx:19:          <p className="text-xs text-muted-foreground font-light">{t("hero.dedicationDates")}</p>
+components/hero.tsx:27:          <span className="text-sm font-medium text-primary">{t("hero.aiPowered")}</span>
+components/hero.tsx:31:          {t("hero.title")}
+components/hero.tsx:35:          {t("hero.subtitle")}
+components/hero.tsx:42:              {t("hero.startChat")}
+components/hero.tsx:47:            <Link href="/descubre-tu-santo">{t("hero.discoverSaint")}</Link>
+components/interactive-invitations.tsx:13:  const { t } = useLanguage()
+components/interactive-invitations.tsx:77:            {t("invitations.exploreDiscover")}
+components/interactive-invitations.tsx:80:            {t("invitations.title")}
+components/interactive-invitations.tsx:82:          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">{t("invitations.subtitle")}</p>
+components/interactive-invitations.tsx:109:                          {t(invitation.titleKey)}
+components/interactive-invitations.tsx:114:                      <p className="text-muted-foreground mb-3 text-pretty">{t(invitation.descriptionKey)}</p>
+components/interactive-invitations.tsx:119:                          {t(invitation.statsKey)}
+components/interactive-invitations.tsx:125:                          <p className="text-sm text-muted-foreground">{t(invitation.previewKey)}</p>
+components/interactive-invitations.tsx:136:                          {t(invitation.actionKey)}
+components/interactive-invitations.tsx:153:                {t("invitations.notSure.title")}
+components/interactive-invitations.tsx:155:              <p className="text-muted-foreground">{t("invitations.notSure.description")}</p>
+components/interactive-invitations.tsx:162:                  {t("invitations.discoverSaint")}
+components/interactive-invitations.tsx:168:                  {t("invitations.exploreMap")}
+components/interactive-invitations.tsx:188:                <div className="text-sm text-muted-foreground">{t(stat.labelKey)}</div>
+components/language-selector.tsx:11:  const { language, setLanguage, t } = useLanguage()
+components/language-selector.tsx:40:                {t("selectLanguage")}
+components/language-selector.tsx:47:                    setLanguage(lang.code)
+components/language-selector.tsx.bak.20260102_232447:11:  const { language, setLanguage, t } = useLanguage()
+components/language-selector.tsx.bak.20260102_232447:38:                {t("selectLanguage")}
+components/language-selector.tsx.bak.20260102_232447:45:                    setLanguage(lang.code)
+components/saints-filters.tsx:12:  const { t } = useLanguage()
+components/saints-filters.tsx:21:        <h2 className="font-playfair text-lg font-semibold">{t("saints.filters.title")}</h2>
+components/saints-filters.tsx:28:            placeholder={t("saints.filters.searchPlaceholder")}
+components/saints-filters.tsx:37:            <SelectValue placeholder={t("saints.filters.continentPlaceholder")} />
+components/saints-filters.tsx:50:            <SelectValue placeholder={t("saints.filters.centuryPlaceholder")} />
+components/scripture-search.tsx:14:  const { t } = useLanguage()
+components/scripture-search.tsx:17:    t("scriptureSearch.suggestions.fear"),
+components/scripture-search.tsx:18:    t("scriptureSearch.suggestions.anxiety"),
+components/scripture-search.tsx:19:    t("scriptureSearch.suggestions.sadness"),
+components/scripture-search.tsx:20:    t("scriptureSearch.suggestions.joy"),
+components/scripture-search.tsx:21:    t("scriptureSearch.suggestions.hope"),
+components/scripture-search.tsx:22:    t("scriptureSearch.suggestions.gratitude"),
+components/scripture-search.tsx:23:    t("scriptureSearch.suggestions.forgiveness"),
+components/scripture-search.tsx:24:    t("scriptureSearch.suggestions.love"),
+components/scripture-search.tsx:25:    t("scriptureSearch.suggestions.peace"),
+components/scripture-search.tsx:26:    t("scriptureSearch.suggestions.strength"),
+components/scripture-search.tsx:45:            {t("scriptureSearch.title")}
+components/scripture-search.tsx:47:          <p className="text-lg text-muted-foreground">{t("scriptureSearch.subtitle")}</p>
+components/scripture-search.tsx:52:            <CardTitle className="text-center font-playfair">{t("scriptureSearch.cardTitle")}</CardTitle>
+components/scripture-search.tsx:60:                  placeholder={t("scriptureSearch.placeholder")}
+components/scripture-search.tsx:87:                {t("scriptureSearch.searchButton")}
+contexts/language-context.tsx:14:export function LanguageProvider({ children }: { children: React.ReactNode }) {
+contexts/language-context.tsx:32:export function useLanguage() {
+contexts/language-context.tsx:34:  if (!ctx) throw new Error("useLanguage debe usarse dentro de <LanguageProvider>");
+lib/translations-utils.ts:9:      return t(`saints.patronOf.${key}`) || patron
+lib/translations-utils.ts:16:      return t(`saints.symbols.${key}`) || symbol
+lib/translations-utils.ts:25:    category: t(`prayers.categories.${prayer.category.toLowerCase()}`) || prayer.category,
+lib/translations-utils.ts:26:    occasion: t(`prayers.occasions.${prayer.occasion.toLowerCase().replace(/\s+/g, "")}`) || prayer.occasion,
+lib/translations-utils.ts:34:    status: miracle.verified ? t("miracles.status.verified") : t("miracles.status.investigating"),
+
+=============================
+C) PÁGINAS SERVER/ASYNC (estas NO reaccionan a cambiar idioma por state)
+=============================
+app/admin/page.tsx:26:export default async function AdminPage() {
+app/admin/page.tsx.bak.20251219_233502:26:export default async function AdminPage() {
+app/oraciones/page.tsx:55:export default async function OracionesPage({
+app/santos/page.tsx:34:export default async function SaintsPage() {
+app/santos/[slug]/page.tsx:76:export default async function SaintPage({ params }: { params: { slug: string } }) {
+app/santos/[slug]/page.tsx.bak.20251220_004308:45:export default async function SaintPage({ params }: { params: { slug: string } }) {
+
+=============================
+D) ARCHIVOS CON TEXTO EN ESPAÑOL SIN t() (probables culpables)
+   (hardcodeado => nunca va a cambiar con el selector)
+=============================
+---- app/admin/page.tsx ----
+18:  if (!baseUrl) throw new Error("NEXT_PUBLIC_API_URL no está definido en .env.local");
+
+---- app/descubre-tu-santo/page.tsx ----
+15:          <Suspense fallback={<div className="text-center py-8">Cargando...</div>}>
+
+---- app/eucaristia/page.tsx ----
+15:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">La Sagrada Eucaristía</h1>
+17:            Descubre el sacramento más sagrado de la Iglesia Católica: su significado, celebración y el profundo
+
+---- app/mapa/page.tsx ----
+14:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Mapa Mundial de Santos</h1>
+16:            Explora santos de todo el mundo con nuestro mapa interactivo de alta precisión. Haz clic en los marcadores
+17:            para descubrir los santos de cada región y conocer sus historias extraordinarias.
+
+---- app/milagros/page.tsx ----
+12:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Milagros de los Santos</h1>
+14:            Testimonios extraordinarios del poder divino manifestado a través de la intercesión de los santos a lo largo
+
+---- app/oraciones/page.tsx ----
+55:export default async function OracionesPage({
+116:  // Destacadas: últimas 4 por updatedAt (dataset real)
+
+---- app/sanctum/portal/page.tsx ----
+49:          <CardDescription className="text-amber-700">Acceso restringido al panel de administración</CardDescription>
+95:            <p>🔒 Acceso protegido por autenticación sagrada</p>
+
+---- app/santos/page.tsx ----
+44:            Vidas de los Santos
+
+---- app/santos/[slug]/page.tsx ----
+71:    // ✅ ahora sí: milagros listados y con shape correcto para SaintDetail
+
+---- app/simbolos/page.tsx ----
+14:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Símbolos Católicos</h1>
+16:            Explora el rico simbolismo de la fe católica y descubre el profundo significado espiritual detrás de cada
+17:            símbolo sagrado.
+
+---- app/versiculos/page.tsx ----
+14:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Versículos para el Alma</h1>
+16:            Encuentra consuelo, esperanza y guía en las Sagradas Escrituras. Describe cómo te sientes y descubre
+17:            versículos que hablen directamente a tu corazón.
+
+---- components/admin-dashboard.tsx ----
+87:          Milagros
+95:          Oraciones
+104:          Configuración
+129:              <h3 className="text-lg font-semibold">Acciones Rápidas</h3>
+136:                  + Agregar / Gestionar Oraciones
+139:                  Registrar Milagro (próximo)
+142:                  Configuración (próximo)
+152:                <p>— (próximo)</p>
+173:            <h3 className="text-lg font-semibold">Configuración</h3>
+174:            <p className="mt-2 text-sm text-muted-foreground">Aquí irá la configuración del admin después.</p>
+
+---- components/admin-header.tsx ----
+22:          <h1 className="text-xl font-playfair font-bold text-amber-900">Panel de Administración Sagrado</h1>
+38:            Cerrar Sesión
+
+---- components/admin-miracles-list.tsx ----
+126:      setError("Selecciona un santo.")
+130:      setError("El título del milagro es obligatorio.")
+177:      setError("El título del milagro es obligatorio.")
+211:    if (!confirm(`¿Eliminar el milagro "${miracleTitle}"?`)) return
+222:      // updateMiracle ya debería mapear verified->approved, pero mandamos approved directo por seguridad
+226:      alert(e?.message ? String(e.message) : "Error cambiando verificación")
+236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+249:            placeholder="Buscar milagros..."
+261:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+316:                        alert(e?.message ? String(e.message) : "Error cambiando verificación");
+320:                    {(miracle.approved ?? miracle.verified) ? "Quitar verificación" : "Verificar"}
+362:                <label className="text-sm font-medium">Título</label>
+367:                <label className="text-sm font-medium">Descripción</label>
+436:                  Crea un milagro y se asociará al santo seleccionado.
+462:                <label className="text-sm font-medium">Título</label>
+467:                <label className="text-sm font-medium">Descripción</label>
+
+---- components/admin-miracles-stats-card.tsx ----
+32:        <CardTitle className="text-sm font-medium">Milagros</CardTitle>
+
+---- components/admin-prayers-list.tsx ----
+83:        alert("Título y contenido son obligatorios.")
+100:      alert(e?.message ? String(e.message) : "Error creando oración")
+110:        alert("Título y contenido son obligatorios.")
+123:      alert(e?.message ? String(e.message) : "Error guardando oración")
+130:    if (!confirm(`¿Eliminar la oración "${title}"?`)) return
+133:      alert("Oración eliminada.")
+136:      alert(e?.message ? String(e.message) : "Error eliminando oración")
+145:      alert(e?.message ? String(e.message) : "Error cambiando aprobación")
+153:          <h2 className="font-playfair text-3xl font-bold">Gestión de Oraciones</h2>
+155:            {loading ? "Cargando..." : `${items.length} oraciones • ${approvedCount} aprobadas`}
+162:          Nueva Oración
+170:          placeholder="Buscar oraciones..."
+184:                    {p.category ? `Categoría: ${p.category}` : "Sin categoría"} • {p.approved ? "Aprobada" : "No aprobada"}
+190:                    {p.approved ? "Quitar aprobación" : "Aprobar"}
+223:                <div className="text-lg font-semibold">Nueva Oración</div>
+224:                <p className="text-sm text-muted-foreground">Registra una oración en el sistema</p>
+233:                <label className="text-sm font-medium">Título</label>
+238:                <label className="text-sm font-medium">Categoría</label>
+276:                <div className="text-lg font-semibold">Editar Oración</div>
+277:                <p className="text-sm text-muted-foreground">Actualiza la oración seleccionada</p>
+286:                <label className="text-sm font-medium">Título</label>
+291:                <label className="text-sm font-medium">Categoría</label>
+
+---- components/admin-prayers-stats-card.tsx ----
+32:        <CardTitle className="text-sm font-medium">Oraciones</CardTitle>
+
+---- components/admin-saints-create.tsx ----
+49:      // refresca lo que esté mostrando lista en el admin
+85:          <Label htmlFor="country">País</Label>
+
+---- components/admin-saints-list.tsx ----
+51:    const ok = confirm("¿Seguro que quieres eliminar este santo?");
+75:          <h2 className="font-playfair text-3xl font-bold">Gestión de Santos</h2>
+76:          <p className="text-muted-foreground">Administre la información de todos los santos</p>
+89:            placeholder="Buscar santos..."
+
+---- components/admin-saints-modal.tsx ----
+103:      setMsg("Debes llenar lat y lng juntos (o dejar ambos vacíos).");
+108:      setMsg("lat/lng deben ser números.");
+189:            <Label htmlFor="country">País</Label>
+231:            <Label htmlFor="title">Título (Beato / Santo / etc.)</Label>
+236:            <Label htmlFor="feastDay">Día festivo</Label>
+249:            <Label htmlFor="biography">Biografía</Label>
+255:              placeholder="Escribe la biografía..."
+
+---- components/auth-modal.tsx ----
+50:      login: "Iniciar Sesión",
+53:      email: "Correo electrónico",
+54:      password: "Contraseña",
+57:      noAccount: "¿No tienes cuenta?",
+58:      hasAccount: "¿Ya tienes cuenta?",
+62:      errorRegister: "El correo ya está registrado",
+86:      registerBtn: "Créer un compte",
+88:      hasAccount: "Déjà un compte?",
+90:      joinUs: "Rejoignez notre communauté",
+92:      errorRegister: "Email déjà enregistré",
+103:      hasAccount: "Já tem conta?",
+106:      errorLogin: "Credenciais inválidas",
+107:      errorRegister: "Email já registrado",
+252:      noAccount: "Chưa có tài khoản?",
+253:      hasAccount: "Đã có tài khoản?",
+266:      registerBtn: "Utwórz konto",
+
+---- components/chat-sidebar.tsx ----
+42:      newChat: "Nueva conversación",
+44:      login: "Iniciar sesión",
+45:      loginPrompt: "Inicia sesión para guardar tu historial",
+47:      deleteConfirm: "¿Eliminar?",
+48:      logout: "Cerrar sesión",
+66:      logout: "Déconnexion",
+70:      history: "Histórico",
+72:      loginPrompt: "Entre para salvar seu histórico",
+163:      noConversations: "Không có cuộc trò chuyện",
+164:      deleteConfirm: "Xóa?",
+172:      noConversations: "Brak rozmów",
+
+---- components/emotional-categories.tsx ----
+11:    emotions: ["miedo", "ansiedad", "preocupación", "estrés"],
+12:    description: "Encuentra paz y protección en las promesas de Dios",
+20:    description: "Consuelo divino para los momentos más difíciles",
+24:    title: "Esperanza y Alegría",
+27:    emotions: ["esperanza", "alegría", "felicidad", "gratitud"],
+28:    description: "Celebra las bendiciones y mantén viva la esperanza",
+36:    description: "Fortalece tu fe y confía en el plan de Dios",
+52:    description: "Recibe fuerzas para enfrentar cualquier desafío",
+61:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Categorías Emocionales</h2>
+63:          Explora versículos organizados por diferentes estados emocionales y situaciones de la vida
+90:                    <p className="text-sm text-muted-foreground mb-3">{category.verseCount} versículos disponibles</p>
+95:                      Explorar Versículos
+
+---- components/eucharist-introduction.tsx ----
+11:            ¿Qué es la Eucaristía?
+16:            La Eucaristía es el sacramento central de la fe católica, instituido por Jesucristo en la Última Cena. En
+17:            este sacramento, el pan y el vino se convierten verdaderamente en el Cuerpo y la Sangre de Cristo a través
+18:            del misterio de la transubstanciación.
+21:            La palabra "Eucaristía" proviene del griego "eukharistia", que significa "acción de gracias". Es el momento
+22:            más sagrado de la Misa, donde los fieles reciben a Cristo mismo bajo las especies del pan y el vino.
+37:              <li>• Unión íntima con Cristo</li>
+38:              <li>• Perdón de los pecados veniales</li>
+41:              <li>• Anticipación de la gloria eterna</li>
+50:              Fundamento Bíblico
+56:              muchos es derramada para remisión de los pecados."
+
+---- components/eucharist-meaning.tsx ----
+19:      "El vino se convierte en la Sangre de Cristo, derramada para el perdón de los pecados y la nueva alianza.",
+20:    significance: ["Redención", "Alianza", "Perdón", "Vida nueva"],
+27:      "La Eucaristía hace presente el sacrificio de Cristo en la cruz, actualizado de manera incruenta en cada Misa.",
+28:    significance: ["Salvación", "Amor divino", "Entrega total", "Victoria"],
+33:    meaning: "Mesa del Señor",
+35:      "El altar representa tanto la mesa de la Última Cena como el Calvario, donde se ofrece el sacrificio eucarístico.",
+36:    significance: ["Encuentro", "Comunión", "Sacrificio", "Presencia"],
+44:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Simbolismo Eucarístico</h2>
+46:          Cada elemento de la Eucaristía tiene un profundo significado espiritual que nos conecta con el misterio de la
+47:          salvación
+88:          <CardTitle className="font-playfair text-xl text-center">La Transubstanciación</CardTitle>
+92:            En el momento de la consagración, por las palabras del sacerdote y la acción del Espíritu Santo, la
+94:            apariencias (accidentes) permanezcan inalteradas. Este es el misterio central de la fe católica.
+
+---- components/eucharist-prayers.tsx ----
+7:    title: "Oración antes de la Comunión",
+8:    text: "Señor, no soy digno de que entres en mi casa, pero una palabra tuya bastará para sanarme. Prepara mi corazón para recibir tu Cuerpo y tu Sangre con fe, amor y reverencia.",
+9:    occasion: "Antes de recibir la comunión",
+12:    title: "Oración después de la Comunión",
+13:    text: "Gracias, Jesús, por venir a mi corazón. Ayúdame a vivir siempre en tu gracia y a ser testimonio de tu amor en el mundo. Que tu presencia en mí transforme mi vida y me acerque cada día más a ti.",
+14:    occasion: "Después de recibir la comunión",
+17:    title: "Acto de Fe Eucarística",
+18:    text: "Creo firmemente que en la Eucaristía estás presente Tú, Jesús, verdadero Dios y verdadero hombre, con tu Cuerpo, Sangre, Alma y Divinidad. Te adoro con profunda humildad y te amo sobre todas las cosas.",
+19:    occasion: "Para la adoración eucarística",
+22:    title: "Oración de Acción de Gracias",
+23:    text: "Te doy gracias, Padre celestial, por el don inefable de la Eucaristía. Por medio de tu Hijo Jesús, nos das el alimento que necesitamos para el camino hacia la vida eterna. Bendito seas por siempre.",
+24:    occasion: "En acción de gracias por la Eucaristía",
+32:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Oraciones Eucarísticas</h2>
+34:          Oraciones tradicionales para acompañar la recepción de la Sagrada Eucaristía
+61:          <CardTitle className="font-playfair text-xl text-center">Preparación para la Comunión</CardTitle>
+66:              Para recibir dignamente la Sagrada Comunión, es importante preparar el alma:
+71:                <p>Estar libre de pecado mortal a través del sacramento de la Reconciliación</p>
+74:                <h4 className="font-medium text-foreground mb-2">Ayuno Eucarístico</h4>
+75:                <p>Abstenerse de alimentos sólidos al menos una hora antes de comulgar</p>
+78:                <h4 className="font-medium text-foreground mb-2">Disposición Interior</h4>
+
+---- components/eucharist-steps.tsx ----
+11:    description: "Preparación espiritual a través de las lecturas bíblicas y la homilía",
+17:      "Homilía del sacerdote",
+23:    title: "Presentación de las Ofrendas",
+25:    description: "Los fieles presentan el pan y el vino que serán consagrados",
+27:      "Procesión de las ofrendas",
+28:      "Preparación del altar",
+29:      "Oración sobre las ofrendas",
+36:    title: "Plegaria Eucarística",
+38:    description: "El momento central donde ocurre la transubstanciación",
+41:      "Epíclesis (invocación al Espíritu Santo)",
+42:      "Relato de la institución",
+43:      "Anámnesis (memorial de la Pasión)",
+50:    title: "Comunión",
+56:      "Fracción del pan",
+57:      "Comunión de los fieles",
+58:      "Oración después de la comunión",
+68:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Cómo se Celebra la Eucaristía</h2>
+70:          La celebración eucarística sigue un orden sagrado establecido por la tradición de la Iglesia
+
+---- components/featured-prayers.tsx ----
+7:    title: "Oración de San Francisco de Asís",
+8:    saint: "San Francisco de Asís",
+9:    text: "Señor, haz de mí un instrumento de tu paz. Donde haya odio, que yo lleve el amor. Donde haya ofensa, que yo lleve el perdón. Donde haya discordia, que yo lleve la unión. Donde haya duda, que yo lleve la fe.",
+10:    occasion: "Paz y reconciliación",
+14:    title: "Oración de Santa Teresa de Jesús",
+15:    saint: "Santa Teresa de Jesús",
+16:    text: "Nada te turbe, nada te espante, todo se pasa, Dios no se muda. La paciencia todo lo alcanza; quien a Dios tiene nada le falta: sólo Dios basta.",
+21:    title: "Oración de San Ignacio de Loyola",
+23:    text: "Toma, Señor, y recibe toda mi libertad, mi memoria, mi entendimiento y toda mi voluntad, todo mi haber y mi poseer; tú me lo diste, a ti, Señor, lo torno.",
+28:    title: "Oración de Santa Teresita del Niño Jesús",
+29:    saint: "Santa Teresita del Niño Jesús",
+30:    text: "Oh Jesús mío, yo sé bien que el amor se paga sólo con amor, por eso he buscado, he encontrado el medio de aliviar mi corazón devolviéndote amor por amor.",
+31:    occasion: "Amor a Jesús",
+42:          Oraciones Destacadas
+44:        <p className="text-muted-foreground">Las oraciones más queridas y rezadas por nuestra comunidad</p>
+76:          <CardTitle className="font-playfair text-xl text-center">Cómo Orar con los Santos</CardTitle>
+81:              <h4 className="font-medium text-foreground mb-2">1. Preparación</h4>
+83:                Busca un lugar tranquilo, haz la señal de la cruz y recógete en presencia de Dios
+87:              <h4 className="font-medium text-foreground mb-2">2. Oración</h4>
+89:                Lee la oración con devoción, meditando cada palabra y uniéndote al espíritu del santo
+93:              <h4 className="font-medium text-foreground mb-2">3. Reflexión</h4>
+95:                Permanece en silencio, permite que las palabras penetren en tu corazón y pide la intercesión del santo
+
+---- components/featured-verses.tsx ----
+7:    text: "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia.",
+8:    reference: "Isaías 41:10",
+13:    text: "Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar.",
+19:    text: "La paz os dejo, mi paz os doy; yo no os la doy como el mundo la da. No se turbe vuestro corazón, ni tenga miedo.",
+38:          Versículos Más Buscados
+40:        <p className="text-muted-foreground">Los versículos que más consuelo han brindado a nuestra comunidad</p>
+53:                  <span>{verse.popularity}% útil</span>
+
+---- components/map-legend.tsx ----
+17:            <span className="text-sm text-muted-foreground">Marcador de país con santos</span>
+23:            <span className="text-sm text-muted-foreground">Número indica cantidad de santos en el país</span>
+
+---- components/miracle-form.tsx ----
+78:          <CardTitle>Información del Milagro</CardTitle>
+82:            <Label htmlFor="title">Título del Milagro *</Label>
+92:            <Label htmlFor="description">Descripción Completa *</Label>
+153:            <Label htmlFor="verified">Verificado por la Iglesia Católica</Label>
+
+---- components/miracles-list.tsx ----
+134:    // Orden: más recientes primero (createdAt desc)
+139:      // 2) Más recientes primero
+155:            Filtrar Milagros
+163:                placeholder="Buscar milagros..."
+227:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+237:            <p className="text-muted-foreground">Intenta ajustar los filtros de búsqueda</p>
+
+---- components/prayer-form.tsx ----
+36:          <h2 className="font-playfair text-3xl font-bold">{prayer ? "Editar Oración" : "Nueva Oración"}</h2>
+37:          <p className="text-muted-foreground">Agregue una oración asociada al santo</p>
+53:          <CardTitle>Información de la Oración</CardTitle>
+57:            <Label htmlFor="title">Título de la Oración *</Label>
+62:              placeholder="Oración de San Francisco"
+67:            <Label htmlFor="occasion">Ocasión de Uso *</Label>
+72:              placeholder="Para la paz y la reconciliación"
+77:            <Label htmlFor="text">Texto Completo de la Oración *</Label>
+82:              placeholder="Señor, haz de mí un instrumento de tu paz..."
+
+---- components/prayers-categories.tsx ----
+24:    title: "Protección y Fortaleza",
+25:    description: "Oraciones para pedir protección divina y fortaleza espiritual",
+26:    tags: ["Protección", "Fortaleza", "Valor"],
+29:    title: "Sanación y Consuelo",
+30:    description: "Oraciones para momentos de enfermedad y necesidad de consuelo",
+31:    tags: ["Sanación", "Consuelo", "Enfermedad"],
+35:    description: "Oraciones de agradecimiento y alabanza a Dios",
+36:    tags: ["Gratitud", "Alabanza", "Acción de gracias"],
+39:    title: "Guía y Sabiduría",
+40:    description: "Oraciones para pedir guía divina y sabiduría",
+41:    tags: ["Guía", "Sabiduría", "Discernimiento"],
+44:    title: "Intercesión y Petición",
+45:    description: "Oraciones de intercesión por otros y peticiones especiales",
+46:    tags: ["Intercesión", "Petición", "Necesidades"],
+49:    title: "Devoción Mariana",
+50:    description: "Oraciones dedicadas a la Santísima Virgen María",
+51:    tags: ["Virgen María", "Rosario", "Advocaciones marianas"],
+83:    // usamos el primer tag como filtro base (suele ser “Protección”, “Sanación”, etc.)
+94:          Categorías de Oraciones
+97:          Explora oraciones organizadas por temas y necesidades espirituales
+126:                Explorar Oraciones
+
+---- components/prayers-introduction.tsx ----
+11:            El Poder de la Oración de los Santos
+17:            vivieron en íntima unión con Dios. Estas oraciones han sido probadas por el tiempo y han llevado consuelo,
+21:            Cada oración refleja la sabiduría espiritual y la profunda relación con Dios de quien la compuso, ofreciendo
+22:            palabras perfectas para expresar nuestros sentimientos más profundos ante el Altísimo.
+32:              Cómo Usar Esta Biblioteca
+37:              <li>• Busca por santo, ocasión o necesidad</li>
+38:              <li>• Explora las categorías temáticas</li>
+39:              <li>• Lee con devoción y recogimiento</li>
+40:              <li>• Adapta las oraciones a tu situación</li>
+41:              <li>• Practica la oración regularmente</li>
+56:              <li>• Consuelo en momentos difíciles</li>
+57:              <li>• Guía espiritual y sabiduría</li>
+58:              <li>• Intercesión de los santos</li>
+
+---- components/prayers-search.tsx ----
+77:            Buscar Oraciones
+84:            title="Más filtros"
+102:              placeholder="Buscar por título o contenido…"
+111:                <SelectValue placeholder="Seleccionar santo" />
+127:                <SelectValue placeholder="Ocasión" />
+142:              Buscar
+165:                    <SelectValue placeholder="Categoría" />
+178:                  Tip: también puedes entrar por “Categorías de Oraciones” y te baja a resultados automáticamente.
+
+---- components/saint-detail.tsx ----
+14:  // Campos que tu UI ya usa (pero hoy el backend aún no los manda)
+24:  // Campos “grandes” (pueden venir vacíos mientras crecemos el modelo)
+56:      {/* Navegación */}
+88:              <span className="text-muted-foreground">País:</span>
+102:                <span className="text-muted-foreground">Canonización:</span>
+125:      {/* Biografía */}
+130:            Biografía
+135:            {saint.biography ?? "Biografía en construcción…"}
+140:      {/* Milagros */}
+146:              Milagros Documentados
+182:      {/* Oraciones */}
+188:              Oraciones
+198:                      <strong>Ocasión:</strong> {prayer.occasion}
+212:      {/* Símbolos */}
+216:            <CardTitle className="font-playfair">Símbolos Asociados</CardTitle>
+
+---- components/saint-form.tsx ----
+53:  saint?: ExistingSaint; // edición
+100:  const continents: string[] = ["Europa", "Asia", "África", "América", "Oceanía"];
+158:      alert(`Errores de validación:\n${validation.errors.join("\n")}`);
+202:          <p className="text-muted-foreground">Complete toda la información del santo</p>
+217:        {/* Información Básica */}
+220:            <CardTitle>Información Básica</CardTitle>
+230:                  placeholder="San Francisco de Asís"
+234:                <Label htmlFor="title">Título</Label>
+246:                <Label htmlFor="feastDay">Día de Fiesta *</Label>
+255:                <Label htmlFor="country">País *</Label>
+269:                  <SelectValue placeholder="Seleccionar continente" />
+282:              <Label>Coordenadas Geográficas</Label>
+319:                <Label htmlFor="birthYear">Año Nacimiento</Label>
+329:                <Label htmlFor="deathYear">Año Muerte</Label>
+339:                <Label htmlFor="canonizationYear">Año Canonización</Label>
+362:        {/* Biografía */}
+365:            <CardTitle>Biografía</CardTitle>
+373:              placeholder="Escriba la biografía completa del santo..."
+376:            <p className="text-xs text-muted-foreground mt-2">Incluya detalles sobre su vida, conversión, obras y legado</p>
+391:              placeholder="Ej: Animales, Ecología, Italia..."
+409:      {/* Símbolos */}
+412:          <CardTitle>Símbolos Asociados</CardTitle>
+419:              placeholder="Ej: Lobo, Pájaros, Estigmas..."
+437:      {/* Milagros y Oraciones */}
+441:            <CardTitle>Milagros ({miracles.length})</CardTitle>
+465:            <CardTitle>Oraciones ({prayers.length})</CardTitle>
+
+---- components/saint-matcher-form.tsx ----
+22:  "Líder",
+35:  "Analítico",
+48:  "Procrastinación",
+49:  "Crítica excesiva",
+53:  "Desorganización",
+93:    // Simular análisis de IA (en producción conectarías con una API real)
+100:          name: "San Francisco de Asís",
+103:          patronage: ["Animales", "Ecología", "Paz"],
+110:          "Transformó sus desafíos personales en fortalezas espirituales",
+112:        prayer: "San Francisco, ayúdame a encontrar la paz en la simplicidad y a ver a Cristo en toda la creación.",
+124:          "Tu compasión hacia los necesitados refleja su ministerio",
+125:          "Ambos encuentran fortaleza en la oración durante dificultades",
+126:          "Su determinación ante obstáculos inspira tu perseverancia",
+128:        prayer: "Santa Teresa, enséñame a amar sin límites y a servir con alegría a los más necesitados.",
+132:          name: "San Martín de Porres",
+133:          country: "Perú",
+140:          "Su dedicación al servicio médico resuena con tu vocación de ayuda",
+141:          "Superó prejuicios sociales con humildad y perseverancia",
+142:          "Su alegría en el trabajo diario inspira tu actitud positiva",
+144:        prayer: "San Martín, ayúdame a servir con humildad y a encontrar a Dios en el trabajo cotidiano.",
+163:          <CardTitle className="font-playfair text-xl text-gray-900">Cuéntanos sobre ti</CardTitle>
+171:              placeholder="Ejemplo: Soy una persona que valora mucho la familia y la justicia. Me gusta ayudar a otros, pero a veces me cuesta perdonar. He pasado por momentos difíciles que me han hecho más fuerte..."
+176:            <p className="text-xs text-gray-500 mt-1">Mínimo 20 caracteres para un análisis más preciso</p>
+181:              Selecciona tus principales cualidades
+
+---- components/saint-matcher-introduction.tsx ----
+13:      <h1 className="font-playfair text-4xl font-bold text-gray-900 mb-4">Descubre Qué Santo Se Parece a Ti</h1>
+16:        Comparte tus cualidades, desafíos y forma de ser. Nuestra inteligencia artificial analizará tu personalidad y te
+17:        conectará con santos que compartieron características similares.
+24:            <h3 className="font-semibold text-gray-900 mb-2">Describe tu Corazón</h3>
+25:            <p className="text-sm text-gray-600">Comparte tus virtudes, pasiones y lo que más valoras en la vida</p>
+32:            <h3 className="font-semibold text-gray-900 mb-2">Reconoce tus Desafíos</h3>
+33:            <p className="text-sm text-gray-600">Identifica áreas donde buscas crecimiento y superación personal</p>
+40:            <h3 className="font-semibold text-gray-900 mb-2">Encuentra tu Guía</h3>
+
+---- components/saint-matcher-results.tsx ----
+38:        <p className="text-gray-600 mb-6">Hemos encontrado santos que comparten características contigo</p>
+41:          Hacer nuevo análisis
+87:                  Por qué conectas con {result.saint.name.split(" ")[1] || result.saint.name}
+102:                  Oración sugerida
+114:                  Leer biografía completa
+124:          <h3 className="font-playfair text-lg font-semibold text-gray-900 mb-2">Continúa tu camino espiritual</h3>
+126:            Estos santos pueden ser tus compañeros de oración y guías en tu crecimiento personal
+130:              Ver más oraciones
+133:              Explorar otros santos
+
+---- components/saints-list.tsx ----
+109:                  <Link href={`/santos/${saint.slug}`}>Ver Biografía Completa</Link>
+120:            Cargar Más Santos
+
+---- components/saints-map-sidebar.tsx ----
+36:  if (v.includes("america")) return { key: "america", label: "América" }
+38:  if (v.includes("oceania")) return { key: "oceania", label: "Oceanía" }
+79:    // orden bonito: Europa/Asia/América/África/Oceanía/otros
+98:            Filtrar por Región
+104:              <SelectValue placeholder="Seleccionar continente" />
+110:              <SelectItem value="america">América</SelectItem>
+112:              <SelectItem value="oceania">Oceanía</SelectItem>
+125:      {/* Estadísticas */}
+128:          <CardTitle className="font-playfair text-lg">Estadísticas Globales</CardTitle>
+179:                        {!hasCoords && <span className="ml-2 text-[10px] opacity-70">(sin ubicación)</span>}
+202:          <CardTitle className="font-playfair text-lg">¿Sabías que...?</CardTitle>
+208:              Católica.
+211:            <p>Puedes hacer clic en cualquier país para ver información detallada de sus santos.</p>
+
+---- components/scripture-search-advanced.tsx ----
+26:    "depresión",
+28:    "alegría",
+37:    "perdón",
+43:    "preocupación",
+44:    "estrés",
+52:    "frustración",
+56:    "tentación",
+58:    "salvación",
+59:    "redención",
+76:  // Buscar versículos
+83:    // Simular búsqueda (en una app real, esto sería una llamada a API)
+97:  // Manejar envío del formulario
+103:  // Seleccionar sugerencia
+117:            Busca Versículos por Sentimiento
+127:                  placeholder="Describe cómo te sientes... (ej: miedo, tristeza, esperanza)"
+147:                        - {scriptureData.filter((v) => v.emotions.includes(suggestion)).length} versículos
+156:              {isSearching ? "Buscando..." : "Buscar Versículos"}
+160:          {/* Sugerencias rápidas */}
+164:              Búsquedas populares:
+182:      {/* Resultados de búsqueda */}
+187:              Versículos para "{searchTerm}"
+189:            <p className="text-muted-foreground">Encontramos {results.length} versículos que pueden ayudarte</p>
+217:                        <p className="text-sm font-medium text-foreground mb-2">Reflexión:</p>
+224:                        <p className="text-sm font-medium text-foreground mb-2">Oración sugerida:</p>
+241:              No encontramos versículos específicos para "{searchTerm}". Intenta con palabras como:
+
+---- components/secret-access.tsx ----
+19:    // Reset después de 3 segundos sin clicks
+
+---- components/symbols-categories.tsx ----
+7:    title: "Símbolos Cristológicos",
+9:    description: "Símbolos que representan a Jesucristo",
+10:    symbols: ["Cruz", "INRI", "Cordero", "Pez (IXTHYS)", "Pan y Vino", "Corazón Sagrado"],
+14:    title: "Símbolos Marianos",
+16:    description: "Símbolos dedicados a la Virgen María",
+17:    symbols: ["Rosa Mística", "Estrella del Mar", "Luna", "Lirio", "Corona", "Inmaculado Corazón"],
+21:    title: "Símbolos del Espíritu Santo",
+28:    title: "Símbolos Sacramentales",
+31:    symbols: ["Agua Bautismal", "Crisma", "Anillos", "Cáliz", "Hostia", "Óleo Santo"],
+35:    title: "Símbolos Litúrgicos",
+38:    symbols: ["Cirio Pascual", "Incienso", "Campanas", "Vestiduras", "Altar", "Ambón"],
+42:    title: "Símbolos Naturales",
+54:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Categorías de Símbolos</h2>
+56:          Los símbolos católicos se organizan en diferentes categorías según su significado y uso litúrgico
+74:                  <h4 className="font-medium text-foreground text-sm">Símbolos principales:</h4>
+
+---- components/symbols-gallery.tsx ----
+8:    category: "Cristológico",
+11:      "La cruz es el símbolo más importante del cristianismo, representando el sacrificio de Jesús por la salvación de la humanidad. Es signo de amor, redención y victoria sobre la muerte.",
+12:    variations: ["Cruz Latina", "Cruz Griega", "Crucifijo", "Cruz de San Andrés"],
+13:    biblicalReference: "Gálatas 6:14",
+14:    usage: "Liturgia, oración personal, bendiciones",
+18:    category: "Cristológico",
+21:      "El pez fue uno de los primeros símbolos cristianos. Las letras griegas IXTHYS forman un acróstico: Iesous Christos Theou Yios Soter (Jesucristo, Hijo de Dios, Salvador).",
+24:    usage: "Identificación cristiana primitiva, arte sacro",
+28:    category: "Espíritu Santo",
+29:    meaning: "Espíritu Santo, Paz Divina",
+31:      "La paloma representa al Espíritu Santo, especialmente desde el bautismo de Jesús. También simboliza la paz, la pureza y el alma humana que busca a Dios.",
+34:    usage: "Confirmación, Pentecostés, símbolos de paz",
+38:    category: "Cristológico",
+41:      "El cordero representa a Cristo como el Cordero de Dios que quita el pecado del mundo. Simboliza la inocencia, el sacrificio y la redención.",
+44:    usage: "Eucaristía, arte litúrgico, himnos",
+47:    name: "El Corazón Sagrado",
+48:    category: "Cristológico",
+51:      "El Sagrado Corazón de Jesús representa el amor divino e infinito de Cristo por la humanidad. Suele representarse rodeado de espinas y coronado con una cruz.",
+52:    variations: ["Corazón con espinas", "Corazón flameante", "Corazón con cruz"],
+54:    usage: "Devoción personal, mes de junio, consagración",
+57:    name: "La Rosa Mística",
+59:    meaning: "Pureza y belleza de María",
+61:      "La rosa simboliza a la Virgen María, especialmente su pureza, belleza espiritual y su papel como Madre de Dios. Es llamada 'Rosa Mística' en las letanías.",
+69:    meaning: "Esperanza y Salvación",
+71:      "El ancla simboliza la esperanza cristiana y la salvación. Representa la estabilidad de la fe y la seguridad que encontramos en Cristo durante las tormentas de la vida.",
+74:    usage: "Símbolos funerarios, arte cristiano primitivo",
+78:    category: "Cristológico",
+84:    usage: "Eucaristía, decoración de altares, catequesis",
+92:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Galería de Símbolos Sagrados</h2>
+94:          Explora los símbolos más importantes de la tradición católica y descubre su profundo significado espiritual
+129:                  <h4 className="font-medium text-foreground mb-2 text-sm">Referencia Bíblica:</h4>
+134:                  <h4 className="font-medium text-foreground mb-2 text-sm">Uso Litúrgico:</h4>
+
+---- components/symbols-introduction.tsx ----
+11:            El Lenguaje de los Símbolos
+16:            Los símbolos católicos son mucho más que simples decoraciones o imágenes. Son un lenguaje sagrado que
+20:            Cada símbolo tiene capas de significado que se han desarrollado a lo largo de siglos de tradición cristiana,
+21:            ayudando a los fieles a comprender y vivir los misterios de la fe de manera más profunda.
+31:              Propósito de los Símbolos
+36:              <li>• Enseñar verdades de fe de manera visual</li>
+37:              <li>• Facilitar la oración y meditación</li>
+38:              <li>• Conectar con la tradición apostólica</li>
+39:              <li>• Inspirar devoción y reverencia</li>
+40:              <li>• Unificar a los fieles en la fe común</li>
+49:              Origen Histórico
+54:              Muchos símbolos católicos tienen sus raíces en los primeros siglos del cristianismo, cuando los cristianos
+55:              usaban símbolos secretos para identificarse y comunicar su fe durante las persecuciones. Con el tiempo,
+56:              estos símbolos evolucionaron y se enriquecieron con nuevos significados.
+
+---- components/world-map-leaflet.tsx ----
+55:  // Agrupar por país (para la tarjeta superior)
+101:      // ✅ si Fast Refresh dejó el contenedor “sucio”, limpia el id interno
+240:            <p className="text-sm text-muted-foreground">Cargando mapa mundial...</p>
+253:                Revisa NEXT_PUBLIC_API_URL o que el backend esté prendido en {baseUrl}.
+281:                  Tradición católica
+293:                    +{countriesData[selectedCountry].length - 4} más
+
+---- components/world-map.tsx ----
+95:            alt="Mapa Mundial"
+101:            // Convertir coordenadas geográficas a posición en la imagen
+185:                      +{countriesData[selectedCountry].saints.length - 3} más
+
+---- lib/admin-utils.ts ----
+292:    throw new Error(`Error creando oración (${res.status}). ${txt}`)
+307:    throw new Error(`Error editando oración (${res.status}). ${txt}`)
+320:    throw new Error(`Error eliminando oración (${res.status}). ${txt}`)
+
+---- lib/i18n.ts ----
+4:  { code: "es" as const, name: "Español", flag: "🇪🇸" },
+21:// ✅ Tipo de códigos basado en el array (fuente única de verdad)
+32:// y podrías comparar/validar en runtime si algún día lo necesitas.
+
+---- lib/prayers-data.ts ----
+15:    title: "Oración por la Paz",
+16:    saint: "San Francisco de Asís",
+17:    text: "Señor, haz de mí un instrumento de tu paz. Donde haya odio, que yo lleve el amor. Donde haya ofensa, que yo lleve el perdón. Donde haya discordia, que yo lleve la unión. Donde haya duda, que yo lleve la fe. Donde haya error, que yo lleve la verdad. Donde haya desesperación, que yo lleve la esperanza. Donde haya tristeza, que yo lleve la alegría. Donde haya tinieblas, que yo lleve la luz. Oh Maestro, que yo no busque tanto ser consolado, sino consolar; ser comprendido, sino comprender; ser amado, sino amar. Porque es dando que se recibe; es perdonando que se es perdonado; es muriendo que se resucita a la vida eterna.",
+18:    occasion: "Paz y reconciliación",
+26:    saint: "Santa Teresa de Jesús",
+27:    text: "Nada te turbe, nada te espante, todo se pasa, Dios no se muda. La paciencia todo lo alcanza; quien a Dios tiene nada le falta: sólo Dios basta.",
+37:    text: "Toma, Señor, y recibe toda mi libertad, mi memoria, mi entendimiento y toda mi voluntad, todo mi haber y mi poseer; tú me lo diste, a ti, Señor, lo torno. Todo es tuyo, dispón a toda tu voluntad. Dame tu amor y gracia, que esta me basta.",
+45:    title: "Oración del Amor",
+46:    saint: "Santa Teresita del Niño Jesús",
+47:    text: "Oh Jesús mío, yo sé bien que el amor se paga sólo con amor, por eso he buscado, he encontrado el medio de aliviar mi corazón devolviéndote amor por amor. Jesús, mi Amado, en cada latido de mi corazón quiero renovarte el ofrecimiento de mi vida.",
+48:    occasion: "Amor a Jesús",
+55:    title: "Oración por los Pobres",
+57:    text: "Señor, cuando tenga hambre, dame alguien que necesite comida; cuando tenga sed, dame alguien que precise agua; cuando sienta frío, dame alguien que necesite calor. Cuando sufra, dame alguien que necesite consuelo; cuando mi cruz parezca pesada, déjame compartir la cruz del otro.",
+59:    intention: "Para servir a los más pobres y necesitados",
+65:    title: "Oración por la Familia",
+67:    text: "Oh San Juan Pablo II, bendice a las familias del mundo entero. Bendice a cada familia. Tú que fuiste hijo, ayuda a nuestros padres en su misión educativa, ayuda a nuestros hijos a crecer en edad, sabiduría y gracia, ayuda a redescubrir en la familia el santuario de la vida.",
+68:    occasion: "Protección de la familia",
+69:    intention: "Para la protección y unidad de las familias",
+75:    title: "Oración por los Enfermos",
+77:    text: "Señor Jesús, que durante tu vida terrena mostraste especial predilección por los enfermos y afligidos, concédenos, por intercesión de San Camilo, la gracia de asistir con amor y dedicación a quienes sufren, viendo en ellos tu rostro adorable.",
+78:    occasion: "Sanación y consuelo",
+79:    intention: "Para la sanación de los enfermos",
+80:    category: "Sanación",
+85:    title: "Oración por la Sabiduría",
+86:    saint: "Santo Tomás de Aquino",
+87:    text: "Creador inefable, que de los tesoros de tu sabiduría estableciste tres jerarquías de ángeles y las colocaste en admirable orden sobre el cielo empíreo, y distribuiste con elegancia las partes del universo, te suplicamos que nos ilumines, a nosotros que nos decimos tus hijos.",
+88:    occasion: "Sabiduría y conocimiento",
+89:    intention: "Para obtener sabiduría divina en los estudios",
+90:    category: "Sabiduría",
+95:    title: "Oración por la Pureza",
+97:    text: "Oh San Luis Gonzaga, adorno angelical de la juventud, te ruego me alcances de Dios una pureza inviolable de mente y cuerpo. Enséñame a imitar tu pureza angelical, para que pueda servir a Dios con corazón limpio y alma pura.",
+99:    intention: "Para mantener la pureza de corazón",
+105:    title: "Oración por los Viajeros",
+106:    saint: "San Cristóbal",
+107:    text: "San Cristóbal, protector de los viajeros, que llevaste a Cristo a través del río, te pedimos que nos acompañes en nuestros viajes. Protégenos de todo peligro y concédenos llegar sanos y salvos a nuestro destino.",
+108:    occasion: "Protección en viajes",
+109:    intention: "Para la protección durante los viajes",
+110:    category: "Protección",
+115:    title: "Oración por la Esperanza",
+117:    text: "Oh glorioso San Judas Tadeo, apóstol fiel y amigo de Jesús, el nombre del traidor ha sido causa de que fueras olvidado por muchos, pero la Iglesia te honra y te invoca como patrón de los casos difíciles y desesperados. Ruega por mí que soy tan miserable.",
+
+---- lib/saints-data.ts ----
+42:    name: "San Francisco de Asís",
+52:      "Giovanni di Pietro di Bernardone, conocido como Francisco de Asís, nació en una familia adinerada de comerciantes. Su vida cambió radicalmente cuando escuchó la voz de Cristo desde un crucifijo en la iglesia de San Damián, pidiéndole que reparara su iglesia. Francisco interpretó esto literalmente al principio, pero luego comprendió que se refería a la renovación espiritual de la Iglesia. Renunció a su herencia familiar y abrazó una vida de pobreza extrema, predicando el Evangelio y cuidando de los leprosos. Fundó la Orden de los Hermanos Menores (Franciscanos) y, junto con Santa Clara, la Orden de las Hermanas Pobres (Clarisas). Recibió los estigmas de Cristo en el monte Alverna en 1224, siendo el primer santo en recibir estas marcas de la Pasión.",
+58:          "En 1224, mientras oraba en el monte Alverna, Francisco recibió los estigmas - las cinco heridas de Cristo crucificado - en sus manos, pies y costado. Estas marcas permanecieron visibles hasta su muerte y fueron testimoniadas por numerosos hermanos franciscanos.",
+61:        witnesses: ["Hermano León", "Hermano Ángel", "Hermano Rufino"],
+66:        title: "La predicación a los pájaros",
+68:          "Francisco predicó a una multitud de pájaros cerca de Bevagna. Los pájaros permanecieron inmóviles escuchando su sermón sobre la gratitud a Dios por sus dones, y solo se dispersaron cuando Francisco les dio su bendición.",
+76:          "Francisco domesticó a un lobo feroz que aterrorizaba la ciudad de Gubbio. Después de hablar con el animal, el lobo dejó de atacar a los habitantes y vivió pacíficamente en la ciudad hasta su muerte natural.",
+84:        title: "Oración de San Francisco",
+85:        text: "Señor, haz de mí un instrumento de tu paz. Donde haya odio, que yo lleve el amor. Donde haya ofensa, que yo lleve el perdón. Donde haya discordia, que yo lleve la unión. Donde haya duda, que yo lleve la fe. Donde haya error, que yo lleve la verdad. Donde haya desesperación, que yo lleve la esperanza. Donde haya tristeza, que yo lleve la alegría. Donde haya tinieblas, que yo lleve la luz. Oh Maestro, que yo no busque tanto ser consolado, sino consolar; ser comprendido, sino comprender; ser amado, sino amar. Porque es dando que se recibe; es perdonando que se es perdonado; es muriendo que se resucita a la vida eterna.",
+86:        occasion: "Para la paz y la reconciliación",
+90:        title: "Cántico de las Criaturas",
+91:        text: "Altísimo, omnipotente, buen Señor, tuyas son las alabanzas, la gloria y el honor y toda bendición. A ti solo, Altísimo, corresponden, y ningún hombre es digno de hacer de ti mención. Loado seas, mi Señor, con todas tus criaturas, especialmente el señor hermano sol, el cual es día y por el cual nos alumbras.",
+92:        occasion: "Para alabar a Dios en la creación",
+95:    patronOf: ["Animales", "Ecología", "Italia", "Comerciantes", "Paz"],
+96:    symbols: ["Lobo", "Pájaros", "Estigmas", "Cruz de San Damián", "Hábito franciscano"],
+112:      "Agnes Gonxha Bojaxhiu nació en Skopje, Macedonia del Norte, en una familia albanesa. A los 18 años se unió a las Hermanas de Loreto en Irlanda y fue enviada a India, donde enseñó en una escuela para niñas de familias acomodadas en Calcuta. En 1946, mientras viajaba en tren a Darjeeling, recibió lo que ella llamó 'la llamada dentro de la llamada' - una inspiración divina para servir a los más pobres entre los pobres. Dejó el convento y se fue a vivir a los barrios marginales de Calcuta, donde cuidó a los moribundos, huérfanos y enfermos. Fundó las Misioneras de la Caridad en 1950. Su trabajo se extendió por todo el mundo, estableciendo casas para moribundos, orfanatos, y centros para personas con VIH/SIDA. Recibió el Premio Nobel de la Paz en 1979.",
+116:        title: "Curación de Monica Besra",
+118:          "Monica Besra, una mujer bengalí, fue curada de un tumor canceroso en el abdomen después de que se colocara una medalla milagrosa de la Madre Teresa sobre el tumor. La curación fue instantánea y completa, sin explicación médica.",
+121:        witnesses: ["Médicos del hospital local", "Familia Besra"],
+126:        title: "Curación de Marcilio Haddad Andrino",
+128:          "Un ingeniero brasileño con múltiples tumores cerebrales fue curado después de que su esposa orara a la Madre Teresa y tocara su abdomen con una reliquia de la santa. Los tumores desaparecieron completamente.",
+131:        witnesses: ["Médicos del Hospital Beneficência Portuguesa", "Familia Andrino"],
+138:        title: "Oración de la Madre Teresa",
+139:        text: "Señor, cuando tenga hambre, dame alguien que necesite comida; cuando tenga sed, dame alguien que precise agua; cuando sienta frío, dame alguien que necesite calor. Cuando sufra, dame alguien que necesite consuelo; cuando mi cruz parezca pesada, déjame compartir la cruz del otro; cuando me vea pobre, pon a mi lado algún necesitado. Cuando no tenga tiempo, dame alguien que precise de mis minutos; cuando sufra humillación, dame ocasión para elogiar a alguien; cuando esté desanimado, dame alguien para animar.",
+144:    symbols: ["Sari blanco con borde azul", "Manos orando", "Corazón", "Paloma"],
+160:      "Karol Józef Wojtyła nació en Wadowice, Polonia. Durante la Segunda Guerra Mundial, trabajó en una cantera y en una fábrica química mientras estudiaba en secreto para el sacerdocio. Fue ordenado sacerdote en 1946 y se convirtió en obispo auxiliar de Cracovia en 1958. En 1978 fue elegido Papa, convirtiéndose en el primer Papa polaco y el más joven en 132 años. Su pontificado de 26 años fue uno de los más largos de la historia. Realizó 104 viajes apostólicos, visitó 129 países y fue fundamental en la caída del comunismo en Europa del Este. Sobrevivió a un intento de asesinato en 1981 y perdonó públicamente a su atacante. Beatificó a 1,340 personas y canonizó a 482 santos, más que todos sus predecesores juntos.",
+164:        title: "Curación de Marie Simon-Pierre",
+166:          "La hermana Marie Simon-Pierre, una monja francesa que sufría de Parkinson, fue curada completamente después de orar a Juan Pablo II tras su muerte. La curación fue instantánea y permanente.",
+169:        witnesses: ["Comunidad religiosa", "Médicos especialistas"],
+174:        title: "Curación de Floribeth Mora Diaz",
+176:          "Una mujer costarricense con un aneurisma cerebral inoperable fue curada después de orar a Juan Pablo II mientras veía su beatificación por televisión. Los médicos confirmaron la desaparición completa del aneurisma.",
+179:        witnesses: ["Hospital México", "Familia Mora"],
+186:        title: "Oración a San Juan Pablo II",
+187:        text: "Oh San Juan Pablo II, desde la ventana del cielo, concédenos tu bendición. Bendice a la Iglesia que has amado, servido y guiado, animándola valientemente por los senderos del mundo hacia la verdad que libera. Bendice a los jóvenes, que fueron tu esperanza constante. Ayúdales a soñar de nuevo, ayúdales a mirar de nuevo hacia lo alto, ayúdales a creer de nuevo en el amor. Bendice a las familias, bendice a cada familia. Tú que fuiste hijo, ayuda a nuestros padres en su misión educativa, ayuda a nuestros hijos a crecer en edad, sabiduría y gracia, ayuda a redescubrir en la familia el santuario de la vida.",
+188:        occasion: "Para la protección de la familia y los jóvenes",
+191:    patronOf: ["Jóvenes", "Familias", "Polonia", "Peregrinos", "Papas"],
+192:    symbols: ["Báculo papal", "Mitra", "Rosario", "Montañas", "Libro"],
+198:    name: "San Martín de Porres",
+201:    country: "Perú",
+202:    continent: "América",
+
+---- lib/scripture-data.ts ----
+18:    text: "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia.",
+19:    reference: "Isaías 41:10",
+20:    book: "Isaías",
+24:    keywords: ["temor", "ayuda", "sostén", "justicia", "Dios"],
+26:      "Este versículo nos recuerda que Dios está siempre presente en nuestros momentos de temor. Su promesa de fortalecernos y sostenernos es inquebrantable.",
+28:      "Señor, ayúdame a recordar que Tú estás conmigo en todo momento. Dame la fortaleza para enfrentar mis miedos con fe.",
+33:    text: "Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar.",
+38:    emotions: ["cansancio", "estrés", "paz", "descanso"],
+41:      "Jesús nos invita a llevar nuestras cargas a Él. No tenemos que enfrentar solos el peso de nuestras preocupaciones y responsabilidades.",
+42:    prayer: "Jesús, vengo a Ti con todas mis cargas. Dame el descanso que mi alma necesita.",
+47:    text: "La paz os dejo, mi paz os doy; yo no os la doy como el mundo la da. No se turbe vuestro corazón, ni tenga miedo.",
+53:    keywords: ["paz", "corazón", "temor", "mundo"],
+56:    prayer: "Príncipe de Paz, llena mi corazón con Tu paz que sobrepasa todo entendimiento.",
+69:      "Nuestra fortaleza no viene de nosotros mismos, sino de Cristo que vive en nosotros. Con Él, podemos enfrentar cualquier desafío.",
+70:    prayer: "Cristo Jesús, recuérdame que mi fortaleza viene de Ti. Ayúdame a confiar en Tu poder en mí.",
+75:    text: "Jehová es mi pastor; nada me faltará. En lugares de delicados pastos me hará descansar; junto a aguas de reposo me pastoreará.",
+80:    emotions: ["paz", "confianza", "seguridad", "provisión"],
+81:    keywords: ["pastor", "descanso", "provisión", "cuidado"],
+84:    prayer: "Buen Pastor, gracias por cuidar de mí. Ayúdame a descansar en Tu provisión y cuidado.",
+89:    text: "Por nada estéis afanosos, sino sean conocidas vuestras peticiones delante de Dios en toda oración y ruego, con acción de gracias.",
+94:    emotions: ["ansiedad", "preocupación", "paz", "gratitud"],
+95:    keywords: ["afán", "oración", "peticiones", "gratitud"],
+97:      "En lugar de preocuparnos, Dios nos invita a orar. La oración con gratitud transforma nuestra ansiedad en paz.",
+98:    prayer: "Padre celestial, ayúdame a llevar todas mis preocupaciones a Ti en oración, con un corazón agradecido.",
+103:    text: "Bienaventurados los que lloran, porque ellos recibirán consolación.",
+108:    emotions: ["tristeza", "dolor", "duelo", "consolación"],
+109:    keywords: ["llanto", "consolación", "bienaventurados", "consuelo"],
+111:      "Jesús reconoce nuestro dolor y promete consolación. Nuestras lágrimas no pasan desapercibidas ante Dios.",
+112:    prayer: "Consolador divino, abraza mi dolor y llena mi corazón con Tu consuelo.",
+117:    text: "Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis.",
+118:    reference: "Jeremías 29:11",
+119:    book: "Jeremías",
+126:    prayer: "Señor, ayúdame a confiar en Tus planes para mi vida, sabiendo que son para mi bien.",
+127:    category: "Esperanza y Alegría",
+131:    text: "El Señor tu Dios está en medio de ti como guerrero victorioso. Se deleitará en ti con gozo, te renovará con su amor, se alegrará por ti con cantos.",
+132:    reference: "Sofonías 3:17",
+133:    book: "Sofonías",
+136:    emotions: ["amor", "alegría", "renovación", "celebración"],
+137:    keywords: ["guerrero", "gozo", "amor", "cantos", "renovación"],
+140:    prayer: "Padre amoroso, gracias por deleitarte en mí. Renuévame con Tu amor cada día.",
+
+---- lib/translations.ts ----
+4:    "pages.verses.title": 'Versículos para el Alma',
+5:    "pages.symbols.title": 'Símbolos Católicos',
+6:    "pages.eucharist.title": 'La Sagrada Eucaristía',
+7:    "pages.map.title": 'Mapa Mundial de Santos',
+8:    "pages.miracles.title": 'Milagros de los Santos',
+9:    "pages.saints.title": 'Vidas de los Santos',
+13:    "saints.filters.searchPlaceholder": 'Buscar por nombre...',
+16:    "brand.title": 'Santos y Milagros',
+20:    "nav.prayers": "Oraciones",
+21:    "nav.miracles": "Milagros",
+23:    "nav.eucharist": "Eucaristía",
+27:    "common.loading": "Cargando...",
+29:    "common.search": "Buscar",
+30:    "common.readMore": "Leer más",
+42:    selectLanguage: "Seleccionar idioma",
+45:    "meta.title": "Sitio Católico - Fe, Santos y Oraciones",
+47:      "Descubre la fe católica a través de santos, oraciones y milagros. Un espacio de espiritualidad y devoción.",
+48:    "meta.keywords": "católico, santos, oraciones, milagros, fe, espiritualidad",
+51:    "home.hero.title": "Bienvenido a Nuestro Sitio Católico",
+52:    "home.hero.subtitle": "Descubre la fe, los santos y las oraciones que guían nuestro camino espiritual",
+54:    "home.featured.prayers": "Oraciones Populares",
+55:    "home.featured.miracles": "Milagros Recientes",
+58:    "saints.title": "Santos Católicos",
+60:    "saints.feastDay": "Día de la Festividad",
+61:    "saints.patronOf": "Patrón de",
+62:    "saints.biography": "Biografía",
+65:    "prayers.title": "Oraciones Católicas",
+66:    "prayers.description": "Oraciones para fortalecer tu fe y conexión espiritual",
+67:    "prayers.category": "Categoría",
+68:    "prayers.text": "Texto de la Oración",
+71:    "miracles.title": "Milagros",
+74:    "miracles.location": "Ubicación",
+75:    "miracles.description.text": "Descripción",
+78:    "footer.copyright": "© 2024 Sitio Católico. Todos los derechos reservados.",
+79:    "footer.privacy": "Política de Privacidad",
+80:    "footer.terms": "Términos de Uso",
+88:      "Descubre tu conexión espiritual con los santos católicos y encuentra inspiración en sus vidas extraordinarias.",
+89:    "hero.exploreSaints": "Explorar Santos",
+90:    "hero.searchVerses": "Buscar Versículos",
+96:    "featured.title": "Explora Nuestra Fe",
+
+---- contexts/user-context.tsx ----
+139:      title: "Nueva conversación",
+165:          const title = messages[0]?.content.slice(0, 30) + "..." || "Nueva conversación"
+
+
+=============================
+E) “ES CLIENT?” (para entender por qué no cambia)
+   (si NO es client, no puede usar useLanguage() para cambiar en vivo)
+=============================
+SERVER  - app/mapa/page.tsx
+SERVER  - app/eucaristia/page.tsx
+SERVER  - app/milagros/page.tsx
+SERVER  - app/simbolos/page.tsx
+SERVER  - app/versiculos/page.tsx
+
+=============================
+F) CONTENIDO QUE VIENE DE “DATA FILES” (tampoco cambia si está hardcodeado)
+=============================
+-rw-r--r-- 1 sebas 197609  6719 Dec 31 14:58 lib/prayers-data.ts
+-rw-r--r-- 1 sebas 197609 14733 Dec 31 14:58 lib/saints-data.ts
+-rw-r--r-- 1 sebas 197609  8249 Dec 31 14:58 lib/scripture-data.ts
+
+lib/prayers-data.ts:15:    title: "Oración por la Paz",
+lib/prayers-data.ts:25:    title: "Nada te Turbe",
+lib/prayers-data.ts:35:    title: "Suscipe",
+lib/prayers-data.ts:45:    title: "Oración del Amor",
+lib/prayers-data.ts:55:    title: "Oración por los Pobres",
+lib/prayers-data.ts:65:    title: "Oración por la Familia",
+lib/prayers-data.ts:75:    title: "Oración por los Enfermos",
+lib/prayers-data.ts:85:    title: "Oración por la Sabiduría",
+lib/prayers-data.ts:95:    title: "Oración por la Pureza",
+lib/prayers-data.ts:105:    title: "Oración por los Viajeros",
+lib/prayers-data.ts:115:    title: "Oración por la Esperanza",
+lib/prayers-data.ts:125:    title: "Oración Mariana",
+lib/saints-data.ts:43:    title: "Fundador de la Orden Franciscana",
+lib/saints-data.ts:56:        title: "Los estigmas de Cristo",
+lib/saints-data.ts:66:        title: "La predicación a los pájaros",
+lib/saints-data.ts:74:        title: "El lobo de Gubbio",
+lib/saints-data.ts:84:        title: "Oración de San Francisco",
+lib/saints-data.ts:90:        title: "Cántico de las Criaturas",
+lib/saints-data.ts:103:    title: "Madre de los Pobres",
+lib/saints-data.ts:116:        title: "Curación de Monica Besra",
+lib/saints-data.ts:126:        title: "Curación de Marcilio Haddad Andrino",
+lib/saints-data.ts:138:        title: "Oración de la Madre Teresa",
+lib/saints-data.ts:151:    title: "El Papa Peregrino",
+lib/saints-data.ts:164:        title: "Curación de Marie Simon-Pierre",
+lib/saints-data.ts:174:        title: "Curación de Floribeth Mora Diaz",
+lib/saints-data.ts:186:        title: "Oración a San Juan Pablo II",
+lib/saints-data.ts:199:    title: "Santo de la Caridad",
+lib/saints-data.ts:212:        title: "Bilocación milagrosa",
+lib/saints-data.ts:221:        title: "Oración a San Martín de Porres",
+lib/saints-data.ts:234:    title: "La Doncella de Orleans",
+lib/saints-data.ts:247:        title: "Liberación de Orleans",
+lib/saints-data.ts:258:        title: "Oración a Santa Juana de Arco",
+lib/scripture-data.ts:42:    prayer: "Jesús, vengo a Ti con todas mis cargas. Dame el descanso que mi alma necesita.",
+lib/scripture-data.ts:56:    prayer: "Príncipe de Paz, llena mi corazón con Tu paz que sobrepasa todo entendimiento.",
+lib/scripture-data.ts:70:    prayer: "Cristo Jesús, recuérdame que mi fortaleza viene de Ti. Ayúdame a confiar en Tu poder en mí.",
+lib/scripture-data.ts:84:    prayer: "Buen Pastor, gracias por cuidar de mí. Ayúdame a descansar en Tu provisión y cuidado.",
+lib/scripture-data.ts:98:    prayer: "Padre celestial, ayúdame a llevar todas mis preocupaciones a Ti en oración, con un corazón agradecido.",
+lib/scripture-data.ts:112:    prayer: "Consolador divino, abraza mi dolor y llena mi corazón con Tu consuelo.",
+lib/scripture-data.ts:126:    prayer: "Señor, ayúdame a confiar en Tus planes para mi vida, sabiendo que son para mi bien.",
+lib/scripture-data.ts:140:    prayer: "Padre amoroso, gracias por deleitarte en mí. Renuévame con Tu amor cada día.",
+lib/scripture-data.ts:154:    prayer: "Dios todopoderoso, dame valor para enfrentar cada día sabiendo que Tú estás conmigo.",
+lib/scripture-data.ts:168:    prayer: "Señor, en mi dolor, recuérdame que Tú estás cerca y que me salvarás.",
+lib/scripture-data.ts:182:    prayer: "Espíritu Santo, produce en mí Tu fruto para que pueda reflejar el carácter de Cristo.",
+
+=============================
+FIN
+=============================

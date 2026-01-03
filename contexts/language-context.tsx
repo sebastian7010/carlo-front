@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, { createContext, useContext, useMemo, useState, useEffect } from "react";
 import { translations } from "@/lib/translations";
 
 export type LanguageContextType = {
@@ -11,8 +11,70 @@ export type LanguageContextType = {
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
+const MAP: Record<string, string> = {
+  us: "en",
+  cn: "zh",
+  sa: "ar",
+  br: "pt",
+  jp: "ja",
+  kr: "ko",
+};
+
+function normalizeLang(input?: string | null) {
+  const saved = input?.toLowerCase()?.trim();
+  return MAP[saved ?? ""] || saved || "es";
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<string>("es");
+  const [language, setLanguageState] = useState<string>("es");
+
+  useEffect(() => {
+  try {
+    const saved =
+      localStorage.getItem("language") ||
+      localStorage.getItem("lang") ||
+      localStorage.getItem("locale");
+
+    const normalized = normalizeLang(saved);
+    setLanguageState(normalized);
+
+    const raw = (saved ?? "").toLowerCase().trim();
+    if (raw && normalized !== raw) {
+      localStorage.setItem("language", normalized);
+    }
+  } catch {
+    // ignore
+  }
+}, []);
+
+
+  useEffect(() => {
+    const onStorage = () => {
+      try {
+        const saved = localStorage.getItem("language");
+        const normalized = normalizeLang(saved);
+        if (normalized !== language) setLanguageState(normalized);
+        const raw = (saved ?? "").toLowerCase().trim();
+        if (raw && normalized !== raw) localStorage.setItem("language", normalized);
+      } catch {
+        // ignore
+      }
+    };
+
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [language]);
+
+
+  const setLanguage = (lang: string) => {
+    const normalized = normalizeLang(lang);
+    setLanguageState(normalized);
+    try {
+      localStorage.setItem("language", normalized);
+    } catch {
+      // ignore
+    }
+  };
 
   const value = useMemo<LanguageContextType>(() => {
     const defaultLanguage = "es";

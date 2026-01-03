@@ -1,0 +1,655 @@
+=============================
+I18N AUDIT - Sat, Jan  3, 2026 12:05:26 AM
+ROOT: /c/Users/sebas/proyectos/carlo-front
+=============================
+
+A) Dónde se monta LanguageProvider
+app/layout.tsx:6:import { LanguageProvider } from "@/contexts/language-context"
+app/layout.tsx:39:          <LanguageProvider>
+app/layout.tsx:45:          </LanguageProvider>
+
+B) Contexto / hooks: useLanguage, setLanguage, t()
+contexts/language-context.tsx:32:export function useLanguage() {
+components/ai-chat-fullscreen.tsx:14:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx:355:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx:456:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx:472:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx:483:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:13:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:233:          t("ai.demoResponse") ||
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:329:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:430:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:446:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:457:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:13:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:353:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:454:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:470:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:481:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat.tsx:25:  const { t, language } = useLanguage()
+components/ai-chat.tsx:124:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx:126:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx:127:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx:140:                {t(q.labelKey)}
+components/ai-chat.tsx:153:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx:154:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx:218:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx:229:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/ai-chat.tsx.bak_20260101_213132:24:  const { t } = useLanguage()
+components/ai-chat.tsx.bak_20260101_213132:102:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx.bak_20260101_213132:104:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx.bak_20260101_213132:105:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:118:                {t(q.labelKey)}
+components/ai-chat.tsx.bak_20260101_213132:131:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:132:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:196:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx.bak_20260101_213132:207:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:24:  const { t, language } = useLanguage()
+components/ai-chat.tsx.logerr.bak.20260101_214018:122:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx.logerr.bak.20260101_214018:124:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx.logerr.bak.20260101_214018:125:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:138:                {t(q.labelKey)}
+components/ai-chat.tsx.logerr.bak.20260101_214018:151:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:152:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:216:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx.logerr.bak.20260101_214018:227:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/auth-modal.tsx:19:  const { language } = useLanguage()
+components/chat-sidebar.tsx:25:  const { language } = useLanguage()
+components/dynamic-metadata.tsx:7:  const { t, language } = useLanguage()
+components/dynamic-metadata.tsx:11:    document.title = t("metadata.title")
+components/dynamic-metadata.tsx:16:      metaDescription.setAttribute("content", t("metadata.description"))
+components/dynamic-metadata.tsx:22:      metaKeywords.setAttribute("content", t("metadata.keywords"))
+components/featured-sections.tsx:10:  const { t } = useLanguage()
+components/featured-sections.tsx:69:          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-foreground mb-4">{t("featured.title")}</h2>
+components/featured-sections.tsx:70:          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("featured.subtitle")}</p>
+components/featured-sections.tsx:93:                  <CardTitle className="font-playfair text-xl">{t(section.titleKey)}</CardTitle>
+components/featured-sections.tsx:96:                      {t("featured.new")}
+components/featured-sections.tsx:101:                  <p className="text-muted-foreground mb-6 text-pretty">{t(section.descriptionKey)}</p>
+components/featured-sections.tsx:108:                      {section.featured ? t("featured.discoverNow") : t("featured.explore")}
+components/footer.tsx:8:  const { t } = useLanguage()
+components/footer.tsx:20:            <p className="text-muted-foreground text-pretty max-w-md">{t("footer.description")}</p>
+components/footer.tsx:25:            <h3 className="font-playfair font-semibold text-foreground mb-4">{t("footer.explore")}</h3>
+components/footer.tsx:29:                  {t("footer.saints")}
+components/footer.tsx:34:                  {t("footer.worldMap")}
+components/footer.tsx:39:                  {t("footer.prayers")}
+components/footer.tsx:44:                  {t("footer.verses")}
+components/footer.tsx:52:            <h3 className="font-playfair font-semibold text-foreground mb-4">{t("footer.resources")}</h3>
+components/footer.tsx:56:                  {t("footer.eucharist")}
+components/footer.tsx:61:                  {t("footer.symbols")}
+components/footer.tsx:66:                  {t("footer.miracles")}
+components/footer.tsx:75:            {t("footer.madeWith")} <Heart className="h-4 w-4 text-secondary" /> {t("footer.forGlory")}
+components/header.tsx:12:  const { t } = useLanguage()
+components/header.tsx:15:    { name: t("nav.saints"), href: "/santos" },
+components/header.tsx:16:    { name: t("nav.miracles"), href: "/milagros" },
+components/header.tsx:17:    { name: t("nav.prayers"), href: "/oraciones" },
+components/header.tsx:18:    { name: t("nav.map"), href: "/mapa" },
+components/header.tsx:19:    { name: t("nav.eucharist"), href: "/eucaristia" },
+components/header.tsx:29:            <span className="font-playfair text-base sm:text-xl font-bold text-foreground truncate max-w-[140px] sm:max-w-none">{t("brand.title")}</span>
+components/hero.tsx:9:  const { t } = useLanguage()
+components/hero.tsx:18:          <p className="text-sm font-medium text-primary uppercase tracking-widest mb-1">{t("hero.dedication")}</p>
+components/hero.tsx:19:          <p className="text-xs text-muted-foreground font-light">{t("hero.dedicationDates")}</p>
+components/hero.tsx:27:          <span className="text-sm font-medium text-primary">{t("hero.aiPowered")}</span>
+components/hero.tsx:31:          {t("hero.title")}
+components/hero.tsx:35:          {t("hero.subtitle")}
+components/hero.tsx:42:              {t("hero.startChat")}
+components/hero.tsx:47:            <Link href="/descubre-tu-santo">{t("hero.discoverSaint")}</Link>
+components/interactive-invitations.tsx:13:  const { t } = useLanguage()
+components/interactive-invitations.tsx:77:            {t("invitations.exploreDiscover")}
+components/interactive-invitations.tsx:80:            {t("invitations.title")}
+components/interactive-invitations.tsx:82:          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">{t("invitations.subtitle")}</p>
+components/interactive-invitations.tsx:109:                          {t(invitation.titleKey)}
+components/interactive-invitations.tsx:114:                      <p className="text-muted-foreground mb-3 text-pretty">{t(invitation.descriptionKey)}</p>
+components/interactive-invitations.tsx:119:                          {t(invitation.statsKey)}
+components/interactive-invitations.tsx:125:                          <p className="text-sm text-muted-foreground">{t(invitation.previewKey)}</p>
+components/interactive-invitations.tsx:136:                          {t(invitation.actionKey)}
+components/interactive-invitations.tsx:153:                {t("invitations.notSure.title")}
+components/interactive-invitations.tsx:155:              <p className="text-muted-foreground">{t("invitations.notSure.description")}</p>
+components/interactive-invitations.tsx:162:                  {t("invitations.discoverSaint")}
+components/interactive-invitations.tsx:168:                  {t("invitations.exploreMap")}
+components/interactive-invitations.tsx:188:                <div className="text-sm text-muted-foreground">{t(stat.labelKey)}</div>
+components/language-selector.tsx:11:  const { language, setLanguage, t } = useLanguage()
+components/language-selector.tsx:40:                {t("selectLanguage")}
+components/language-selector.tsx:47:                    setLanguage(lang.code)
+components/language-selector.tsx.bak.20260102_232447:11:  const { language, setLanguage, t } = useLanguage()
+components/language-selector.tsx.bak.20260102_232447:38:                {t("selectLanguage")}
+components/language-selector.tsx.bak.20260102_232447:45:                    setLanguage(lang.code)
+components/saints-filters.tsx:12:  const { t } = useLanguage()
+components/saints-filters.tsx:21:        <h2 className="font-playfair text-lg font-semibold">{t("saints.filters.title")}</h2>
+components/saints-filters.tsx:28:            placeholder={t("saints.filters.searchPlaceholder")}
+components/saints-filters.tsx:37:            <SelectValue placeholder={t("saints.filters.continentPlaceholder")} />
+components/saints-filters.tsx:50:            <SelectValue placeholder={t("saints.filters.centuryPlaceholder")} />
+components/scripture-search.tsx:14:  const { t } = useLanguage()
+components/scripture-search.tsx:17:    t("scriptureSearch.suggestions.fear"),
+components/scripture-search.tsx:18:    t("scriptureSearch.suggestions.anxiety"),
+components/scripture-search.tsx:19:    t("scriptureSearch.suggestions.sadness"),
+components/scripture-search.tsx:20:    t("scriptureSearch.suggestions.joy"),
+components/scripture-search.tsx:21:    t("scriptureSearch.suggestions.hope"),
+components/scripture-search.tsx:22:    t("scriptureSearch.suggestions.gratitude"),
+components/scripture-search.tsx:23:    t("scriptureSearch.suggestions.forgiveness"),
+components/scripture-search.tsx:24:    t("scriptureSearch.suggestions.love"),
+components/scripture-search.tsx:25:    t("scriptureSearch.suggestions.peace"),
+components/scripture-search.tsx:26:    t("scriptureSearch.suggestions.strength"),
+components/scripture-search.tsx:45:            {t("scriptureSearch.title")}
+components/scripture-search.tsx:47:          <p className="text-lg text-muted-foreground">{t("scriptureSearch.subtitle")}</p>
+components/scripture-search.tsx:52:            <CardTitle className="text-center font-playfair">{t("scriptureSearch.cardTitle")}</CardTitle>
+components/scripture-search.tsx:60:                  placeholder={t("scriptureSearch.placeholder")}
+components/scripture-search.tsx:87:                {t("scriptureSearch.searchButton")}
+lib/translations-utils.ts:9:      return t(`saints.patronOf.${key}`) || patron
+lib/translations-utils.ts:16:      return t(`saints.symbols.${key}`) || symbol
+lib/translations-utils.ts:25:    category: t(`prayers.categories.${prayer.category.toLowerCase()}`) || prayer.category,
+lib/translations-utils.ts:26:    occasion: t(`prayers.occasions.${prayer.occasion.toLowerCase().replace(/\s+/g, "")}`) || prayer.occasion,
+lib/translations-utils.ts:34:    status: miracle.verified ? t("miracles.status.verified") : t("miracles.status.investigating"),
+
+C) Definición de idiomas: languages[], defaultLanguage
+lib/i18n.ts:3:export const languages = [
+lib/i18n.ts:22:export type LanguageCode = (typeof languages)[number]["code"]
+lib/i18n.ts:25:export const defaultLanguage: LanguageCode = "es"
+lib/i18n.ts:31:// export type TranslationLanguageCode = keyof typeof translations
+lib/translations.ts:3252:export type LanguageCode = keyof typeof translations
+lib/translations.ts.bak.20251219_012110:3239:export type LanguageCode = keyof typeof translations
+contexts/language-context.tsx:18:    const defaultLanguage = "es";
+contexts/language-context.tsx:21:      const currentDict = translations[language] || translations[defaultLanguage] || {};
+contexts/language-context.tsx:22:      const fallbackDict = translations[defaultLanguage] || {};
+
+D) Páginas SERVER/ASYNC (probable razón de que el contenido no cambie)
+app/admin/page.tsx:26:export default async function AdminPage() {
+app/admin/page.tsx.bak.20251219_233502:26:export default async function AdminPage() {
+app/oraciones/page.tsx:55:export default async function OracionesPage({
+app/santos/page.tsx:34:export default async function SaintsPage() {
+app/santos/[slug]/page.tsx:76:export default async function SaintPage({ params }: { params: { slug: string } }) {
+app/santos/[slug]/page.tsx.bak.20251220_004308:45:export default async function SaintPage({ params }: { params: { slug: string } }) {
+
+E) Texto HARDcodeado ES (archivos SIN t() pero con texto en español)
+---- app/descubre-tu-santo/page.tsx ----
+7:export default function DescubreTuSantoPage() {
+15:          <Suspense fallback={<div className="text-center py-8">Cargando...</div>}>
+
+---- app/eucaristia/page.tsx ----
+8:export default function EucaristiaPage() {
+15:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">La Sagrada Eucaristía</h1>
+17:            Descubre el sacramento más sagrado de la Iglesia Católica: su significado, celebración y el profundo
+
+---- app/mapa/page.tsx ----
+14:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Mapa Mundial de Santos</h1>
+16:            Explora santos de todo el mundo con nuestro mapa interactivo de alta precisión. Haz clic en los marcadores
+
+---- app/milagros/page.tsx ----
+12:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Milagros de los Santos</h1>
+
+---- app/oraciones/page.tsx ----
+55:export default async function OracionesPage({
+
+---- app/sanctum/portal/page.tsx ----
+49:          <CardDescription className="text-amber-700">Acceso restringido al panel de administración</CardDescription>
+
+---- app/santos/page.tsx ----
+44:            Vidas de los Santos
+47:            Descubre las historias extraordinarias de hombres y mujeres que dedicaron sus vidas a Dios y se convirtieron
+
+---- app/simbolos/page.tsx ----
+7:export default function SimbolosPage() {
+16:            Explora el rico simbolismo de la fe católica y descubre el profundo significado espiritual detrás de cada
+
+---- app/versiculos/page.tsx ----
+14:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Versículos para el Alma</h1>
+
+---- components/admin-dashboard.tsx ----
+79:          Santos
+87:          Milagros
+95:          Oraciones
+115:            <CardTitle className="text-sm font-medium">Total Santos</CardTitle>
+119:            <p className="text-sm text-muted-foreground">Santos documentados</p>
+132:                  + Agregar / Gestionar Santos
+136:                  + Agregar / Gestionar Oraciones
+
+---- components/admin-header.tsx ----
+22:          <h1 className="text-xl font-playfair font-bold text-amber-900">Panel de Administración Sagrado</h1>
+28:            <span>Administrador</span>
+
+---- components/admin-miracles-list.tsx ----
+126:      setError("Selecciona un santo.")
+236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+237:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+249:            placeholder="Buscar milagros..."
+261:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+
+---- components/admin-miracles-stats-card.tsx ----
+32:        <CardTitle className="text-sm font-medium">Milagros</CardTitle>
+
+---- components/admin-prayers-list.tsx ----
+133:      alert("Oración eliminada.")
+153:          <h2 className="font-playfair text-3xl font-bold">Gestión de Oraciones</h2>
+155:            {loading ? "Cargando..." : `${items.length} oraciones • ${approvedCount} aprobadas`}
+162:          Nueva Oración
+170:          placeholder="Buscar oraciones..."
+223:                <div className="text-lg font-semibold">Nueva Oración</div>
+276:                <div className="text-lg font-semibold">Editar Oración</div>
+
+---- components/admin-prayers-stats-card.tsx ----
+32:        <CardTitle className="text-sm font-medium">Oraciones</CardTitle>
+
+---- components/admin-saints-list.tsx ----
+75:          <h2 className="font-playfair text-3xl font-bold">Gestión de Santos</h2>
+76:          <p className="text-muted-foreground">Administre la información de todos los santos</p>
+89:            placeholder="Buscar santos..."
+
+---- components/admin-saints-modal.tsx ----
+249:            <Label htmlFor="biography">Biografía</Label>
+
+---- components/auth-modal.tsx ----
+59:      welcome: "Bienvenido de vuelta",
+
+---- components/emotional-categories.tsx ----
+63:          Explora versículos organizados por diferentes estados emocionales y situaciones de la vida
+95:                      Explorar Versículos
+
+---- components/eucharist-introduction.tsx ----
+11:            ¿Qué es la Eucaristía?
+16:            La Eucaristía es el sacramento central de la fe católica, instituido por Jesucristo en la Última Cena. En
+21:            La palabra "Eucaristía" proviene del griego "eukharistia", que significa "acción de gracias". Es el momento
+
+---- components/eucharist-meaning.tsx ----
+27:      "La Eucaristía hace presente el sacrificio de Cristo en la cruz, actualizado de manera incruenta en cada Misa.",
+44:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Simbolismo Eucarístico</h2>
+46:          Cada elemento de la Eucaristía tiene un profundo significado espiritual que nos conecta con el misterio de la
+
+---- components/eucharist-prayers.tsx ----
+7:    title: "Oración antes de la Comunión",
+12:    title: "Oración después de la Comunión",
+18:    text: "Creo firmemente que en la Eucaristía estás presente Tú, Jesús, verdadero Dios y verdadero hombre, con tu Cuerpo, Sangre, Alma y Divinidad. Te adoro con profunda humildad y te amo sobre todas las cosas.",
+22:    title: "Oración de Acción de Gracias",
+23:    text: "Te doy gracias, Padre celestial, por el don inefable de la Eucaristía. Por medio de tu Hijo Jesús, nos das el alimento que necesitamos para el camino hacia la vida eterna. Bendito seas por siempre.",
+24:    occasion: "En acción de gracias por la Eucaristía",
+32:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Oraciones Eucarísticas</h2>
+34:          Oraciones tradicionales para acompañar la recepción de la Sagrada Eucaristía
+
+---- components/eucharist-steps.tsx ----
+29:      "Oración sobre las ofrendas",
+58:      "Oración después de la comunión",
+68:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Cómo se Celebra la Eucaristía</h2>
+
+---- components/featured-prayers.tsx ----
+7:    title: "Oración de San Francisco de Asís",
+14:    title: "Oración de Santa Teresa de Jesús",
+21:    title: "Oración de San Ignacio de Loyola",
+28:    title: "Oración de Santa Teresita del Niño Jesús",
+42:          Oraciones Destacadas
+76:          <CardTitle className="font-playfair text-xl text-center">Cómo Orar con los Santos</CardTitle>
+87:              <h4 className="font-medium text-foreground mb-2">2. Oración</h4>
+
+---- components/featured-verses.tsx ----
+38:          Versículos Más Buscados
+
+---- components/map-legend.tsx ----
+10:          Leyenda del Mapa
+27:            <span className="text-sm text-muted-foreground">Haz clic en los marcadores para ver detalles</span>
+
+---- components/miracles-list.tsx ----
+155:            Filtrar Milagros
+163:                placeholder="Buscar milagros..."
+227:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+
+---- components/prayer-form.tsx ----
+36:          <h2 className="font-playfair text-3xl font-bold">{prayer ? "Editar Oración" : "Nueva Oración"}</h2>
+53:          <CardTitle>Información de la Oración</CardTitle>
+57:            <Label htmlFor="title">Título de la Oración *</Label>
+62:              placeholder="Oración de San Francisco"
+77:            <Label htmlFor="text">Texto Completo de la Oración *</Label>
+
+---- components/prayers-categories.tsx ----
+25:    description: "Oraciones para pedir protección divina y fortaleza espiritual",
+30:    description: "Oraciones para momentos de enfermedad y necesidad de consuelo",
+35:    description: "Oraciones de agradecimiento y alabanza a Dios",
+40:    description: "Oraciones para pedir guía divina y sabiduría",
+45:    description: "Oraciones de intercesión por otros y peticiones especiales",
+50:    description: "Oraciones dedicadas a la Santísima Virgen María",
+94:          Categorías de Oraciones
+97:          Explora oraciones organizadas por temas y necesidades espirituales
+126:                Explorar Oraciones
+
+---- components/prayers-introduction.tsx ----
+11:            El Poder de la Oración de los Santos
+38:              <li>• Explora las categorías temáticas</li>
+
+---- components/prayers-search.tsx ----
+77:            Buscar Oraciones
+102:              placeholder="Buscar por título o contenido…"
+111:                <SelectValue placeholder="Seleccionar santo" />
+142:              Buscar
+178:                  Tip: también puedes entrar por “Categorías de Oraciones” y te baja a resultados automáticamente.
+
+---- components/saint-detail.tsx ----
+60:          Volver a Santos
+125:      {/* Biografía */}
+130:            Biografía
+135:            {saint.biography ?? "Biografía en construcción…"}
+140:      {/* Milagros */}
+146:              Milagros Documentados
+182:      {/* Oraciones */}
+188:              Oraciones
+
+---- components/saint-form.tsx ----
+269:                  <SelectValue placeholder="Seleccionar continente" />
+362:        {/* Biografía */}
+365:            <CardTitle>Biografía</CardTitle>
+437:      {/* Milagros y Oraciones */}
+441:            <CardTitle>Milagros ({miracles.length})</CardTitle>
+465:            <CardTitle>Oraciones ({prayers.length})</CardTitle>
+
+---- components/saint-matcher-form.tsx ----
+181:              Selecciona tus principales cualidades
+
+---- components/saint-matcher-introduction.tsx ----
+13:      <h1 className="font-playfair text-4xl font-bold text-gray-900 mb-4">Descubre Qué Santo Se Parece a Ti</h1>
+
+---- components/saint-matcher-results.tsx ----
+37:        <h2 className="font-playfair text-3xl font-bold text-gray-900 mb-2">Tus Santos Afines</h2>
+102:                  Oración sugerida
+133:              Explorar otros santos
+
+---- components/saints-list.tsx ----
+109:                  <Link href={`/santos/${saint.slug}`}>Ver Biografía Completa</Link>
+120:            Cargar Más Santos
+
+---- components/saints-map-sidebar.tsx ----
+104:              <SelectValue placeholder="Seleccionar continente" />
+146:            Santos {selectedContinent !== "all" && `de ${selectedContinent}`}
+
+---- components/scripture-search-advanced.tsx ----
+76:  // Buscar versículos
+103:  // Seleccionar sugerencia
+117:            Busca Versículos por Sentimiento
+156:              {isSearching ? "Buscando..." : "Buscar Versículos"}
+187:              Versículos para "{searchTerm}"
+224:                        <p className="text-sm font-medium text-foreground mb-2">Oración sugerida:</p>
+
+---- components/symbols-gallery.tsx ----
+41:      "El cordero representa a Cristo como el Cordero de Dios que quita el pecado del mundo. Simboliza la inocencia, el sacrificio y la redención.",
+44:    usage: "Eucaristía, arte litúrgico, himnos",
+84:    usage: "Eucaristía, decoración de altares, catequesis",
+94:          Explora los símbolos más importantes de la tradición católica y descubre su profundo significado espiritual
+
+---- components/world-map-leaflet.tsx ----
+240:            <p className="text-sm text-muted-foreground">Cargando mapa mundial...</p>
+
+---- components/world-map.tsx ----
+95:            alt="Mapa Mundial"
+
+---- lib/prayers-data.ts ----
+15:    title: "Oración por la Paz",
+45:    title: "Oración del Amor",
+55:    title: "Oración por los Pobres",
+65:    title: "Oración por la Familia",
+75:    title: "Oración por los Enfermos",
+85:    title: "Oración por la Sabiduría",
+95:    title: "Oración por la Pureza",
+105:    title: "Oración por los Viajeros",
+115:    title: "Oración por la Esperanza",
+125:    title: "Oración Mariana",
+
+---- lib/saints-data.ts ----
+84:        title: "Oración de San Francisco",
+130:        location: "Santos, Brasil",
+138:        title: "Oración de la Madre Teresa",
+186:        title: "Oración a San Juan Pablo II",
+221:        title: "Oración a San Martín de Porres",
+258:        title: "Oración a Santa Juana de Arco",
+
+---- lib/translations.ts ----
+4:    "pages.verses.title": 'Versículos para el Alma',
+6:    "pages.eucharist.title": 'La Sagrada Eucaristía',
+7:    "pages.map.title": 'Mapa Mundial de Santos',
+8:    "pages.miracles.title": 'Milagros de los Santos',
+9:    "pages.saints.title": 'Vidas de los Santos',
+13:    "saints.filters.searchPlaceholder": 'Buscar por nombre...',
+14:    "saints.filters.title": 'Filtrar Santos',
+15:    "saints.subtitle": 'Descubre las historias extraordinarias de hombres y mujeres que dedicaron sus vidas a Dios y se convirtieron en ejemplos de santidad para toda la humanidad.',
+16:    "brand.title": 'Santos y Milagros',
+19:    "nav.saints": "Santos",
+20:    "nav.prayers": "Oraciones",
+21:    "nav.miracles": "Milagros",
+
+
+F) Client vs Server en app/**/page.tsx
+server  app/admin/oraciones/page.tsx
+server  app/admin/page.tsx
+server  app/descubre-tu-santo/page.tsx
+server  app/eucaristia/page.tsx
+server  app/mapa/page.tsx
+server  app/milagros/page.tsx
+server  app/oraciones/page.tsx
+server  app/page.tsx
+client  app/sanctum/portal/page.tsx
+server  app/santos/[slug]/page.tsx
+server  app/santos/page.tsx
+server  app/simbolos/page.tsx
+server  app/versiculos/page.tsx
+
+G) Requests y si se manda lang
+app/admin/page.tsx:20:  const res = await fetch(`${baseUrl}/saints`, { cache: "no-store" });
+app/admin/page.tsx.bak.20251219_233502:20:  const res = await fetch(`${baseUrl}/saints`, { cache: "no-store" });
+app/mapa/page.tsx:5:import { SaintsMapSidebar } from "@/components/saints-map-sidebar"
+app/milagros/page.tsx:3:import { MiraclesList } from "@/components/miracles-list"
+app/oraciones/page.tsx:3:import { PrayersIntroduction } from "@/components/prayers-introduction";
+app/oraciones/page.tsx:4:import { PrayersSearch } from "@/components/prayers-search";
+app/oraciones/page.tsx:5:import { PrayersCategories } from "@/components/prayers-categories";
+app/oraciones/page.tsx:7:import { PrayersResults } from "@/components/prayers-results";
+app/oraciones/page.tsx:42:  const res = await fetch(`${baseUrl}/prayers/approved`, { cache: "no-store" });
+app/oraciones/page.tsx:49:  const res = await fetch(`${baseUrl}/saints`, { cache: "no-store" });
+app/santos/page.tsx:3:import { SaintsList } from "@/components/saints-list";
+app/santos/page.tsx:4:import { SaintsFilters } from "@/components/saints-filters";
+app/santos/page.tsx:28:  const res = await fetch(`${baseUrl}/saints`, { cache: "no-store" });
+app/santos/[slug]/page.tsx:19:  const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(saintId)}/miracles`, {
+app/santos/[slug]/page.tsx:41:  const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(slug)}`, {
+app/santos/[slug]/page.tsx.bak.20251220_004308:3:import type { Saint } from "@/lib/saints-data";
+app/santos/[slug]/page.tsx.bak.20251220_004308:10:  const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(slug)}`, {
+components/admin-miracles-list.tsx:77:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx:78:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.20251219_224616:36:        const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:74:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:75:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:77:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:78:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:77:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:78:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:55:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:60:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:61:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:60:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:61:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:74:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:75:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:55:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:74:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:75:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:74:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:75:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:77:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:78:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:74:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:75:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:74:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:75:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:74:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:75:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:74:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:75:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:74:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:75:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:77:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:78:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:73:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:74:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:74:      const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:75:      if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/admin-miracles-stats-card.tsx:18:        const res = await fetch(`${baseUrl}/miracles`, { cache: "no-store" })
+components/admin-prayers-list.tsx:15:} from "@/lib/prayers-utils"
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:15:} from "@/lib/prayers-utils"
+components/admin-prayers-stats-card.tsx:18:        const res = await fetch(`${baseUrl}/prayers`, { cache: "no-store" })
+components/admin-saints-create.tsx:29:      const res = await fetch(`${baseUrl}/saints`, {
+components/admin-saints-list.tsx:56:      const res = await fetch(`${baseUrl}/saints/${id}`, { method: "DELETE" });
+components/admin-saints-list.tsx.bak:52:      const res = await fetch(`${baseUrl}/saints/${id}`, { method: "DELETE" });
+components/admin-saints-modal.tsx:127:      const url = isEdit ? `${baseUrl}/saints/${saint!.id}` : `${baseUrl}/saints`;
+components/admin-saints-modal.tsx:130:      const res = await fetch(url, {
+components/miracles-list.tsx:64:        const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/miracles-list.tsx:65:        if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/miracles-list.tsx:72:            const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(s.id)}/miracles`, { cache: "no-store" })
+components/miracles-list.tsx.bak.api.20251220_005126:9:import { saints } from "@/lib/saints-data"
+components/miracles-list.tsx.bak.badgetype.20251220_005849:64:        const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/miracles-list.tsx.bak.badgetype.20251220_005849:65:        if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/miracles-list.tsx.bak.badgetype.20251220_005849:72:            const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(s.id)}/miracles`, { cache: "no-store" })
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:63:        const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:64:        if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:71:            const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(s.id)}/miracles`, { cache: "no-store" })
+components/miracles-list.tsx.bak.sorttype.20251220_005554:60:        const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/miracles-list.tsx.bak.sorttype.20251220_005554:61:        if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/miracles-list.tsx.bak.sorttype.20251220_005554:68:            const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(s.id)}/miracles`, { cache: "no-store" })
+components/miracles-list.tsx.bak.sortverified.20251220_005836:64:        const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/miracles-list.tsx.bak.sortverified.20251220_005836:65:        if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/miracles-list.tsx.bak.sortverified.20251220_005836:72:            const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(s.id)}/miracles`, { cache: "no-store" })
+components/miracles-list.tsx.bak.truefalse.20251220_005257:60:        const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/miracles-list.tsx.bak.truefalse.20251220_005257:61:        if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/miracles-list.tsx.bak.truefalse.20251220_005257:68:            const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(s.id)}/miracles`, { cache: "no-store" })
+components/miracles-list.tsx.bak.useglobal.20251220_010659:64:        const saintsRes = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/miracles-list.tsx.bak.useglobal.20251220_010659:65:        if (!saintsRes.ok) throw new Error(`Error /saints (${saintsRes.status})`)
+components/miracles-list.tsx.bak.useglobal.20251220_010659:72:            const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(s.id)}/miracles`, { cache: "no-store" })
+components/saints-map-sidebar.tsx:54:        const res = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/world-map-leaflet.tsx:42:        const res = await fetch(`${baseUrl}/saints`, { cache: "no-store" })
+components/world-map.tsx:10:import { saints } from "@/lib/saints-data"
+lib/admin-utils.ts:70:    const url = isEdit ? `${baseUrl}/saints/${saint.id}` : `${baseUrl}/saints`;
+lib/admin-utils.ts:73:    const res = await fetch(url, {
+lib/admin-utils.ts:95:    const res = await fetch(`${baseUrl}/saints/${saintId}`, {
+lib/admin-utils.ts:174:  const res = await fetch(`${baseUrl}/saints/${saintId}/miracles`, { cache: "no-store", credentials: "include" });
+lib/admin-utils.ts:184:  const res = await fetch(`${baseUrl}/saints/${saintId}/miracles`, {
+lib/admin-utils.ts:225:  const res = await fetch(`${baseUrl}/miracles/${miracleId}`, {
+lib/admin-utils.ts:242:  const res = await fetch(`${baseUrl}/miracles/${miracleId}`, { method: "DELETE", credentials: "include" });
+lib/admin-utils.ts:270:  const res = await fetch(`${baseUrl}/prayers`, { cache: "no-store" })
+lib/admin-utils.ts:277:  const res = await fetch(`${baseUrl}/prayers/approved`, { cache: "no-store" })
+lib/admin-utils.ts:284:  const res = await fetch(`${baseUrl}/prayers`, {
+lib/admin-utils.ts:299:  const res = await fetch(`${baseUrl}/prayers/${prayerId}`, {
+lib/admin-utils.ts:314:  const res = await fetch(`${baseUrl}/prayers/${prayerId}`, {
+lib/admin-utils.ts.bak.20251219_013036:38:  const res = await fetch(`${API_BASE}/saints/${saintId}/miracles`, { cache: "no-store" });
+lib/admin-utils.ts.bak.20251219_013036:46:  const res = await fetch(`${API_BASE}/saints/${saintId}/miracles`, {
+lib/admin-utils.ts.bak.20251219_013036:59:  const res = await fetch(`${API_BASE}/miracles/${miracleId}`, {
+lib/admin-utils.ts.bak.20251219_013036:70:  const res = await fetch(`${API_BASE}/miracles/${miracleId}`, { method: "DELETE" });
+lib/admin-utils.ts.bak.dedup.20251220_035850:64:    const url = isEdit ? `${baseUrl}/saints/${saint.id}` : `${baseUrl}/saints`;
+lib/admin-utils.ts.bak.dedup.20251220_035850:67:    const res = await fetch(url, {
+lib/admin-utils.ts.bak.dedup.20251220_035850:89:    const res = await fetch(`${baseUrl}/saints/${saintId}`, {
+lib/admin-utils.ts.bak.dedup.20251220_035850:168:  const res = await fetch(`${baseUrl}/saints/${saintId}/miracles`, { cache: "no-store", credentials: "include" });
+lib/admin-utils.ts.bak.dedup.20251220_035850:178:  const res = await fetch(`${baseUrl}/saints/${saintId}/miracles`, {
+lib/admin-utils.ts.bak.dedup.20251220_035850:219:  const res = await fetch(`${baseUrl}/miracles/${miracleId}`, {
+lib/admin-utils.ts.bak.dedup.20251220_035850:236:  const res = await fetch(`${baseUrl}/miracles/${miracleId}`, { method: "DELETE", credentials: "include" });
+lib/admin-utils.ts.bak.dedup.20251220_035850:268:  const res = await fetch(`${baseUrl}/prayers`, { cache: "no-store" })
+lib/admin-utils.ts.bak.dedup.20251220_035850:275:  const res = await fetch(`${baseUrl}/prayers/approved`, { cache: "no-store" })
+lib/admin-utils.ts.bak.dedup.20251220_035850:282:  const res = await fetch(`${baseUrl}/prayers`, {
+lib/admin-utils.ts.bak.dedup.20251220_035850:297:  const res = await fetch(`${baseUrl}/prayers/${prayerId}`, {
+lib/admin-utils.ts.bak.dedup.20251220_035850:312:  const res = await fetch(`${baseUrl}/prayers/${prayerId}`, {
+lib/admin-utils.ts.bak.fix.20251219_013158:70:    const url = isEdit ? `${baseUrl}/saints/${saint.id}` : `${baseUrl}/saints`;
+lib/admin-utils.ts.bak.fix.20251219_013158:73:    const res = await fetch(url, {
+lib/admin-utils.ts.bak.fix.20251219_013158:96:    const res = await fetch(`${baseUrl}/saints/${saintId}`, {
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:64:    const url = isEdit ? `${baseUrl}/saints/${saint.id}` : `${baseUrl}/saints`;
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:67:    const res = await fetch(url, {
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:89:    const res = await fetch(`${baseUrl}/saints/${saintId}`, {
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:168:  const res = await fetch(`${baseUrl}/saints/${saintId}/miracles`, { cache: "no-store", credentials: "include" });
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:178:  const res = await fetch(`${baseUrl}/saints/${saintId}/miracles`, {
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:219:  const res = await fetch(`${baseUrl}/miracles/${miracleId}`, {
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:236:  const res = await fetch(`${baseUrl}/miracles/${miracleId}`, { method: "DELETE", credentials: "include" });
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:268:  const res = await fetch(`${baseUrl}/prayers`, { cache: "no-store" })
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:275:  const res = await fetch(`${baseUrl}/prayers/approved`, { cache: "no-store" })
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:282:  const res = await fetch(`${baseUrl}/prayers`, {
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:297:  const res = await fetch(`${baseUrl}/prayers/${prayerId}`, {
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:312:  const res = await fetch(`${baseUrl}/prayers/${prayerId}`, {
+lib/admin-utils.ts.bak.safe_patch.20251220_024359:64:    const url = isEdit ? `${baseUrl}/saints/${saint.id}` : `${baseUrl}/saints`;
+lib/admin-utils.ts.bak.safe_patch.20251220_024359:67:    const res = await fetch(url, {
+lib/admin-utils.ts.bak.safe_patch.20251220_024359:89:    const res = await fetch(`${baseUrl}/saints/${saintId}`, {
+lib/admin-utils.ts.bak.safe_patch.20251220_024359:168:  const res = await fetch(`${baseUrl}/saints/${saintId}/miracles`, { cache: "no-store", credentials: "include" });
+lib/admin-utils.ts.bak.safe_patch.20251220_024359:178:  const res = await fetch(`${baseUrl}/saints/${saintId}/miracles`, {
+lib/admin-utils.ts.bak.safe_patch.20251220_024359:194:  const res = await fetch(`${baseUrl}/miracles/${miracleId}`, {
+lib/admin-utils.ts.bak.safe_patch.20251220_024359:208:  const res = await fetch(`${baseUrl}/miracles/${miracleId}`, { method: "DELETE", credentials: "include" });
+lib/ai-client.ts:17:  const base = (typeof process !== "undefined" && (process as any)?.env?.NEXT_PUBLIC_BACKEND_URL)
+lib/ai-client.ts:18:    ? (process as any).env.NEXT_PUBLIC_BACKEND_URL
+lib/ai-client.ts:24:    const res = await fetch(url, {
+lib/ai-client.ts.bak.20260101_213848:17:  const base = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001"
+lib/ai-client.ts.bak.20260101_213848:20:    const res = await fetch(`${base}/ai/chat`, {
+lib/ai-client.ts.bak.20260101_215103:17:  const base = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001"
+lib/ai-client.ts.bak.20260101_215103:20:    const res = await fetch(`${base}/ai/chat`, {
+lib/ai-client.ts.bak_logs.20260101_220017:17:  const base = (typeof process !== "undefined" && (process as any)?.env?.NEXT_PUBLIC_BACKEND_URL)
+lib/ai-client.ts.bak_logs.20260101_220017:18:    ? (process as any).env.NEXT_PUBLIC_BACKEND_URL
+lib/ai-client.ts.bak_logs.20260101_220017:25:    const res = await fetch(url, {
+lib/prayers-utils.ts:40:  const res = await fetch(`${base}/prayers`, { cache: "no-store" })
+lib/prayers-utils.ts:46:  const res = await fetch(`${base}/prayers/approved`, { cache: "no-store" })
+lib/prayers-utils.ts:52:  const res = await fetch(`${base}/prayers`, {
+lib/prayers-utils.ts:62:  const res = await fetch(`${base}/prayers/${id}`, {
+lib/prayers-utils.ts:72:  const res = await fetch(`${base}/prayers/${id}`, { method: "DELETE" })
+lib/prayers-utils.ts.bak.fix.20251220_042445:32:  const res = await fetch(`${base}/prayers`, { cache: "no-store" })
+lib/prayers-utils.ts.bak.fix.20251220_042445:38:  const res = await fetch(`${base}/prayers`, {
+lib/prayers-utils.ts.bak.fix.20251220_042445:48:  const res = await fetch(`${base}/prayers/${id}`, {
+lib/prayers-utils.ts.bak.fix.20251220_042445:58:  const res = await fetch(`${base}/prayers/${id}`, { method: "DELETE" })
+
+app/layout.tsx:6:import { LanguageProvider } from "@/contexts/language-context"
+components/ai-chat-fullscreen.tsx:7:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat-fullscreen.tsx:14:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx:163:  const currentQuestions = quickQuestionsTranslations[language] || quickQuestionsTranslations.es
+components/ai-chat-fullscreen.tsx:164:  const currentHonor = honorTranslations[language] || honorTranslations.es
+components/ai-chat-fullscreen.tsx:165:  const currentAiTitle = aiTitleTranslations[language] || aiTitleTranslations.es
+components/ai-chat-fullscreen.tsx:232:        lang: language || "es",
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:6:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:13:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:162:  const currentQuestions = quickQuestionsTranslations[language] || quickQuestionsTranslations.es
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:163:  const currentHonor = honorTranslations[language] || honorTranslations.es
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:164:  const currentAiTitle = aiTitleTranslations[language] || aiTitleTranslations.es
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:6:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:13:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:162:  const currentQuestions = quickQuestionsTranslations[language] || quickQuestionsTranslations.es
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:163:  const currentHonor = honorTranslations[language] || honorTranslations.es
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:164:  const currentAiTitle = aiTitleTranslations[language] || aiTitleTranslations.es
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:231:        lang: language || "es",
+components/ai-chat.tsx:8:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat.tsx:25:  const { t, language } = useLanguage()
+components/ai-chat.tsx:86:        lang: (language as any) || "es",
+components/ai-chat.tsx.bak_20260101_213132:7:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat.tsx.logerr.bak.20260101_214018:7:import { useLanguage } from "@/contexts/language-context"
+components/ai-chat.tsx.logerr.bak.20260101_214018:24:  const { t, language } = useLanguage()
+components/ai-chat.tsx.logerr.bak.20260101_214018:85:        lang: (language as any) || "es",
+components/auth-modal.tsx:9:import { useLanguage } from "@/contexts/language-context"
+components/auth-modal.tsx:19:  const { language } = useLanguage()
+components/auth-modal.tsx:276:  const t = translations[language] || translations.es
+components/chat-sidebar.tsx:6:import { useLanguage } from "@/contexts/language-context"
+components/chat-sidebar.tsx:25:  const { language } = useLanguage()
+components/chat-sidebar.tsx:178:  const t = translations[language] || translations.es
+components/dynamic-metadata.tsx:3:import { useLanguage } from "@/contexts/language-context"
+components/dynamic-metadata.tsx:7:  const { t, language } = useLanguage()
+components/dynamic-metadata.tsx:25:    // Update document language
+components/dynamic-metadata.tsx:26:    document.documentElement.lang = language
+components/dynamic-metadata.tsx:27:  }, [t, language])
+components/featured-sections.tsx:7:import { useLanguage } from "@/contexts/language-context"
+components/footer.tsx:5:import { useLanguage } from "@/contexts/language-context"
+components/header.tsx:7:import { LanguageSelector } from "@/components/language-selector"
+components/header.tsx:8:import { useLanguage } from "@/contexts/language-context"
+components/hero.tsx:5:import { useLanguage } from "@/contexts/language-context"
+components/interactive-invitations.tsx:9:import { useLanguage } from "@/contexts/language-context"
+components/language-selector.tsx:6:import { useLanguage } from "@/contexts/language-context"
+components/language-selector.tsx:7:import { languages } from "@/lib/i18n"
+components/language-selector.tsx:11:  const { language, setLanguage, t } = useLanguage()
+components/language-selector.tsx:13:  const currentLang = languages.find((lang) => lang.code === language)
+components/language-selector.tsx:43:              {languages.map((lang) => (
+components/language-selector.tsx:51:                    language === lang.code ? "bg-accent text-accent-foreground" : "text-foreground"
+components/language-selector.tsx:56:                  {language === lang.code && <span className="ml-auto text-primary">✓</span>}
+components/language-selector.tsx.bak.20260102_232447:6:import { useLanguage } from "@/contexts/language-context"
+components/language-selector.tsx.bak.20260102_232447:7:import { languages } from "@/lib/i18n"
+components/language-selector.tsx.bak.20260102_232447:11:  const { language, setLanguage, t } = useLanguage()
+components/language-selector.tsx.bak.20260102_232447:13:  const currentLang = languages.find((lang) => lang.code === language)
+components/language-selector.tsx.bak.20260102_232447:41:              {languages.map((lang) => (
+components/language-selector.tsx.bak.20260102_232447:49:                    language === lang.code ? "bg-accent text-accent-foreground" : "text-foreground"
+components/language-selector.tsx.bak.20260102_232447:54:                  {language === lang.code && <span className="ml-auto text-primary">✓</span>}
+components/saints-filters.tsx:4:import { useLanguage } from "@/contexts/language-context"
+components/saints-map-sidebar.tsx:86:      return a[1].label.localeCompare(b[1].label)
+components/scripture-search.tsx:9:import { useLanguage } from "@/contexts/language-context"
+lib/ai-client.ts:30:        lang: params.lang || "es",
+lib/ai-client.ts.bak_logs.20260101_220017:31:        lang: params.lang || "es",
+lib/i18n.ts:3:export const languages = [
+lib/i18n.ts:22:export type LanguageCode = (typeof languages)[number]["code"]
+lib/i18n.ts:24:// ✅ Default language tipado
+lib/i18n.ts:28:export type Language = (typeof languages)[number]
+
+FIN

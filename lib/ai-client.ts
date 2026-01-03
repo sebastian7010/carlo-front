@@ -44,3 +44,32 @@ export async function postAiChat(params: { message: string; lang?: string; sessi
     return data as { answer: string }
   })
 }
+
+export async function postAiTranslate(params: { text: string; targetLang: string }) {
+  const base =
+    (typeof process !== "undefined" && (process as any)?.env?.NEXT_PUBLIC_BACKEND_URL)
+      ? (process as any).env.NEXT_PUBLIC_BACKEND_URL
+      : "";
+
+  const url = `${base || "http://localhost:3001"}/ai/translate`;
+
+  return await withBackoff(async () => {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify(params),
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      const err: any = new Error(data?.detail || data?.error || res.statusText || "AI_TRANSLATE_FAILED");
+      err.status = res.status;
+      err.data = data;
+      throw err;
+    }
+
+    return data as { translated: string; cached?: boolean };
+  });
+}

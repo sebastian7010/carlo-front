@@ -1,0 +1,508 @@
+=============================
+I18N TRACE - Fri, Jan  2, 2026 11:53:08 PM
+ROOT: /c/Users/sebas/proyectos/carlo-front
+=============================
+
+0) Archivos base i18n
+-rw-r--r-- 1 sebas 197609   1493 Dec 31 14:57 app/layout.tsx
+-rw-r--r-- 1 sebas 197609   2343 Jan  2 23:31 components/language-selector.tsx
+-rw-r--r-- 1 sebas 197609   1190 Dec 31 14:58 contexts/language-context.tsx
+-rw-r--r-- 1 sebas 197609   1620 Jan  2 23:20 lib/i18n.ts
+-rw-r--r-- 1 sebas 197609 182704 Dec 31 14:58 lib/translations.ts
+
+1) Dónde se monta LanguageProvider
+app/layout.tsx:39:          <LanguageProvider>
+
+2) Componentes/páginas que SÍ usan i18n (useLanguage / t())
+components/ai-chat-fullscreen.tsx:14:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx:355:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx:456:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx:472:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx:483:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:13:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:233:          t("ai.demoResponse") ||
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:329:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:430:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:446:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:457:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:13:  const { t, language } = useLanguage()
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:353:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:454:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:470:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:481:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat.tsx:25:  const { t, language } = useLanguage()
+components/ai-chat.tsx:124:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx:126:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx:127:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx:140:                {t(q.labelKey)}
+components/ai-chat.tsx:153:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx:154:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx:218:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx:229:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/ai-chat.tsx.bak_20260101_213132:24:  const { t } = useLanguage()
+components/ai-chat.tsx.bak_20260101_213132:102:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx.bak_20260101_213132:104:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx.bak_20260101_213132:105:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:118:                {t(q.labelKey)}
+components/ai-chat.tsx.bak_20260101_213132:131:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:132:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:196:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx.bak_20260101_213132:207:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:24:  const { t, language } = useLanguage()
+components/ai-chat.tsx.logerr.bak.20260101_214018:122:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx.logerr.bak.20260101_214018:124:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx.logerr.bak.20260101_214018:125:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:138:                {t(q.labelKey)}
+components/ai-chat.tsx.logerr.bak.20260101_214018:151:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:152:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:216:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx.logerr.bak.20260101_214018:227:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/auth-modal.tsx:19:  const { language } = useLanguage()
+components/chat-sidebar.tsx:25:  const { language } = useLanguage()
+components/dynamic-metadata.tsx:7:  const { t, language } = useLanguage()
+components/dynamic-metadata.tsx:11:    document.title = t("metadata.title")
+components/dynamic-metadata.tsx:16:      metaDescription.setAttribute("content", t("metadata.description"))
+components/dynamic-metadata.tsx:22:      metaKeywords.setAttribute("content", t("metadata.keywords"))
+components/featured-sections.tsx:10:  const { t } = useLanguage()
+components/featured-sections.tsx:69:          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-foreground mb-4">{t("featured.title")}</h2>
+components/featured-sections.tsx:70:          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("featured.subtitle")}</p>
+components/featured-sections.tsx:93:                  <CardTitle className="font-playfair text-xl">{t(section.titleKey)}</CardTitle>
+components/featured-sections.tsx:96:                      {t("featured.new")}
+components/featured-sections.tsx:101:                  <p className="text-muted-foreground mb-6 text-pretty">{t(section.descriptionKey)}</p>
+components/featured-sections.tsx:108:                      {section.featured ? t("featured.discoverNow") : t("featured.explore")}
+components/footer.tsx:8:  const { t } = useLanguage()
+components/footer.tsx:20:            <p className="text-muted-foreground text-pretty max-w-md">{t("footer.description")}</p>
+components/footer.tsx:25:            <h3 className="font-playfair font-semibold text-foreground mb-4">{t("footer.explore")}</h3>
+components/footer.tsx:29:                  {t("footer.saints")}
+components/footer.tsx:34:                  {t("footer.worldMap")}
+components/footer.tsx:39:                  {t("footer.prayers")}
+components/footer.tsx:44:                  {t("footer.verses")}
+components/footer.tsx:52:            <h3 className="font-playfair font-semibold text-foreground mb-4">{t("footer.resources")}</h3>
+components/footer.tsx:56:                  {t("footer.eucharist")}
+components/footer.tsx:61:                  {t("footer.symbols")}
+components/footer.tsx:66:                  {t("footer.miracles")}
+components/footer.tsx:75:            {t("footer.madeWith")} <Heart className="h-4 w-4 text-secondary" /> {t("footer.forGlory")}
+components/header.tsx:12:  const { t } = useLanguage()
+components/header.tsx:15:    { name: t("nav.saints"), href: "/santos" },
+components/header.tsx:16:    { name: t("nav.miracles"), href: "/milagros" },
+components/header.tsx:17:    { name: t("nav.prayers"), href: "/oraciones" },
+components/header.tsx:18:    { name: t("nav.map"), href: "/mapa" },
+components/header.tsx:19:    { name: t("nav.eucharist"), href: "/eucaristia" },
+components/header.tsx:29:            <span className="font-playfair text-base sm:text-xl font-bold text-foreground truncate max-w-[140px] sm:max-w-none">{t("brand.title")}</span>
+components/hero.tsx:9:  const { t } = useLanguage()
+components/hero.tsx:18:          <p className="text-sm font-medium text-primary uppercase tracking-widest mb-1">{t("hero.dedication")}</p>
+components/hero.tsx:19:          <p className="text-xs text-muted-foreground font-light">{t("hero.dedicationDates")}</p>
+components/hero.tsx:27:          <span className="text-sm font-medium text-primary">{t("hero.aiPowered")}</span>
+components/hero.tsx:31:          {t("hero.title")}
+components/hero.tsx:35:          {t("hero.subtitle")}
+components/hero.tsx:42:              {t("hero.startChat")}
+components/hero.tsx:47:            <Link href="/descubre-tu-santo">{t("hero.discoverSaint")}</Link>
+components/interactive-invitations.tsx:13:  const { t } = useLanguage()
+components/interactive-invitations.tsx:77:            {t("invitations.exploreDiscover")}
+components/interactive-invitations.tsx:80:            {t("invitations.title")}
+components/interactive-invitations.tsx:82:          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">{t("invitations.subtitle")}</p>
+components/interactive-invitations.tsx:109:                          {t(invitation.titleKey)}
+components/interactive-invitations.tsx:114:                      <p className="text-muted-foreground mb-3 text-pretty">{t(invitation.descriptionKey)}</p>
+components/interactive-invitations.tsx:119:                          {t(invitation.statsKey)}
+components/interactive-invitations.tsx:125:                          <p className="text-sm text-muted-foreground">{t(invitation.previewKey)}</p>
+components/interactive-invitations.tsx:136:                          {t(invitation.actionKey)}
+components/interactive-invitations.tsx:153:                {t("invitations.notSure.title")}
+components/interactive-invitations.tsx:155:              <p className="text-muted-foreground">{t("invitations.notSure.description")}</p>
+components/interactive-invitations.tsx:162:                  {t("invitations.discoverSaint")}
+components/interactive-invitations.tsx:168:                  {t("invitations.exploreMap")}
+components/interactive-invitations.tsx:188:                <div className="text-sm text-muted-foreground">{t(stat.labelKey)}</div>
+components/language-selector.tsx:11:  const { language, setLanguage, t } = useLanguage()
+components/language-selector.tsx:40:                {t("selectLanguage")}
+components/language-selector.tsx.bak.20260102_232447:11:  const { language, setLanguage, t } = useLanguage()
+components/language-selector.tsx.bak.20260102_232447:38:                {t("selectLanguage")}
+components/saints-filters.tsx:12:  const { t } = useLanguage()
+components/saints-filters.tsx:21:        <h2 className="font-playfair text-lg font-semibold">{t("saints.filters.title")}</h2>
+components/saints-filters.tsx:28:            placeholder={t("saints.filters.searchPlaceholder")}
+components/saints-filters.tsx:37:            <SelectValue placeholder={t("saints.filters.continentPlaceholder")} />
+components/saints-filters.tsx:50:            <SelectValue placeholder={t("saints.filters.centuryPlaceholder")} />
+components/scripture-search.tsx:14:  const { t } = useLanguage()
+components/scripture-search.tsx:17:    t("scriptureSearch.suggestions.fear"),
+components/scripture-search.tsx:18:    t("scriptureSearch.suggestions.anxiety"),
+components/scripture-search.tsx:19:    t("scriptureSearch.suggestions.sadness"),
+components/scripture-search.tsx:20:    t("scriptureSearch.suggestions.joy"),
+components/scripture-search.tsx:21:    t("scriptureSearch.suggestions.hope"),
+components/scripture-search.tsx:22:    t("scriptureSearch.suggestions.gratitude"),
+components/scripture-search.tsx:23:    t("scriptureSearch.suggestions.forgiveness"),
+components/scripture-search.tsx:24:    t("scriptureSearch.suggestions.love"),
+components/scripture-search.tsx:25:    t("scriptureSearch.suggestions.peace"),
+components/scripture-search.tsx:26:    t("scriptureSearch.suggestions.strength"),
+components/scripture-search.tsx:45:            {t("scriptureSearch.title")}
+components/scripture-search.tsx:47:          <p className="text-lg text-muted-foreground">{t("scriptureSearch.subtitle")}</p>
+components/scripture-search.tsx:52:            <CardTitle className="text-center font-playfair">{t("scriptureSearch.cardTitle")}</CardTitle>
+components/scripture-search.tsx:60:                  placeholder={t("scriptureSearch.placeholder")}
+components/scripture-search.tsx:87:                {t("scriptureSearch.searchButton")}
+contexts/language-context.tsx:32:export function useLanguage() {
+lib/translations-utils.ts:9:      return t(`saints.patronOf.${key}`) || patron
+lib/translations-utils.ts:16:      return t(`saints.symbols.${key}`) || symbol
+lib/translations-utils.ts:25:    category: t(`prayers.categories.${prayer.category.toLowerCase()}`) || prayer.category,
+lib/translations-utils.ts:26:    occasion: t(`prayers.occasions.${prayer.occasion.toLowerCase().replace(/\s+/g, "")}`) || prayer.occasion,
+lib/translations-utils.ts:34:    status: miracle.verified ? t("miracles.status.verified") : t("miracles.status.investigating"),
+
+3) Páginas server (async) (si tienen texto fijo, no cambia con selector)
+app/admin/page.tsx:26:export default async function AdminPage() {
+app/admin/page.tsx.bak.20251219_233502:26:export default async function AdminPage() {
+app/oraciones/page.tsx:55:export default async function OracionesPage({
+app/santos/page.tsx:34:export default async function SaintsPage() {
+app/santos/[slug]/page.tsx:76:export default async function SaintPage({ params }: { params: { slug: string } }) {
+app/santos/[slug]/page.tsx.bak.20251220_004308:45:export default async function SaintPage({ params }: { params: { slug: string } }) {
+
+4) Texto HARDcodeado (archivos SIN t() pero con palabras ES típicas)
+---- app/descubre-tu-santo/page.tsx ----
+15:          <Suspense fallback={<div className="text-center py-8">Cargando...</div>}>
+
+---- app/eucaristia/page.tsx ----
+8:export default function EucaristiaPage() {
+15:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">La Sagrada Eucaristía</h1>
+
+---- app/mapa/page.tsx ----
+14:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Mapa Mundial de Santos</h1>
+16:            Explora santos de todo el mundo con nuestro mapa interactivo de alta precisión. Haz clic en los marcadores
+
+---- app/milagros/page.tsx ----
+12:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Milagros de los Santos</h1>
+
+---- app/oraciones/page.tsx ----
+55:export default async function OracionesPage({
+
+---- app/santos/page.tsx ----
+44:            Vidas de los Santos
+
+---- app/simbolos/page.tsx ----
+7:export default function SimbolosPage() {
+16:            Explora el rico simbolismo de la fe católica y descubre el profundo significado espiritual detrás de cada
+
+---- app/versiculos/page.tsx ----
+14:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Versículos para el Alma</h1>
+
+---- components/admin-dashboard.tsx ----
+79:          Santos
+87:          Milagros
+95:          Oraciones
+115:            <CardTitle className="text-sm font-medium">Total Santos</CardTitle>
+119:            <p className="text-sm text-muted-foreground">Santos documentados</p>
+132:                  + Agregar / Gestionar Santos
+136:                  + Agregar / Gestionar Oraciones
+
+---- components/admin-header.tsx ----
+22:          <h1 className="text-xl font-playfair font-bold text-amber-900">Panel de Administración Sagrado</h1>
+28:            <span>Administrador</span>
+
+---- components/admin-miracles-list.tsx ----
+126:      setError("Selecciona un santo.")
+236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+237:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+249:            placeholder="Buscar milagros..."
+261:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+
+---- components/admin-miracles-stats-card.tsx ----
+32:        <CardTitle className="text-sm font-medium">Milagros</CardTitle>
+
+---- components/admin-prayers-list.tsx ----
+133:      alert("Oración eliminada.")
+153:          <h2 className="font-playfair text-3xl font-bold">Gestión de Oraciones</h2>
+155:            {loading ? "Cargando..." : `${items.length} oraciones • ${approvedCount} aprobadas`}
+162:          Nueva Oración
+170:          placeholder="Buscar oraciones..."
+223:                <div className="text-lg font-semibold">Nueva Oración</div>
+276:                <div className="text-lg font-semibold">Editar Oración</div>
+
+---- components/admin-prayers-stats-card.tsx ----
+32:        <CardTitle className="text-sm font-medium">Oraciones</CardTitle>
+
+---- components/admin-saints-list.tsx ----
+75:          <h2 className="font-playfair text-3xl font-bold">Gestión de Santos</h2>
+76:          <p className="text-muted-foreground">Administre la información de todos los santos</p>
+89:            placeholder="Buscar santos..."
+
+---- components/admin-saints-modal.tsx ----
+249:            <Label htmlFor="biography">Biografía</Label>
+
+---- components/emotional-categories.tsx ----
+63:          Explora versículos organizados por diferentes estados emocionales y situaciones de la vida
+95:                      Explorar Versículos
+
+---- components/eucharist-introduction.tsx ----
+11:            ¿Qué es la Eucaristía?
+16:            La Eucaristía es el sacramento central de la fe católica, instituido por Jesucristo en la Última Cena. En
+21:            La palabra "Eucaristía" proviene del griego "eukharistia", que significa "acción de gracias". Es el momento
+
+---- components/eucharist-meaning.tsx ----
+27:      "La Eucaristía hace presente el sacrificio de Cristo en la cruz, actualizado de manera incruenta en cada Misa.",
+44:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Simbolismo Eucarístico</h2>
+46:          Cada elemento de la Eucaristía tiene un profundo significado espiritual que nos conecta con el misterio de la
+
+---- components/eucharist-prayers.tsx ----
+7:    title: "Oración antes de la Comunión",
+12:    title: "Oración después de la Comunión",
+18:    text: "Creo firmemente que en la Eucaristía estás presente Tú, Jesús, verdadero Dios y verdadero hombre, con tu Cuerpo, Sangre, Alma y Divinidad. Te adoro con profunda humildad y te amo sobre todas las cosas.",
+22:    title: "Oración de Acción de Gracias",
+23:    text: "Te doy gracias, Padre celestial, por el don inefable de la Eucaristía. Por medio de tu Hijo Jesús, nos das el alimento que necesitamos para el camino hacia la vida eterna. Bendito seas por siempre.",
+24:    occasion: "En acción de gracias por la Eucaristía",
+32:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Oraciones Eucarísticas</h2>
+34:          Oraciones tradicionales para acompañar la recepción de la Sagrada Eucaristía
+
+---- components/eucharist-steps.tsx ----
+29:      "Oración sobre las ofrendas",
+58:      "Oración después de la comunión",
+68:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Cómo se Celebra la Eucaristía</h2>
+
+---- components/featured-prayers.tsx ----
+7:    title: "Oración de San Francisco de Asís",
+14:    title: "Oración de Santa Teresa de Jesús",
+21:    title: "Oración de San Ignacio de Loyola",
+28:    title: "Oración de Santa Teresita del Niño Jesús",
+42:          Oraciones Destacadas
+76:          <CardTitle className="font-playfair text-xl text-center">Cómo Orar con los Santos</CardTitle>
+87:              <h4 className="font-medium text-foreground mb-2">2. Oración</h4>
+
+---- components/featured-verses.tsx ----
+38:          Versículos Más Buscados
+
+---- components/map-legend.tsx ----
+10:          Leyenda del Mapa
+27:            <span className="text-sm text-muted-foreground">Haz clic en los marcadores para ver detalles</span>
+
+---- components/miracles-list.tsx ----
+155:            Filtrar Milagros
+163:                placeholder="Buscar milagros..."
+227:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+
+---- components/prayer-form.tsx ----
+36:          <h2 className="font-playfair text-3xl font-bold">{prayer ? "Editar Oración" : "Nueva Oración"}</h2>
+53:          <CardTitle>Información de la Oración</CardTitle>
+57:            <Label htmlFor="title">Título de la Oración *</Label>
+62:              placeholder="Oración de San Francisco"
+77:            <Label htmlFor="text">Texto Completo de la Oración *</Label>
+
+---- components/prayers-categories.tsx ----
+25:    description: "Oraciones para pedir protección divina y fortaleza espiritual",
+30:    description: "Oraciones para momentos de enfermedad y necesidad de consuelo",
+35:    description: "Oraciones de agradecimiento y alabanza a Dios",
+40:    description: "Oraciones para pedir guía divina y sabiduría",
+45:    description: "Oraciones de intercesión por otros y peticiones especiales",
+50:    description: "Oraciones dedicadas a la Santísima Virgen María",
+94:          Categorías de Oraciones
+97:          Explora oraciones organizadas por temas y necesidades espirituales
+
+---- components/prayers-introduction.tsx ----
+11:            El Poder de la Oración de los Santos
+38:              <li>• Explora las categorías temáticas</li>
+
+---- components/prayers-search.tsx ----
+77:            Buscar Oraciones
+102:              placeholder="Buscar por título o contenido…"
+111:                <SelectValue placeholder="Seleccionar santo" />
+142:              Buscar
+178:                  Tip: también puedes entrar por “Categorías de Oraciones” y te baja a resultados automáticamente.
+
+---- components/saint-detail.tsx ----
+60:          Volver a Santos
+125:      {/* Biografía */}
+130:            Biografía
+135:            {saint.biography ?? "Biografía en construcción…"}
+140:      {/* Milagros */}
+146:              Milagros Documentados
+182:      {/* Oraciones */}
+188:              Oraciones
+
+---- components/saint-form.tsx ----
+269:                  <SelectValue placeholder="Seleccionar continente" />
+362:        {/* Biografía */}
+365:            <CardTitle>Biografía</CardTitle>
+437:      {/* Milagros y Oraciones */}
+441:            <CardTitle>Milagros ({miracles.length})</CardTitle>
+465:            <CardTitle>Oraciones ({prayers.length})</CardTitle>
+
+---- components/saint-matcher-form.tsx ----
+181:              Selecciona tus principales cualidades
+
+---- components/saint-matcher-results.tsx ----
+37:        <h2 className="font-playfair text-3xl font-bold text-gray-900 mb-2">Tus Santos Afines</h2>
+102:                  Oración sugerida
+133:              Explorar otros santos
+
+---- components/saints-list.tsx ----
+109:                  <Link href={`/santos/${saint.slug}`}>Ver Biografía Completa</Link>
+120:            Cargar Más Santos
+
+---- components/saints-map-sidebar.tsx ----
+104:              <SelectValue placeholder="Seleccionar continente" />
+146:            Santos {selectedContinent !== "all" && `de ${selectedContinent}`}
+
+---- components/scripture-search-advanced.tsx ----
+76:  // Buscar versículos
+103:  // Seleccionar sugerencia
+117:            Busca Versículos por Sentimiento
+156:              {isSearching ? "Buscando..." : "Buscar Versículos"}
+187:              Versículos para "{searchTerm}"
+224:                        <p className="text-sm font-medium text-foreground mb-2">Oración sugerida:</p>
+
+---- components/symbols-gallery.tsx ----
+41:      "El cordero representa a Cristo como el Cordero de Dios que quita el pecado del mundo. Simboliza la inocencia, el sacrificio y la redención.",
+44:    usage: "Eucaristía, arte litúrgico, himnos",
+84:    usage: "Eucaristía, decoración de altares, catequesis",
+94:          Explora los símbolos más importantes de la tradición católica y descubre su profundo significado espiritual
+
+---- components/world-map-leaflet.tsx ----
+240:            <p className="text-sm text-muted-foreground">Cargando mapa mundial...</p>
+
+---- components/world-map.tsx ----
+95:            alt="Mapa Mundial"
+
+---- lib/prayers-data.ts ----
+15:    title: "Oración por la Paz",
+45:    title: "Oración del Amor",
+55:    title: "Oración por los Pobres",
+65:    title: "Oración por la Familia",
+75:    title: "Oración por los Enfermos",
+85:    title: "Oración por la Sabiduría",
+95:    title: "Oración por la Pureza",
+105:    title: "Oración por los Viajeros",
+
+---- lib/saints-data.ts ----
+84:        title: "Oración de San Francisco",
+130:        location: "Santos, Brasil",
+138:        title: "Oración de la Madre Teresa",
+186:        title: "Oración a San Juan Pablo II",
+221:        title: "Oración a San Martín de Porres",
+258:        title: "Oración a Santa Juana de Arco",
+
+---- lib/translations.ts ----
+4:    "pages.verses.title": 'Versículos para el Alma',
+6:    "pages.eucharist.title": 'La Sagrada Eucaristía',
+7:    "pages.map.title": 'Mapa Mundial de Santos',
+8:    "pages.miracles.title": 'Milagros de los Santos',
+9:    "pages.saints.title": 'Vidas de los Santos',
+13:    "saints.filters.searchPlaceholder": 'Buscar por nombre...',
+14:    "saints.filters.title": 'Filtrar Santos',
+16:    "brand.title": 'Santos y Milagros',
+
+
+5) Páginas candidatas (primeras 120 líneas)
+----- app/mapa/page.tsx -----
+     1	import { Header } from "@/components/header"
+     2	import { Footer } from "@/components/footer"
+     3	import { WorldMapLeaflet } from "@/components/world-map-leaflet"
+     4	import { MapLegend } from "@/components/map-legend"
+     5	import { SaintsMapSidebar } from "@/components/saints-map-sidebar"
+     6	
+     7	export default function MapPage() {
+     8	  return (
+     9	    <div className="min-h-screen bg-background">
+    10	      <Header />
+    11	      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    12	        <div className="text-center mb-8">
+    13	          <div className="ornate-divider w-32 mx-auto mb-6"></div>
+    14	          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Mapa Mundial de Santos</h1>
+    15	          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+    16	            Explora santos de todo el mundo con nuestro mapa interactivo de alta precisión. Haz clic en los marcadores
+    17	            para descubrir los santos de cada región y conocer sus historias extraordinarias.
+    18	          </p>
+    19	          <div className="ornate-divider w-32 mx-auto mt-6"></div>
+    20	        </div>
+    21	
+    22	        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+    23	          <div className="lg:col-span-3">
+    24	            <div className="bg-card rounded-lg border p-4 mb-4">
+    25	              <WorldMapLeaflet />
+    26	            </div>
+    27	            <MapLegend />
+    28	          </div>
+    29	          <div className="lg:col-span-1">
+    30	            <SaintsMapSidebar />
+    31	          </div>
+    32	        </div>
+    33	      </div>
+    34	      <Footer />
+    35	    </div>
+    36	  )
+    37	}
+
+----- app/milagros/page.tsx -----
+     1	import { Header } from "@/components/header"
+     2	import { Footer } from "@/components/footer"
+     3	import { MiraclesList } from "@/components/miracles-list"
+     4	
+     5	export default function MiraclesPage() {
+     6	  return (
+     7	    <div className="min-h-screen bg-background">
+     8	      <Header />
+     9	      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    10	        <div className="text-center mb-12">
+    11	          <div className="ornate-divider w-32 mx-auto mb-8"></div>
+    12	          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Milagros de los Santos</h1>
+    13	          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+    14	            Testimonios extraordinarios del poder divino manifestado a través de la intercesión de los santos a lo largo
+    15	            de la historia.
+    16	          </p>
+    17	          <div className="ornate-divider w-32 mx-auto mt-8"></div>
+    18	        </div>
+    19	
+    20	        <MiraclesList />
+    21	      </div>
+    22	      <Footer />
+    23	    </div>
+    24	  )
+    25	}
+
+----- app/simbolos/page.tsx -----
+     1	import { Header } from "@/components/header"
+     2	import { Footer } from "@/components/footer"
+     3	import { SymbolsIntroduction } from "@/components/symbols-introduction"
+     4	import { SymbolsGallery } from "@/components/symbols-gallery"
+     5	import { SymbolsCategories } from "@/components/symbols-categories"
+     6	
+     7	export default function SimbolosPage() {
+     8	  return (
+     9	    <div className="min-h-screen bg-background">
+    10	      <Header />
+    11	      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    12	        <div className="text-center mb-12">
+    13	          <div className="ornate-divider w-32 mx-auto mb-8"></div>
+    14	          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Símbolos Católicos</h1>
+    15	          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+    16	            Explora el rico simbolismo de la fe católica y descubre el profundo significado espiritual detrás de cada
+    17	            símbolo sagrado.
+    18	          </p>
+    19	          <div className="ornate-divider w-32 mx-auto mt-8"></div>
+    20	        </div>
+    21	
+    22	        <SymbolsIntroduction />
+    23	        <SymbolsCategories />
+    24	        <SymbolsGallery />
+    25	      </div>
+    26	      <Footer />
+    27	    </div>
+    28	  )
+    29	}
+
+----- app/descubre-tu-santo/page.tsx -----
+     1	import { Suspense } from "react"
+     2	import { Header } from "@/components/header"
+     3	import { Footer } from "@/components/footer"
+     4	import { SaintMatcherIntroduction } from "@/components/saint-matcher-introduction"
+     5	import { SaintMatcherForm } from "@/components/saint-matcher-form"
+     6	
+     7	export default function DescubreTuSantoPage() {
+     8	  return (
+     9	    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-red-50">
+    10	      <Header />
+    11	      <div className="container mx-auto px-4 py-8">
+    12	        <div className="max-w-4xl mx-auto">
+    13	          <SaintMatcherIntroduction />
+    14	
+    15	          <Suspense fallback={<div className="text-center py-8">Cargando...</div>}>
+    16	            <SaintMatcherForm />
+    17	          </Suspense>
+    18	        </div>
+    19	      </div>
+    20	      <Footer />
+    21	    </div>
+    22	  )
+    23	}
+

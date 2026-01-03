@@ -1,0 +1,1092 @@
+===============================================
+I18N AUDIT - Fri, Jan  2, 2026 11:46:42 PM
+ROOT: /c/Users/sebas/proyectos/carlo-front
+===============================================
+
+== 0) Archivos clave ==
+-rw-r--r-- 1 sebas 197609   1493 Dec 31 14:57 app/layout.tsx
+-rw-r--r-- 1 sebas 197609    743 Dec 31 14:57 app/page.tsx
+-rw-r--r-- 1 sebas 197609   3070 Dec 31 14:58 components/header.tsx
+-rw-r--r-- 1 sebas 197609   2343 Jan  2 23:31 components/language-selector.tsx
+-rw-r--r-- 1 sebas 197609   1190 Dec 31 14:58 contexts/language-context.tsx
+-rw-r--r-- 1 sebas 197609   1620 Jan  2 23:20 lib/i18n.ts
+-rw-r--r-- 1 sebas 197609 182704 Dec 31 14:58 lib/translations.ts
+
+== 1) ¿Dónde se monta LanguageProvider? ==
+
+== 2) ¿Dónde se define languages/defaultLanguage? ==
+
+== 3) Componentes que SI reaccionan (usan useLanguage/t) ==
+
+== 4) Persistencia del idioma (localStorage/cookies/query) ==
+
+== 5) Librerías i18n externas (next-intl/i18next/etc) ==
+
+== 6) Texto HARDCODEADO (probable causa de que el contenido NO cambie) ==
+   (busca frases ES comunes en UI; ajusta palabras si quieres)
+app/descubre-tu-santo/page.tsx:7:export default function DescubreTuSantoPage() {
+app/descubre-tu-santo/page.tsx:15:          <Suspense fallback={<div className="text-center py-8">Cargando...</div>}>
+app/eucaristia/page.tsx:8:export default function EucaristiaPage() {
+app/eucaristia/page.tsx:15:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">La Sagrada Eucaristía</h1>
+app/mapa/page.tsx:14:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Mapa Mundial de Santos</h1>
+app/mapa/page.tsx:16:            Explora santos de todo el mundo con nuestro mapa interactivo de alta precisión. Haz clic en los marcadores
+app/milagros/page.tsx:12:          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">Milagros de los Santos</h1>
+app/oraciones/page.tsx:55:export default async function OracionesPage({
+app/santos/page.tsx:44:            Vidas de los Santos
+app/santos/[slug]/page.tsx:30:    title: m.title ?? "Milagro",
+app/santos/[slug]/page.tsx:56:    name: api.name ?? "Santo",
+app/santos/[slug]/page.tsx.bak.20251220_004308:23:    name: api.name ?? "Santo",
+app/simbolos/page.tsx:16:            Explora el rico simbolismo de la fe católica y descubre el profundo significado espiritual detrás de cada
+components/admin-dashboard.tsx:79:          Santos
+components/admin-dashboard.tsx:87:          Milagros
+components/admin-dashboard.tsx:95:          Oraciones
+components/admin-dashboard.tsx:115:            <CardTitle className="text-sm font-medium">Total Santos</CardTitle>
+components/admin-dashboard.tsx:119:            <p className="text-sm text-muted-foreground">Santos documentados</p>
+components/admin-dashboard.tsx:132:                  + Agregar / Gestionar Santos
+components/admin-dashboard.tsx:136:                  + Agregar / Gestionar Oraciones
+components/admin-dashboard.tsx:139:                  Registrar Milagro (próximo)
+components/admin-dashboard.tsx.bak.20251219_022144:75:          Santos
+components/admin-dashboard.tsx.bak.20251219_022144:83:          Milagros
+components/admin-dashboard.tsx.bak.20251219_022144:100:              <p className="text-sm text-muted-foreground">Total Santos</p>
+components/admin-dashboard.tsx.bak.20251219_022144:102:              <p className="mt-1 text-sm text-muted-foreground">Santos documentados</p>
+components/admin-dashboard.tsx.bak.20251219_022144:108:              <p className="text-sm text-muted-foreground">Milagros</p>
+components/admin-dashboard.tsx.bak.20251219_022144:116:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-dashboard.tsx.bak.20251219_022144:127:                  + Agregar / Gestionar Santos
+components/admin-dashboard.tsx.bak.20251219_022144:130:                  Registrar Milagro (próximo)
+components/admin-dashboard.tsx.bak.20251219_022144:160:            <h3 className="text-lg font-semibold">Milagros</h3>
+components/admin-dashboard.tsx.bak.cardfix.20251220_033614:77:          Santos
+components/admin-dashboard.tsx.bak.cardfix.20251220_033614:85:          Milagros
+components/admin-dashboard.tsx.bak.cardfix.20251220_033614:103:            <CardTitle className="text-sm font-medium">Total Santos</CardTitle>
+components/admin-dashboard.tsx.bak.cardfix.20251220_033614:107:            <p className="text-sm text-muted-foreground">Santos documentados</p>
+components/admin-dashboard.tsx.bak.cardfix.20251220_033614:115:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-dashboard.tsx.bak.cardfix.20251220_033614:126:                  + Agregar / Gestionar Santos
+components/admin-dashboard.tsx.bak.cardfix.20251220_033614:129:                  Registrar Milagro (próximo)
+components/admin-dashboard.tsx.bak.cardheader.20251220_033432:77:          Santos
+components/admin-dashboard.tsx.bak.cardheader.20251220_033432:85:          Milagros
+components/admin-dashboard.tsx.bak.cardheader.20251220_033432:103:            <CardTitle className="text-sm font-medium">Total Santos</CardTitle>
+components/admin-dashboard.tsx.bak.cardheader.20251220_033432:107:            <p className="text-sm text-muted-foreground">Santos documentados</p>
+components/admin-dashboard.tsx.bak.cardheader.20251220_033432:115:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-dashboard.tsx.bak.cardheader.20251220_033432:126:                  + Agregar / Gestionar Santos
+components/admin-dashboard.tsx.bak.cardheader.20251220_033432:129:                  Registrar Milagro (próximo)
+components/admin-dashboard.tsx.bak.miracles_stats.20251220_030237:76:          Santos
+components/admin-dashboard.tsx.bak.miracles_stats.20251220_030237:84:          Milagros
+components/admin-dashboard.tsx.bak.miracles_stats.20251220_030237:101:              <p className="text-sm text-muted-foreground">Total Santos</p>
+components/admin-dashboard.tsx.bak.miracles_stats.20251220_030237:103:              <p className="mt-1 text-sm text-muted-foreground">Santos documentados</p>
+components/admin-dashboard.tsx.bak.miracles_stats.20251220_030237:109:              <p className="text-sm text-muted-foreground">Milagros</p>
+components/admin-dashboard.tsx.bak.miracles_stats.20251220_030237:117:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-dashboard.tsx.bak.miracles_stats.20251220_030237:128:                  + Agregar / Gestionar Santos
+components/admin-dashboard.tsx.bak.miracles_stats.20251220_030237:131:                  Registrar Milagro (próximo)
+components/admin-dashboard.tsx.bak.prayers.20251220_044530:77:          Santos
+components/admin-dashboard.tsx.bak.prayers.20251220_044530:85:          Milagros
+components/admin-dashboard.tsx.bak.prayers.20251220_044530:103:            <CardTitle className="text-sm font-medium">Total Santos</CardTitle>
+components/admin-dashboard.tsx.bak.prayers.20251220_044530:107:            <p className="text-sm text-muted-foreground">Santos documentados</p>
+components/admin-dashboard.tsx.bak.prayers.20251220_044530:115:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-dashboard.tsx.bak.prayers.20251220_044530:126:                  + Agregar / Gestionar Santos
+components/admin-dashboard.tsx.bak.prayers.20251220_044530:129:                  Registrar Milagro (próximo)
+components/admin-dashboard.tsx.bak.restore_cards.20251220_045301:78:          Santos
+components/admin-dashboard.tsx.bak.restore_cards.20251220_045301:86:          Milagros
+components/admin-dashboard.tsx.bak.restore_cards.20251220_045301:109:                  + Agregar / Gestionar Santos
+components/admin-dashboard.tsx.bak.restore_cards.20251220_045301:112:                  Registrar Milagro (próximo)
+components/admin-dashboard.tsx.bak.restore_summary.20251220_044940:78:          Santos
+components/admin-dashboard.tsx.bak.restore_summary.20251220_044940:86:          Milagros
+components/admin-dashboard.tsx.bak.restore_summary.20251220_044940:109:                  + Agregar / Gestionar Santos
+components/admin-dashboard.tsx.bak.restore_summary.20251220_044940:112:                  Registrar Milagro (próximo)
+components/admin-dashboard.tsx.bak.santos.20251220_033242:77:          Santos
+components/admin-dashboard.tsx.bak.santos.20251220_033242:85:          Milagros
+components/admin-dashboard.tsx.bak.santos.20251220_033242:104:              <p className="text-sm text-muted-foreground">Oraciones</p>
+components/admin-dashboard.tsx.bak.santos.20251220_033242:115:                  + Agregar / Gestionar Santos
+components/admin-dashboard.tsx.bak.santos.20251220_033242:118:                  Registrar Milagro (próximo)
+components/admin-header.tsx:22:          <h1 className="text-xl font-playfair font-bold text-amber-900">Panel de Administración Sagrado</h1>
+components/admin-header.tsx:38:            Cerrar Sesión
+components/admin-miracles-list.tsx:126:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx:214:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx:236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx:237:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx:241:          Nuevo Milagro
+components/admin-miracles-list.tsx:249:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx:261:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx:276:                    Santo:{" "}
+components/admin-miracles-list.tsx:352:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx:362:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx:367:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx:419:                  Cancelar
+components/admin-miracles-list.tsx:434:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx:446:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx:462:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx:467:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx:512:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx:515:                  Cancelar
+components/admin-miracles-list.tsx.bak.20251219_224616:79:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.20251219_224616:80:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.20251219_224616:85:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.20251219_224616:93:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.20251219_224616:105:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.20251219_224616:120:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:123:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:234:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:238:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:246:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:258:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:273:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:333:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:343:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:348:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:388:                  Cancelar
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:403:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:415:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:431:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:436:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:469:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:472:                  Cancelar
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:126:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:214:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:237:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:241:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:249:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:261:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:276:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:352:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:362:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:367:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:419:                  Cancelar
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:434:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:446:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:462:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:467:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:512:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:515:                  Cancelar
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:126:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:214:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:237:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:241:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:249:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:261:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:276:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:336:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:346:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:351:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:403:                  Cancelar
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:418:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:430:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:446:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:451:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:496:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:499:                  Cancelar
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:104:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:144:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:145:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:150:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:158:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:170:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:185:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:253:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:263:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:279:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:289:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:323:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:326:                  Cancelar
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:109:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:160:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:161:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:166:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:174:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:186:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:201:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:262:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:274:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:290:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:295:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:328:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:331:                  Cancelar
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:109:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:149:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:160:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:161:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:166:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:174:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:186:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:201:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:262:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:274:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:290:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:295:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:328:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:331:                  Cancelar
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:123:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:234:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:250:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:285:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:345:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:355:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:360:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:400:                  Cancelar
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:415:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:427:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:443:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:448:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:481:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:484:                  Cancelar
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:104:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:144:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:145:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:178:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:188:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:204:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:214:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:248:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:251:                  Cancelar
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:123:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:234:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:250:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:285:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:345:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:355:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:360:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:400:                  Cancelar
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:415:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:427:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:443:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:448:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:481:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:484:                  Cancelar
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:123:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:234:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:250:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:285:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:345:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:355:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:360:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:400:                  Cancelar
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:415:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:427:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:443:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:448:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:481:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:484:                  Cancelar
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:126:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:214:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:237:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:257:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:265:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:277:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:292:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:352:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:362:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:367:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:419:                  Cancelar
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:434:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:446:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:462:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:467:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:512:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:515:                  Cancelar
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:123:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:234:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:238:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:246:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:258:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:273:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:333:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:343:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:348:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:388:                  Cancelar
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:403:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:415:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:431:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:436:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:469:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:472:                  Cancelar
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:123:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:234:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:249:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:257:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:269:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:284:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:344:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:354:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:359:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:399:                  Cancelar
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:414:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:426:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:442:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:447:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:480:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:483:                  Cancelar
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:123:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:234:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:250:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:285:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:345:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:355:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:360:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:400:                  Cancelar
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:415:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:427:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:443:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:448:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:481:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:484:                  Cancelar
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:123:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:234:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:250:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:285:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:345:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:355:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:360:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:400:                  Cancelar
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:415:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:427:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:443:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:448:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:481:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:484:                  Cancelar
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:123:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:234:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:238:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:246:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:258:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:273:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:333:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:343:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:348:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:388:                  Cancelar
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:403:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:415:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:431:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:436:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:469:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:472:                  Cancelar
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:126:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:214:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:236:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:237:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:241:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:249:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:261:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:276:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:336:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:346:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:351:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:391:                  Cancelar
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:406:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:418:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:434:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:439:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:472:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:475:                  Cancelar
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:122:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:210:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:221:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:222:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:227:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:235:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:247:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:262:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:322:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:332:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:337:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:377:                  Cancelar
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:392:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:404:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:420:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:425:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:458:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:461:                  Cancelar
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:123:      setError("Selecciona un santo.")
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:233:          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:234:          <p className="text-muted-foreground">Administre todos los milagros documentados</p>
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:250:          Nuevo Milagro
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:258:            placeholder="Buscar milagros..."
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:270:      {loading ? <p className="text-muted-foreground">Cargando milagros...</p> : null}
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:285:                    Santo:{" "}
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:345:                <div className="text-lg font-semibold">Editar Milagro</div>
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:355:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:360:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:400:                  Cancelar
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:415:                <div className="text-lg font-semibold">Nuevo Milagro</div>
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:427:                <label className="text-sm font-medium">Santo</label>
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:443:                <label className="text-sm font-medium">Título</label>
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:448:                <label className="text-sm font-medium">Descripción</label>
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:481:                  {creating ? "Creando..." : "Crear"}
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:484:                  Cancelar
+components/admin-miracles-stats-card.tsx:32:        <CardTitle className="text-sm font-medium">Milagros</CardTitle>
+components/admin-prayers-list.tsx:83:        alert("Título y contenido son obligatorios.")
+components/admin-prayers-list.tsx:110:        alert("Título y contenido son obligatorios.")
+components/admin-prayers-list.tsx:133:      alert("Oración eliminada.")
+components/admin-prayers-list.tsx:153:          <h2 className="font-playfair text-3xl font-bold">Gestión de Oraciones</h2>
+components/admin-prayers-list.tsx:155:            {loading ? "Cargando..." : `${items.length} oraciones • ${approvedCount} aprobadas`}
+components/admin-prayers-list.tsx:162:          Nueva Oración
+components/admin-prayers-list.tsx:170:          placeholder="Buscar oraciones..."
+components/admin-prayers-list.tsx:223:                <div className="text-lg font-semibold">Nueva Oración</div>
+components/admin-prayers-list.tsx:233:                <label className="text-sm font-medium">Título</label>
+components/admin-prayers-list.tsx:259:                  Cancelar
+components/admin-prayers-list.tsx:262:                  {creating ? "Creando..." : "Crear"}
+components/admin-prayers-list.tsx:276:                <div className="text-lg font-semibold">Editar Oración</div>
+components/admin-prayers-list.tsx:286:                <label className="text-sm font-medium">Título</label>
+components/admin-prayers-list.tsx:312:                  Cancelar
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:125:      alert("Oración eliminada.")
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:145:          <h2 className="font-playfair text-3xl font-bold">Gestión de Oraciones</h2>
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:147:            {loading ? "Cargando..." : `${items.length} oraciones • ${approvedCount} aprobadas`}
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:154:          Nueva Oración
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:160:        <Input className="pl-10" placeholder="Buscar oraciones..." value={search} onChange={(e) => setSearch(e.target.value)} />
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:210:                <div className="text-lg font-semibold">Nueva Oración</div>
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:220:                <label className="text-sm font-medium">Título</label>
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:246:                  Cancelar
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:249:                  {creating ? "Creando..." : "Crear"}
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:263:                <div className="text-lg font-semibold">Editar Oración</div>
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:273:                <label className="text-sm font-medium">Título</label>
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:299:                  Cancelar
+components/admin-prayers-stats-card.tsx:32:        <CardTitle className="text-sm font-medium">Oraciones</CardTitle>
+components/admin-saints-create.tsx:44:      setMsg("✅ Santo creado.");
+components/admin-saints-create.tsx:61:        <CardTitle className="font-playfair">Crear Santo</CardTitle>
+components/admin-saints-create.tsx:95:          {loading ? "Creando..." : "Crear"}
+components/admin-saints-list.tsx:75:          <h2 className="font-playfair text-3xl font-bold">Gestión de Santos</h2>
+components/admin-saints-list.tsx:76:          <p className="text-muted-foreground">Administre la información de todos los santos</p>
+components/admin-saints-list.tsx:81:          Nuevo Santo
+components/admin-saints-list.tsx:89:            placeholder="Buscar santos..."
+components/admin-saints-list.tsx.bak:71:          <h2 className="font-playfair text-3xl font-bold">Gestión de Santos</h2>
+components/admin-saints-list.tsx.bak:72:          <p className="text-muted-foreground">Administre la información de todos los santos</p>
+components/admin-saints-list.tsx.bak:77:          Nuevo Santo
+components/admin-saints-list.tsx.bak:85:            placeholder="Buscar santos..."
+components/admin-saints-modal.tsx:155:            <div className="text-lg font-semibold">{isEdit ? "Editar santo" : "Crear santo"}</div>
+components/admin-saints-modal.tsx:231:            <Label htmlFor="title">Título (Beato / Santo / etc.)</Label>
+components/admin-saints-modal.tsx:261:              {loading ? "Guardando..." : isEdit ? "Guardar cambios" : "Crear"}
+components/admin-saints-modal.tsx:264:              Cancelar
+components/ai-chat-fullscreen.tsx:483:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:457:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:481:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/auth-modal.tsx:56:      registerBtn: "Crear cuenta",
+components/emotional-categories.tsx:63:          Explora versículos organizados por diferentes estados emocionales y situaciones de la vida
+components/emotional-categories.tsx:95:                      Explorar Versículos
+components/eucharist-introduction.tsx:11:            ¿Qué es la Eucaristía?
+components/eucharist-introduction.tsx:16:            La Eucaristía es el sacramento central de la fe católica, instituido por Jesucristo en la Última Cena. En
+components/eucharist-introduction.tsx:21:            La palabra "Eucaristía" proviene del griego "eukharistia", que significa "acción de gracias". Es el momento
+components/eucharist-meaning.tsx:27:      "La Eucaristía hace presente el sacrificio de Cristo en la cruz, actualizado de manera incruenta en cada Misa.",
+components/eucharist-meaning.tsx:46:          Cada elemento de la Eucaristía tiene un profundo significado espiritual que nos conecta con el misterio de la
+components/eucharist-meaning.tsx:92:            En el momento de la consagración, por las palabras del sacerdote y la acción del Espíritu Santo, la
+components/eucharist-prayers.tsx:7:    title: "Oración antes de la Comunión",
+components/eucharist-prayers.tsx:12:    title: "Oración después de la Comunión",
+components/eucharist-prayers.tsx:18:    text: "Creo firmemente que en la Eucaristía estás presente Tú, Jesús, verdadero Dios y verdadero hombre, con tu Cuerpo, Sangre, Alma y Divinidad. Te adoro con profunda humildad y te amo sobre todas las cosas.",
+components/eucharist-prayers.tsx:22:    title: "Oración de Acción de Gracias",
+components/eucharist-prayers.tsx:23:    text: "Te doy gracias, Padre celestial, por el don inefable de la Eucaristía. Por medio de tu Hijo Jesús, nos das el alimento que necesitamos para el camino hacia la vida eterna. Bendito seas por siempre.",
+components/eucharist-prayers.tsx:24:    occasion: "En acción de gracias por la Eucaristía",
+components/eucharist-prayers.tsx:32:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Oraciones Eucarísticas</h2>
+components/eucharist-prayers.tsx:34:          Oraciones tradicionales para acompañar la recepción de la Sagrada Eucaristía
+components/eucharist-steps.tsx:29:      "Oración sobre las ofrendas",
+components/eucharist-steps.tsx:40:      "Prefacio y Santo",
+components/eucharist-steps.tsx:41:      "Epíclesis (invocación al Espíritu Santo)",
+components/eucharist-steps.tsx:58:      "Oración después de la comunión",
+components/eucharist-steps.tsx:68:        <h2 className="font-playfair text-3xl font-bold text-foreground mb-4">Cómo se Celebra la Eucaristía</h2>
+components/featured-prayers.tsx:7:    title: "Oración de San Francisco de Asís",
+components/featured-prayers.tsx:14:    title: "Oración de Santa Teresa de Jesús",
+components/featured-prayers.tsx:21:    title: "Oración de San Ignacio de Loyola",
+components/featured-prayers.tsx:28:    title: "Oración de Santa Teresita del Niño Jesús",
+components/featured-prayers.tsx:42:          Oraciones Destacadas
+components/featured-prayers.tsx:76:          <CardTitle className="font-playfair text-xl text-center">Cómo Orar con los Santos</CardTitle>
+components/featured-prayers.tsx:87:              <h4 className="font-medium text-foreground mb-2">2. Oración</h4>
+components/footer.tsx:18:              <span className="font-playfair text-xl font-bold text-foreground">Santos y Milagros</span>
+components/miracle-form.tsx:61:          <h2 className="font-playfair text-3xl font-bold">{miracle ? "Editar Milagro" : "Nuevo Milagro"}</h2>
+components/miracle-form.tsx:78:          <CardTitle>Información del Milagro</CardTitle>
+components/miracle-form.tsx:82:            <Label htmlFor="title">Título del Milagro *</Label>
+components/miracle-form.tsx:92:            <Label htmlFor="description">Descripción Completa *</Label>
+components/miracle-form.tsx:104:              <Label htmlFor="date">Fecha del Milagro</Label>
+components/miracles-list.tsx:86:                title: m.title || "Milagro",
+components/miracles-list.tsx:155:            Filtrar Milagros
+components/miracles-list.tsx:163:                placeholder="Buscar milagros..."
+components/miracles-list.tsx:227:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.api.20251220_005126:45:            Filtrar Milagros
+components/miracles-list.tsx.bak.api.20251220_005126:53:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.badgetype.20251220_005849:86:                title: m.title || "Milagro",
+components/miracles-list.tsx.bak.badgetype.20251220_005849:155:            Filtrar Milagros
+components/miracles-list.tsx.bak.badgetype.20251220_005849:163:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.badgetype.20251220_005849:227:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:85:                title: m.title || "Milagro",
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:150:            Filtrar Milagros
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:158:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:222:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.sorttype.20251220_005554:82:                title: m.title || "Milagro",
+components/miracles-list.tsx.bak.sorttype.20251220_005554:134:            Filtrar Milagros
+components/miracles-list.tsx.bak.sorttype.20251220_005554:142:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.sorttype.20251220_005554:191:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.sortverified.20251220_005836:86:                title: m.title || "Milagro",
+components/miracles-list.tsx.bak.sortverified.20251220_005836:151:            Filtrar Milagros
+components/miracles-list.tsx.bak.sortverified.20251220_005836:159:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.sortverified.20251220_005836:223:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.truefalse.20251220_005257:82:                title: m.title || "Milagro",
+components/miracles-list.tsx.bak.truefalse.20251220_005257:134:            Filtrar Milagros
+components/miracles-list.tsx.bak.truefalse.20251220_005257:142:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.truefalse.20251220_005257:191:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/miracles-list.tsx.bak.useglobal.20251220_010659:86:                title: m.title || "Milagro",
+components/miracles-list.tsx.bak.useglobal.20251220_010659:155:            Filtrar Milagros
+components/miracles-list.tsx.bak.useglobal.20251220_010659:163:                placeholder="Buscar milagros..."
+components/miracles-list.tsx.bak.useglobal.20251220_010659:227:          {loading ? <p className="mt-3 text-sm text-muted-foreground">Cargando milagros...</p> : null}
+components/prayer-form.tsx:36:          <h2 className="font-playfair text-3xl font-bold">{prayer ? "Editar Oración" : "Nueva Oración"}</h2>
+components/prayer-form.tsx:53:          <CardTitle>Información de la Oración</CardTitle>
+components/prayer-form.tsx:57:            <Label htmlFor="title">Título de la Oración *</Label>
+components/prayer-form.tsx:62:              placeholder="Oración de San Francisco"
+components/prayer-form.tsx:77:            <Label htmlFor="text">Texto Completo de la Oración *</Label>
+components/prayers-categories.tsx:25:    description: "Oraciones para pedir protección divina y fortaleza espiritual",
+components/prayers-categories.tsx:30:    description: "Oraciones para momentos de enfermedad y necesidad de consuelo",
+components/prayers-categories.tsx:35:    description: "Oraciones de agradecimiento y alabanza a Dios",
+components/prayers-categories.tsx:40:    description: "Oraciones para pedir guía divina y sabiduría",
+components/prayers-categories.tsx:45:    description: "Oraciones de intercesión por otros y peticiones especiales",
+components/prayers-categories.tsx:50:    description: "Oraciones dedicadas a la Santísima Virgen María",
+components/prayers-categories.tsx:94:          Categorías de Oraciones
+components/prayers-categories.tsx:97:          Explora oraciones organizadas por temas y necesidades espirituales
+components/prayers-categories.tsx:126:                Explorar Oraciones
+components/prayers-introduction.tsx:11:            El Poder de la Oración de los Santos
+components/prayers-introduction.tsx:32:              Cómo Usar Esta Biblioteca
+components/prayers-introduction.tsx:38:              <li>• Explora las categorías temáticas</li>
+components/prayers-introduction.tsx:50:              Beneficios Espirituales
+components/prayers-search.tsx:77:            Buscar Oraciones
+components/prayers-search.tsx:102:              placeholder="Buscar por título o contenido…"
+components/prayers-search.tsx:111:                <SelectValue placeholder="Seleccionar santo" />
+components/prayers-search.tsx:142:              Buscar
+components/prayers-search.tsx:178:                  Tip: también puedes entrar por “Categorías de Oraciones” y te baja a resultados automáticamente.
+components/saint-detail.tsx:60:          Volver a Santos
+components/saint-detail.tsx:140:      {/* Milagros */}
+components/saint-detail.tsx:146:              Milagros Documentados
+components/saint-detail.tsx:182:      {/* Oraciones */}
+components/saint-detail.tsx:188:              Oraciones
+components/saint-form.tsx:164:      alert(`Santo guardado exitosamente!\nID: ${result.id}`);
+components/saint-form.tsx:201:          <h2 className="font-playfair text-3xl font-bold">{saint ? "Editar Santo" : "Nuevo Santo"}</h2>
+components/saint-form.tsx:211:            Cancelar
+components/saint-form.tsx:234:                <Label htmlFor="title">Título</Label>
+components/saint-form.tsx:269:                  <SelectValue placeholder="Seleccionar continente" />
+components/saint-form.tsx:437:      {/* Milagros y Oraciones */}
+components/saint-form.tsx:441:            <CardTitle>Milagros ({miracles.length})</CardTitle>
+components/saint-form.tsx:465:            <CardTitle>Oraciones ({prayers.length})</CardTitle>
+components/saint-matcher-form.tsx:181:              Selecciona tus principales cualidades
+components/saint-matcher-introduction.tsx:13:      <h1 className="font-playfair text-4xl font-bold text-gray-900 mb-4">Descubre Qué Santo Se Parece a Ti</h1>
+components/saint-matcher-results.tsx:37:        <h2 className="font-playfair text-3xl font-bold text-gray-900 mb-2">Tus Santos Afines</h2>
+components/saint-matcher-results.tsx:102:                  Oración sugerida
+components/saint-matcher-results.tsx:133:              Explorar otros santos
+components/saints-list.tsx:120:            Cargar Más Santos
+components/saints-map-sidebar.tsx:104:              <SelectValue placeholder="Seleccionar continente" />
+components/saints-map-sidebar.tsx:146:            Santos {selectedContinent !== "all" && `de ${selectedContinent}`}
+components/scripture-search-advanced.tsx:76:  // Buscar versículos
+components/scripture-search-advanced.tsx:103:  // Seleccionar sugerencia
+components/scripture-search-advanced.tsx:156:              {isSearching ? "Buscando..." : "Buscar Versículos"}
+components/scripture-search-advanced.tsx:224:                        <p className="text-sm font-medium text-foreground mb-2">Oración sugerida:</p>
+components/symbols-categories.tsx:21:    title: "Símbolos del Espíritu Santo",
+components/symbols-categories.tsx:31:    symbols: ["Agua Bautismal", "Crisma", "Anillos", "Cáliz", "Hostia", "Óleo Santo"],
+components/symbols-gallery.tsx:28:    category: "Espíritu Santo",
+components/symbols-gallery.tsx:29:    meaning: "Espíritu Santo, Paz Divina",
+components/symbols-gallery.tsx:31:      "La paloma representa al Espíritu Santo, especialmente desde el bautismo de Jesús. También simboliza la paz, la pureza y el alma humana que busca a Dios.",
+components/symbols-gallery.tsx:44:    usage: "Eucaristía, arte litúrgico, himnos",
+components/symbols-gallery.tsx:84:    usage: "Eucaristía, decoración de altares, catequesis",
+components/symbols-gallery.tsx:94:          Explora los símbolos más importantes de la tradición católica y descubre su profundo significado espiritual
+components/world-map-leaflet.tsx:192:                Ver Santo
+components/world-map-leaflet.tsx:240:            <p className="text-sm text-muted-foreground">Cargando mapa mundial...</p>
+lib/admin-utils.ts:86:    return { success: true, message: "Santo guardado.", id: data?.id };
+lib/admin-utils.ts:105:    return { success: true, message: "Santo eliminado." };
+lib/admin-utils.ts.bak.dedup.20251220_035850:80:    return { success: true, message: "Santo guardado.", id: data?.id };
+lib/admin-utils.ts.bak.dedup.20251220_035850:99:    return { success: true, message: "Santo eliminado." };
+lib/admin-utils.ts.bak.fix.20251219_013158:87:    return { success: true, message: "Santo guardado.", id: data?.id };
+lib/admin-utils.ts.bak.fix.20251219_013158:106:    return { success: true, message: "Santo eliminado." };
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:80:    return { success: true, message: "Santo guardado.", id: data?.id };
+lib/admin-utils.ts.bak.rm_getBaseUrl2.20251220_040526:99:    return { success: true, message: "Santo eliminado." };
+lib/admin-utils.ts.bak.safe_patch.20251220_024359:80:    return { success: true, message: "Santo guardado.", id: data?.id };
+lib/admin-utils.ts.bak.safe_patch.20251220_024359:99:    return { success: true, message: "Santo eliminado." };
+lib/auth.tsx:14:const ADMIN_PASSWORD = "SantoAdmin2024!"
+lib/prayers-data.ts:15:    title: "Oración por la Paz",
+lib/prayers-data.ts:45:    title: "Oración del Amor",
+lib/prayers-data.ts:55:    title: "Oración por los Pobres",
+lib/prayers-data.ts:65:    title: "Oración por la Familia",
+lib/prayers-data.ts:75:    title: "Oración por los Enfermos",
+lib/prayers-data.ts:85:    title: "Oración por la Sabiduría",
+lib/prayers-data.ts:86:    saint: "Santo Tomás de Aquino",
+lib/prayers-data.ts:95:    title: "Oración por la Pureza",
+lib/prayers-data.ts:105:    title: "Oración por los Viajeros",
+lib/prayers-data.ts:115:    title: "Oración por la Esperanza",
+lib/prayers-data.ts:125:    title: "Oración Mariana",
+lib/saints-data.ts:84:        title: "Oración de San Francisco",
+lib/saints-data.ts:130:        location: "Santos, Brasil",
+lib/saints-data.ts:138:        title: "Oración de la Madre Teresa",
+lib/saints-data.ts:186:        title: "Oración a San Juan Pablo II",
+lib/saints-data.ts:199:    title: "Santo de la Caridad",
+lib/saints-data.ts:221:        title: "Oración a San Martín de Porres",
+lib/saints-data.ts:258:        title: "Oración a Santa Juana de Arco",
+lib/scripture-data.ts:181:      "El Espíritu Santo produce en nosotros cualidades divinas que transforman nuestro carácter y nuestras relaciones.",
+lib/scripture-data.ts:182:    prayer: "Espíritu Santo, produce en mí Tu fruto para que pueda reflejar el carácter de Cristo.",
+lib/translations.ts:6:    "pages.eucharist.title": 'La Sagrada Eucaristía',
+lib/translations.ts:7:    "pages.map.title": 'Mapa Mundial de Santos',
+lib/translations.ts:8:    "pages.miracles.title": 'Milagros de los Santos',
+lib/translations.ts:9:    "pages.saints.title": 'Vidas de los Santos',
+lib/translations.ts:13:    "saints.filters.searchPlaceholder": 'Buscar por nombre...',
+lib/translations.ts:14:    "saints.filters.title": 'Filtrar Santos',
+lib/translations.ts:16:    "brand.title": 'Santos y Milagros',
+lib/translations.ts:19:    "nav.saints": "Santos",
+lib/translations.ts:20:    "nav.prayers": "Oraciones",
+lib/translations.ts:21:    "nav.miracles": "Milagros",
+lib/translations.ts:23:    "nav.eucharist": "Eucaristía",
+lib/translations.ts:27:    "common.loading": "Cargando...",
+lib/translations.ts:29:    "common.search": "Buscar",
+lib/translations.ts:33:    "common.cancel": "Cancelar",
+lib/translations.ts:42:    selectLanguage: "Seleccionar idioma",
+lib/translations.ts:45:    "meta.title": "Sitio Católico - Fe, Santos y Oraciones",
+lib/translations.ts:53:    "home.featured.saints": "Santos Destacados",
+lib/translations.ts:54:    "home.featured.prayers": "Oraciones Populares",
+lib/translations.ts:55:    "home.featured.miracles": "Milagros Recientes",
+lib/translations.ts:58:    "saints.title": "Santos Católicos",
+lib/translations.ts:65:    "prayers.title": "Oraciones Católicas",
+lib/translations.ts:66:    "prayers.description": "Oraciones para fortalecer tu fe y conexión espiritual",
+lib/translations.ts:68:    "prayers.text": "Texto de la Oración",
+lib/translations.ts:71:    "miracles.title": "Milagros",
+lib/translations.ts:75:    "miracles.description.text": "Descripción",
+lib/translations.ts:89:    "hero.exploreSaints": "Explorar Santos",
+lib/translations.ts:90:    "hero.searchVerses": "Buscar Versículos",
+lib/translations.ts:93:    "hero.discoverSaint": "Descubrir mi Santo",
+lib/translations.ts:96:    "featured.title": "Explora Nuestra Fe",
+lib/translations.ts:99:    "featured.saintsLife.title": "Vida de los Santos",
+lib/translations.ts:101:    "featured.saintsMap.title": "Mapa de Santos",
+lib/translations.ts:102:    "featured.saintsMap.description": "Explora santos por países en nuestro mapa mundial interactivo",
+lib/translations.ts:103:    "featured.discoverSaint.title": "Descubre tu Santo",
+lib/translations.ts:105:    "featured.miracles.title": "Milagros",
+lib/translations.ts:107:    "featured.eucharist.title": "La Eucaristía",
+lib/translations.ts:111:    "featured.prayers.title": "Oraciones",
+lib/translations.ts:115:    "featured.explore": "Explorar",
+lib/translations.ts:118:    "saints.page.title": "Vidas de los Santos",
+lib/translations.ts:123:    "miracles.page.title": "Milagros de los Santos",
+lib/translations.ts:128:    "prayers.page.title": "Biblioteca de Oraciones",
+lib/translations.ts:138:    "map.page.title": "Mapa Mundial de Santos",
+lib/translations.ts:140:      "Explora santos de todo el mundo con nuestro mapa interactivo de alta precisión. Haz clic en los marcadores para descubrir los santos de cada región y conocer sus historias extraordinarias.",
+lib/translations.ts:143:    "eucharist.page.title": "La Sagrada Eucaristía",
+lib/translations.ts:150:      "Explora el rico simbolismo de la fe católica y descubre el profundo significado espiritual detrás de cada símbolo sagrado.",
+lib/translations.ts:153:    "discoverSaint.page.title": "Descubre tu Santo",
+lib/translations.ts:159:    "invitations.exploreDiscover": "Explora y Descubre",
+lib/translations.ts:160:    "invitations.saintMatch.title": "¿Qué Santo se Parece a Ti?",
+lib/translations.ts:165:    "invitations.worldMap.title": "Explora Santos del Mundo",
+lib/translations.ts:173:    "invitations.emotionalVerses.action": "Buscar Consuelo",
+lib/translations.ts:179:    "invitations.dailyInspiration.preview": "Santo del día, oración y reflexión personalizada",
+lib/translations.ts:182:    "invitations.discoverSaint": "Descubre tu Santo",
+lib/translations.ts:183:    "invitations.exploreMap": "Explorar Mapa",
+lib/translations.ts:184:    "invitations.stats.saints": "Santos Catalogados",
+lib/translations.ts:206:    "footer.explore": "Explorar",
+lib/translations.ts:207:    "footer.saints": "Santos",
+lib/translations.ts:209:    "footer.prayers": "Oraciones",
+lib/translations.ts:212:    "footer.eucharist": "La Eucaristía",
+lib/translations.ts:214:    "footer.miracles": "Milagros",
+lib/translations.ts:222:    "scriptureSearch.searchButton": "Buscar Versículos",
+lib/translations.ts:1085:    "nav.saints": "Santos",
+lib/translations.ts:1087:    "nav.miracles": "Milagres",
+lib/translations.ts:1089:    "nav.eucharist": "Eucaristia",
+lib/translations.ts:1095:    "common.search": "Buscar",
+lib/translations.ts:1099:    "common.cancel": "Cancelar",
+lib/translations.ts:1111:    "meta.title": "Site Católico - Fé, Santos e Orações",
+lib/translations.ts:1119:    "home.featured.saints": "Santos em Destaque",
+lib/translations.ts:1121:    "home.featured.miracles": "Milagros Recentes",
+lib/translations.ts:1124:    "saints.title": "Santos Católicos",
+lib/translations.ts:1137:    "miracles.title": "Milagres",
+lib/translations.ts:1150:    "hero.titleHighlight": "e os Milagres",
+lib/translations.ts:1153:    "hero.exploreSaints": "Explorar Santos",
+lib/translations.ts:1154:    "hero.searchVerses": "Buscar Versículos",
+lib/translations.ts:1157:    "hero.discoverSaint": "Descobrir meu Santo",
+lib/translations.ts:1162:    "featured.saintsLife.title": "Vida dos Santos",
+lib/translations.ts:1164:    "featured.saintsMap.title": "Mapa dos Santos",
+lib/translations.ts:1166:    "featured.discoverSaint.title": "Descubra seu Santo",
+lib/translations.ts:1168:    "featured.miracles.title": "Milagres",
+lib/translations.ts:1170:    "featured.eucharist.title": "A Eucaristia",
+lib/translations.ts:1178:    "featured.explore": "Explorar",
+lib/translations.ts:1181:    "saints.page.title": "Vidas dos Santos",
+lib/translations.ts:1186:    "miracles.page.title": "Milagres dos Santos",
+lib/translations.ts:1201:    "map.page.title": "Mapa Mundial de Santos",
+lib/translations.ts:1206:    "eucharist.page.title": "A Sagrada Eucaristia",
+lib/translations.ts:1216:    "discoverSaint.page.title": "Descubra seu Santo",
+lib/translations.ts:1223:    "invitations.saintMatch.title": "Qual Santo se Parece Com Você?",
+lib/translations.ts:1228:    "invitations.worldMap.title": "Explore Santos do Mundo",
+lib/translations.ts:1242:    "invitations.dailyInspiration.preview": "Santo do dia, oração e reflexão personalizada",
+lib/translations.ts:1245:    "invitations.discoverSaint": "Descubra Seu Santo",
+lib/translations.ts:1246:    "invitations.exploreMap": "Explorar Mapa",
+lib/translations.ts:1247:    "invitations.stats.saints": "Santos Catalogados",
+lib/translations.ts:1268:    "footer.explore": "Explorar",
+lib/translations.ts:1269:    "footer.saints": "Santos",
+lib/translations.ts:1274:    "footer.eucharist": "A Eucaristia",
+lib/translations.ts:1276:    "footer.miracles": "Milagres",
+lib/translations.ts:1284:    "scriptureSearch.searchButton": "Buscar Versículos",
+lib/translations.ts:2388:    "nav.eucharist": "Eucaristia",
+lib/translations.ts:2455:    "hero.discoverSaint": "Scopri il mio Santo",
+lib/translations.ts:2465:    "featured.discoverSaint.title": "Scopri il Tuo Santo",
+lib/translations.ts:2469:    "featured.eucharist.title": "L'Eucaristia",
+lib/translations.ts:2505:    "eucharist.page.title": "La Sacra Eucaristia",
+lib/translations.ts:2515:    "discoverSaint.page.title": "Scopri il Tuo Santo",
+lib/translations.ts:2522:    "invitations.saintMatch.title": "Quale Santo Ti Assomiglia?",
+lib/translations.ts:2541:    "invitations.dailyInspiration.preview": "Santo del giorno, preghiera e riflessione personalizzata",
+lib/translations.ts:2544:    "invitations.discoverSaint": "Scopri il mio Santo",
+lib/translations.ts:2574:    "footer.eucharist": "L'Eucaristia",
+lib/translations.ts.bak.20251219_012110:6:    "nav.saints": "Santos",
+lib/translations.ts.bak.20251219_012110:7:    "nav.prayers": "Oraciones",
+lib/translations.ts.bak.20251219_012110:8:    "nav.miracles": "Milagros",
+lib/translations.ts.bak.20251219_012110:10:    "nav.eucharist": "Eucaristía",
+lib/translations.ts.bak.20251219_012110:14:    "common.loading": "Cargando...",
+lib/translations.ts.bak.20251219_012110:16:    "common.search": "Buscar",
+lib/translations.ts.bak.20251219_012110:20:    "common.cancel": "Cancelar",
+lib/translations.ts.bak.20251219_012110:29:    selectLanguage: "Seleccionar idioma",
+lib/translations.ts.bak.20251219_012110:32:    "meta.title": "Sitio Católico - Fe, Santos y Oraciones",
+lib/translations.ts.bak.20251219_012110:40:    "home.featured.saints": "Santos Destacados",
+lib/translations.ts.bak.20251219_012110:41:    "home.featured.prayers": "Oraciones Populares",
+lib/translations.ts.bak.20251219_012110:42:    "home.featured.miracles": "Milagros Recientes",
+lib/translations.ts.bak.20251219_012110:45:    "saints.title": "Santos Católicos",
+lib/translations.ts.bak.20251219_012110:52:    "prayers.title": "Oraciones Católicas",
+lib/translations.ts.bak.20251219_012110:53:    "prayers.description": "Oraciones para fortalecer tu fe y conexión espiritual",
+lib/translations.ts.bak.20251219_012110:55:    "prayers.text": "Texto de la Oración",
+lib/translations.ts.bak.20251219_012110:58:    "miracles.title": "Milagros",
+lib/translations.ts.bak.20251219_012110:62:    "miracles.description.text": "Descripción",
+lib/translations.ts.bak.20251219_012110:76:    "hero.exploreSaints": "Explorar Santos",
+lib/translations.ts.bak.20251219_012110:77:    "hero.searchVerses": "Buscar Versículos",
+lib/translations.ts.bak.20251219_012110:80:    "hero.discoverSaint": "Descubrir mi Santo",
+lib/translations.ts.bak.20251219_012110:83:    "featured.title": "Explora Nuestra Fe",
+lib/translations.ts.bak.20251219_012110:86:    "featured.saintsLife.title": "Vida de los Santos",
+lib/translations.ts.bak.20251219_012110:88:    "featured.saintsMap.title": "Mapa de Santos",
+lib/translations.ts.bak.20251219_012110:89:    "featured.saintsMap.description": "Explora santos por países en nuestro mapa mundial interactivo",
+lib/translations.ts.bak.20251219_012110:90:    "featured.discoverSaint.title": "Descubre tu Santo",
+lib/translations.ts.bak.20251219_012110:92:    "featured.miracles.title": "Milagros",
+lib/translations.ts.bak.20251219_012110:94:    "featured.eucharist.title": "La Eucaristía",
+lib/translations.ts.bak.20251219_012110:98:    "featured.prayers.title": "Oraciones",
+lib/translations.ts.bak.20251219_012110:102:    "featured.explore": "Explorar",
+lib/translations.ts.bak.20251219_012110:105:    "saints.page.title": "Vidas de los Santos",
+lib/translations.ts.bak.20251219_012110:110:    "miracles.page.title": "Milagros de los Santos",
+lib/translations.ts.bak.20251219_012110:115:    "prayers.page.title": "Biblioteca de Oraciones",
+lib/translations.ts.bak.20251219_012110:125:    "map.page.title": "Mapa Mundial de Santos",
+lib/translations.ts.bak.20251219_012110:127:      "Explora santos de todo el mundo con nuestro mapa interactivo de alta precisión. Haz clic en los marcadores para descubrir los santos de cada región y conocer sus historias extraordinarias.",
+lib/translations.ts.bak.20251219_012110:130:    "eucharist.page.title": "La Sagrada Eucaristía",
+lib/translations.ts.bak.20251219_012110:137:      "Explora el rico simbolismo de la fe católica y descubre el profundo significado espiritual detrás de cada símbolo sagrado.",
+lib/translations.ts.bak.20251219_012110:140:    "discoverSaint.page.title": "Descubre tu Santo",
+lib/translations.ts.bak.20251219_012110:146:    "invitations.exploreDiscover": "Explora y Descubre",
+lib/translations.ts.bak.20251219_012110:147:    "invitations.saintMatch.title": "¿Qué Santo se Parece a Ti?",
+lib/translations.ts.bak.20251219_012110:152:    "invitations.worldMap.title": "Explora Santos del Mundo",
+lib/translations.ts.bak.20251219_012110:160:    "invitations.emotionalVerses.action": "Buscar Consuelo",
+lib/translations.ts.bak.20251219_012110:166:    "invitations.dailyInspiration.preview": "Santo del día, oración y reflexión personalizada",
+lib/translations.ts.bak.20251219_012110:169:    "invitations.discoverSaint": "Descubre tu Santo",
+lib/translations.ts.bak.20251219_012110:170:    "invitations.exploreMap": "Explorar Mapa",
+lib/translations.ts.bak.20251219_012110:171:    "invitations.stats.saints": "Santos Catalogados",
+lib/translations.ts.bak.20251219_012110:193:    "footer.explore": "Explorar",
+lib/translations.ts.bak.20251219_012110:194:    "footer.saints": "Santos",
+lib/translations.ts.bak.20251219_012110:196:    "footer.prayers": "Oraciones",
+lib/translations.ts.bak.20251219_012110:199:    "footer.eucharist": "La Eucaristía",
+lib/translations.ts.bak.20251219_012110:201:    "footer.miracles": "Milagros",
+lib/translations.ts.bak.20251219_012110:209:    "scriptureSearch.searchButton": "Buscar Versículos",
+lib/translations.ts.bak.20251219_012110:1072:    "nav.saints": "Santos",
+lib/translations.ts.bak.20251219_012110:1074:    "nav.miracles": "Milagres",
+lib/translations.ts.bak.20251219_012110:1076:    "nav.eucharist": "Eucaristia",
+lib/translations.ts.bak.20251219_012110:1082:    "common.search": "Buscar",
+lib/translations.ts.bak.20251219_012110:1086:    "common.cancel": "Cancelar",
+lib/translations.ts.bak.20251219_012110:1098:    "meta.title": "Site Católico - Fé, Santos e Orações",
+lib/translations.ts.bak.20251219_012110:1106:    "home.featured.saints": "Santos em Destaque",
+lib/translations.ts.bak.20251219_012110:1108:    "home.featured.miracles": "Milagros Recentes",
+lib/translations.ts.bak.20251219_012110:1111:    "saints.title": "Santos Católicos",
+lib/translations.ts.bak.20251219_012110:1124:    "miracles.title": "Milagres",
+lib/translations.ts.bak.20251219_012110:1137:    "hero.titleHighlight": "e os Milagres",
+lib/translations.ts.bak.20251219_012110:1140:    "hero.exploreSaints": "Explorar Santos",
+lib/translations.ts.bak.20251219_012110:1141:    "hero.searchVerses": "Buscar Versículos",
+lib/translations.ts.bak.20251219_012110:1144:    "hero.discoverSaint": "Descobrir meu Santo",
+lib/translations.ts.bak.20251219_012110:1149:    "featured.saintsLife.title": "Vida dos Santos",
+lib/translations.ts.bak.20251219_012110:1151:    "featured.saintsMap.title": "Mapa dos Santos",
+lib/translations.ts.bak.20251219_012110:1153:    "featured.discoverSaint.title": "Descubra seu Santo",
+lib/translations.ts.bak.20251219_012110:1155:    "featured.miracles.title": "Milagres",
+lib/translations.ts.bak.20251219_012110:1157:    "featured.eucharist.title": "A Eucaristia",
+lib/translations.ts.bak.20251219_012110:1165:    "featured.explore": "Explorar",
+lib/translations.ts.bak.20251219_012110:1168:    "saints.page.title": "Vidas dos Santos",
+lib/translations.ts.bak.20251219_012110:1173:    "miracles.page.title": "Milagres dos Santos",
+lib/translations.ts.bak.20251219_012110:1188:    "map.page.title": "Mapa Mundial de Santos",
+lib/translations.ts.bak.20251219_012110:1193:    "eucharist.page.title": "A Sagrada Eucaristia",
+lib/translations.ts.bak.20251219_012110:1203:    "discoverSaint.page.title": "Descubra seu Santo",
+lib/translations.ts.bak.20251219_012110:1210:    "invitations.saintMatch.title": "Qual Santo se Parece Com Você?",
+lib/translations.ts.bak.20251219_012110:1215:    "invitations.worldMap.title": "Explore Santos do Mundo",
+lib/translations.ts.bak.20251219_012110:1229:    "invitations.dailyInspiration.preview": "Santo do dia, oração e reflexão personalizada",
+lib/translations.ts.bak.20251219_012110:1232:    "invitations.discoverSaint": "Descubra Seu Santo",
+lib/translations.ts.bak.20251219_012110:1233:    "invitations.exploreMap": "Explorar Mapa",
+lib/translations.ts.bak.20251219_012110:1234:    "invitations.stats.saints": "Santos Catalogados",
+lib/translations.ts.bak.20251219_012110:1255:    "footer.explore": "Explorar",
+lib/translations.ts.bak.20251219_012110:1256:    "footer.saints": "Santos",
+lib/translations.ts.bak.20251219_012110:1261:    "footer.eucharist": "A Eucaristia",
+lib/translations.ts.bak.20251219_012110:1263:    "footer.miracles": "Milagres",
+lib/translations.ts.bak.20251219_012110:1271:    "scriptureSearch.searchButton": "Buscar Versículos",
+lib/translations.ts.bak.20251219_012110:2375:    "nav.eucharist": "Eucaristia",
+lib/translations.ts.bak.20251219_012110:2442:    "hero.discoverSaint": "Scopri il mio Santo",
+lib/translations.ts.bak.20251219_012110:2452:    "featured.discoverSaint.title": "Scopri il Tuo Santo",
+lib/translations.ts.bak.20251219_012110:2456:    "featured.eucharist.title": "L'Eucaristia",
+lib/translations.ts.bak.20251219_012110:2492:    "eucharist.page.title": "La Sacra Eucaristia",
+lib/translations.ts.bak.20251219_012110:2502:    "discoverSaint.page.title": "Scopri il Tuo Santo",
+lib/translations.ts.bak.20251219_012110:2509:    "invitations.saintMatch.title": "Quale Santo Ti Assomiglia?",
+lib/translations.ts.bak.20251219_012110:2528:    "invitations.dailyInspiration.preview": "Santo del giorno, preghiera e riflessione personalizzata",
+lib/translations.ts.bak.20251219_012110:2531:    "invitations.discoverSaint": "Scopri il mio Santo",
+lib/translations.ts.bak.20251219_012110:2561:    "footer.eucharist": "L'Eucaristia",
+
+== 7) Contenido que viene del BACKEND (fetch/axios) ==
+
+== 8) Claves de traducción usadas (t('...')) ==
+components/admin-miracles-list.tsx:139:        .split(",")
+components/admin-miracles-list.tsx:186:        .split(",")
+components/admin-miracles-list.tsx:214:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:136:        .split(",")
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:183:        .split(",")
+components/admin-miracles-list.tsx.bak.add_verified.20251220_020424:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:139:        .split(",")
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:186:        .split(",")
+components/admin-miracles-list.tsx.bak.approved_ui.20251220_023707:214:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:139:        .split(",")
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:186:        .split(",")
+components/admin-miracles-list.tsx.bak.connect_verify.20251220_022525:214:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.delete.20251220_002136:117:        .split(",")
+components/admin-miracles-list.tsx.bak.deletefix.20251220_002625:122:        .split(",")
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:122:        .split(",")
+components/admin-miracles-list.tsx.bak.edit.20251220_003843:149:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:136:        .split(",")
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:183:        .split(",")
+components/admin-miracles-list.tsx.bak.finalfix.20251220_013120:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.FIX.20251220_002330:117:        .split(",")
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:136:        .split(",")
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:183:        .split(",")
+components/admin-miracles-list.tsx.bak.fix2.20251220_013620:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:136:        .split(",")
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:183:        .split(",")
+components/admin-miracles-list.tsx.bak.fix3.20251220_013718:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:139:        .split(",")
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:186:        .split(",")
+components/admin-miracles-list.tsx.bak.fix_verify_scope.20251220_022646:214:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:136:        .split(",")
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:183:        .split(",")
+components/admin-miracles-list.tsx.bak.insertverify.20251220_013957:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:136:        .split(",")
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:183:        .split(",")
+components/admin-miracles-list.tsx.bak.remove_orphan_verify.20251220_014257:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:136:        .split(",")
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:183:        .split(",")
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012941:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:136:        .split(",")
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:183:        .split(",")
+components/admin-miracles-list.tsx.bak.togglefix.20251220_012959:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:136:        .split(",")
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:183:        .split(",")
+components/admin-miracles-list.tsx.bak.toggle_fix.20251220_014952:211:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:139:        .split(",")
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:186:        .split(",")
+components/admin-miracles-list.tsx.bak.verified_fix.20251220_020819:214:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:135:        .split(",")
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:182:        .split(",")
+components/admin-miracles-list.tsx.bak.verifybtn.20251220_012425:210:      alert("Milagro eliminado.")
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:136:        .split(",")
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:183:        .split(",")
+components/admin-miracles-list.tsx.bak.verifyfix.20251220_013507:211:      alert("Milagro eliminado.")
+components/admin-prayers-list.tsx:83:        alert("Título y contenido son obligatorios.")
+components/admin-prayers-list.tsx:110:        alert("Título y contenido son obligatorios.")
+components/admin-prayers-list.tsx:133:      alert("Oración eliminada.")
+components/admin-prayers-list.tsx.bak.fix.20251220_042510:125:      alert("Oración eliminada.")
+components/ai-chat-fullscreen.tsx:355:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx:456:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx:472:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx:483:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:233:          t("ai.demoResponse") ||
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:329:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:430:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:446:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx.bak_20260101_213132:457:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:353:                    {t("ai.poweredBy") || "Inteligencia Artificial"}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:454:                      placeholder={t("ai.placeholder") || "Pregúntame sobre santos, oraciones, milagros..."}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:470:                  {t("ai.disclaimer") || "La IA puede cometer errores. Verifica la información importante."}
+components/ai-chat-fullscreen.tsx.logerr.bak.20260101_214005:481:                <span className="text-[10px] sm:text-xs">{t("common.exploreMore") || "Explorar más"}</span>
+components/ai-chat.tsx:124:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx:126:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx:127:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx:153:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx:154:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx:218:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx:229:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/ai-chat.tsx.bak_20260101_213132:102:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx.bak_20260101_213132:104:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx.bak_20260101_213132:105:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:131:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:132:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx.bak_20260101_213132:196:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx.bak_20260101_213132:207:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:122:            <span className="text-sm font-medium text-primary">{t("ai.poweredBy")}</span>
+components/ai-chat.tsx.logerr.bak.20260101_214018:124:          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ai.title")}</h2>
+components/ai-chat.tsx.logerr.bak.20260101_214018:125:          <p className="text-muted-foreground max-w-2xl mx-auto">{t("ai.subtitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:151:                <p className="text-lg font-medium">{t("ai.welcomeTitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:152:                <p className="text-sm mt-1">{t("ai.welcomeSubtitle")}</p>
+components/ai-chat.tsx.logerr.bak.20260101_214018:216:                placeholder={t("ai.placeholder")}
+components/ai-chat.tsx.logerr.bak.20260101_214018:227:        <p className="text-xs text-center text-muted-foreground mt-4">{t("ai.disclaimer")}</p>
+components/dynamic-metadata.tsx:11:    document.title = t("metadata.title")
+components/dynamic-metadata.tsx:16:      metaDescription.setAttribute("content", t("metadata.description"))
+components/dynamic-metadata.tsx:22:      metaKeywords.setAttribute("content", t("metadata.keywords"))
+components/featured-sections.tsx:69:          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-foreground mb-4">{t("featured.title")}</h2>
+components/featured-sections.tsx:70:          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("featured.subtitle")}</p>
+components/featured-sections.tsx:96:                      {t("featured.new")}
+components/featured-sections.tsx:108:                      {section.featured ? t("featured.discoverNow") : t("featured.explore")}
+components/footer.tsx:20:            <p className="text-muted-foreground text-pretty max-w-md">{t("footer.description")}</p>
+components/footer.tsx:25:            <h3 className="font-playfair font-semibold text-foreground mb-4">{t("footer.explore")}</h3>
+components/footer.tsx:29:                  {t("footer.saints")}
+components/footer.tsx:34:                  {t("footer.worldMap")}
+components/footer.tsx:39:                  {t("footer.prayers")}
+components/footer.tsx:44:                  {t("footer.verses")}
+components/footer.tsx:52:            <h3 className="font-playfair font-semibold text-foreground mb-4">{t("footer.resources")}</h3>
+components/footer.tsx:56:                  {t("footer.eucharist")}
+components/footer.tsx:61:                  {t("footer.symbols")}
+components/footer.tsx:66:                  {t("footer.miracles")}
+components/footer.tsx:75:            {t("footer.madeWith")} <Heart className="h-4 w-4 text-secondary" /> {t("footer.forGlory")}
+components/header.tsx:15:    { name: t("nav.saints"), href: "/santos" },
+components/header.tsx:16:    { name: t("nav.miracles"), href: "/milagros" },
+components/header.tsx:17:    { name: t("nav.prayers"), href: "/oraciones" },
+components/header.tsx:18:    { name: t("nav.map"), href: "/mapa" },
+components/header.tsx:19:    { name: t("nav.eucharist"), href: "/eucaristia" },
+components/header.tsx:29:            <span className="font-playfair text-base sm:text-xl font-bold text-foreground truncate max-w-[140px] sm:max-w-none">{t("brand.title")}</span>
+components/hero.tsx:18:          <p className="text-sm font-medium text-primary uppercase tracking-widest mb-1">{t("hero.dedication")}</p>
+components/hero.tsx:19:          <p className="text-xs text-muted-foreground font-light">{t("hero.dedicationDates")}</p>
+components/hero.tsx:27:          <span className="text-sm font-medium text-primary">{t("hero.aiPowered")}</span>
+components/hero.tsx:31:          {t("hero.title")}
+components/hero.tsx:35:          {t("hero.subtitle")}
+components/hero.tsx:42:              {t("hero.startChat")}
+components/hero.tsx:47:            <Link href="/descubre-tu-santo">{t("hero.discoverSaint")}</Link>
+components/interactive-invitations.tsx:77:            {t("invitations.exploreDiscover")}
+components/interactive-invitations.tsx:80:            {t("invitations.title")}
+components/interactive-invitations.tsx:82:          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">{t("invitations.subtitle")}</p>
+components/interactive-invitations.tsx:153:                {t("invitations.notSure.title")}
+components/interactive-invitations.tsx:155:              <p className="text-muted-foreground">{t("invitations.notSure.description")}</p>
+components/interactive-invitations.tsx:162:                  {t("invitations.discoverSaint")}
+components/interactive-invitations.tsx:168:                  {t("invitations.exploreMap")}
+components/language-selector.tsx:40:                {t("selectLanguage")}
+components/language-selector.tsx.bak.20260102_232447:38:                {t("selectLanguage")}
+components/miracles-list.tsx:79:                .split(",")
+components/miracles-list.tsx:212:                setSelectedSaint("Todos los santos")
+components/miracles-list.tsx.bak.api.20251220_005126:87:                setSelectedSaint("Todos los santos")
+components/miracles-list.tsx.bak.badgetype.20251220_005849:79:                .split(",")
+components/miracles-list.tsx.bak.badgetype.20251220_005849:212:                setSelectedSaint("Todos los santos")
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:78:                .split(",")
+components/miracles-list.tsx.bak.createdatfix.20251220_005636:207:                setSelectedSaint("Todos los santos")
+components/miracles-list.tsx.bak.sorttype.20251220_005554:75:                .split(",")
+components/miracles-list.tsx.bak.sorttype.20251220_005554:177:                setSelectedSaint("Todos los santos")
+components/miracles-list.tsx.bak.sortverified.20251220_005836:79:                .split(",")
+components/miracles-list.tsx.bak.sortverified.20251220_005836:208:                setSelectedSaint("Todos los santos")
+components/miracles-list.tsx.bak.truefalse.20251220_005257:75:                .split(",")
+components/miracles-list.tsx.bak.truefalse.20251220_005257:177:                setSelectedSaint("Todos los santos")
+components/miracles-list.tsx.bak.useglobal.20251220_010659:79:                .split(",")
+components/miracles-list.tsx.bak.useglobal.20251220_010659:212:                setSelectedSaint("Todos los santos")
+components/saint-matcher-results.tsx:87:                  Por qué conectas con {result.saint.name.split(" ")[1] || result.saint.name}
+components/saints-filters.tsx:21:        <h2 className="font-playfair text-lg font-semibold">{t("saints.filters.title")}</h2>
+components/saints-filters.tsx:28:            placeholder={t("saints.filters.searchPlaceholder")}
+components/saints-filters.tsx:37:            <SelectValue placeholder={t("saints.filters.continentPlaceholder")} />
+components/saints-filters.tsx:50:            <SelectValue placeholder={t("saints.filters.centuryPlaceholder")} />
+components/scripture-search.tsx:17:    t("scriptureSearch.suggestions.fear"),
+components/scripture-search.tsx:18:    t("scriptureSearch.suggestions.anxiety"),
+components/scripture-search.tsx:19:    t("scriptureSearch.suggestions.sadness"),
+components/scripture-search.tsx:20:    t("scriptureSearch.suggestions.joy"),
+components/scripture-search.tsx:21:    t("scriptureSearch.suggestions.hope"),
+components/scripture-search.tsx:22:    t("scriptureSearch.suggestions.gratitude"),
+components/scripture-search.tsx:23:    t("scriptureSearch.suggestions.forgiveness"),
+components/scripture-search.tsx:24:    t("scriptureSearch.suggestions.love"),
+components/scripture-search.tsx:25:    t("scriptureSearch.suggestions.peace"),
+components/scripture-search.tsx:26:    t("scriptureSearch.suggestions.strength"),
+components/scripture-search.tsx:45:            {t("scriptureSearch.title")}
+components/scripture-search.tsx:47:          <p className="text-lg text-muted-foreground">{t("scriptureSearch.subtitle")}</p>
+components/scripture-search.tsx:52:            <CardTitle className="text-center font-playfair">{t("scriptureSearch.cardTitle")}</CardTitle>
+components/scripture-search.tsx:60:                  placeholder={t("scriptureSearch.placeholder")}
+components/scripture-search.tsx:87:                {t("scriptureSearch.searchButton")}
+components/world-map-leaflet.tsx:79:        const link = document.createElement("link")
+components/world-map-leaflet.tsx:87:        const script = document.createElement("script")
+
+== 9) Mostrar LanguageContext + i18n rápido (para ver lógica) ==
+--- contexts/language-context.tsx (1-220) ---
+     1	"use client";
+     2	
+     3	import React, { createContext, useContext, useMemo, useState } from "react";
+     4	import { translations } from "@/lib/translations";
+     5	
+     6	export type LanguageContextType = {
+     7	  language: string;
+     8	  setLanguage: (lang: string) => void;
+     9	  t: (key: string) => string;
+    10	};
+    11	
+    12	const LanguageContext = createContext<LanguageContextType | null>(null);
+    13	
+    14	export function LanguageProvider({ children }: { children: React.ReactNode }) {
+    15	  const [language, setLanguage] = useState<string>("es");
+    16	
+    17	  const value = useMemo<LanguageContextType>(() => {
+    18	    const defaultLanguage = "es";
+    19	
+    20	    const t = (key: string) => {
+    21	      const currentDict = translations[language] || translations[defaultLanguage] || {};
+    22	      const fallbackDict = translations[defaultLanguage] || {};
+    23	      return currentDict[key] ?? fallbackDict[key] ?? key;
+    24	    };
+    25	
+    26	    return { language, setLanguage, t };
+    27	  }, [language]);
+    28	
+    29	  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
+    30	}
+    31	
+    32	export function useLanguage() {
+    33	  const ctx = useContext(LanguageContext);
+    34	  if (!ctx) throw new Error("useLanguage debe usarse dentro de <LanguageProvider>");
+    35	  return ctx;
+    36	}
+
+--- lib/i18n.ts (1-220) ---
+     1	import type { translations } from "./translations"
+     2	
+     3	export const languages = [
+     4	  { code: "es" as const, name: "Español", flag: "🇪🇸" },
+     5	  { code: "en" as const, name: "English", flag: "🇺🇸" },
+     6	  { code: "zh" as const, name: "中文", flag: "🇨🇳" },
+     7	  { code: "hi" as const, name: "हिन्दी", flag: "🇮🇳" },
+     8	  { code: "ar" as const, name: "العربية", flag: "🇸🇦" },
+     9	  { code: "pt" as const, name: "Português", flag: "🇧🇷" },
+    10	  { code: "ru" as const, name: "Русский", flag: "🇷🇺" },
+    11	  { code: "fr" as const, name: "Français", flag: "🇫🇷" },
+    12	  { code: "ja" as const, name: "日本語", flag: "🇯🇵" },
+    13	  { code: "de" as const, name: "Deutsch", flag: "🇩🇪" },
+    14	  { code: "ko" as const, name: "한국어", flag: "🇰🇷" },
+    15	  { code: "it" as const, name: "Italiano", flag: "🇮🇹" },
+    16	  { code: "tr" as const, name: "Türkçe", flag: "🇹🇷" },
+    17	  { code: "vi" as const, name: "Tiếng Việt", flag: "🇻🇳" },
+    18	  { code: "pl" as const, name: "Polski", flag: "🇵🇱" },
+    19	] as const
+    20	
+    21	// ✅ Tipo de códigos basado en el array (fuente única de verdad)
+    22	export type LanguageCode = (typeof languages)[number]["code"]
+    23	
+    24	// ✅ Default language tipado
+    25	export const defaultLanguage: LanguageCode = "es"
+    26	
+    27	// ✅ Tipo de un item completo (por si lo necesitas)
+    28	export type Language = (typeof languages)[number]
+    29	
+    30	// (Opcional) si quieres asegurar que translations tiene esas keys:
+    31	// export type TranslationLanguageCode = keyof typeof translations
+    32	// y podrías comparar/validar en runtime si algún día lo necesitas.
+
