@@ -1,0 +1,256 @@
+==== FILES (exist?) ====
+-rw-r--r-- 1 sebas 197609  23315 Jan  3 13:19 components/ai-chat-fullscreen.tsx
+-rw-r--r-- 1 sebas 197609  16202 Jan  3 13:13 components/auth-modal.tsx
+-rw-r--r-- 1 sebas 197609  11450 Jan  3 13:13 components/chat-sidebar.tsx
+-rw-r--r-- 1 sebas 197609   6543 Dec 31 14:58 contexts/user-context.tsx
+-rw-r--r-- 1 sebas 197609 182704 Dec 31 14:58 lib/translations.ts
+
+==== USER CONTEXT (storage keys + retention hints) ====
+50:    const savedConversations = localStorage.getItem("catholic_conversations")
+84:      localStorage.setItem("catholic_conversations", JSON.stringify(conversations))
+132:    localStorage.removeItem("catholic_conversations")
+51:    const savedCurrentId = localStorage.getItem("catholic_current_conversation")
+90:      localStorage.setItem("catholic_current_conversation", currentConversation.id)
+133:    localStorage.removeItem("catholic_current_conversation")
+
+==== WHERE CONVERSATIONS ARE USED ====
+contexts/user-context.tsx:33:  createConversation: () => Conversation
+contexts/user-context.tsx:136:  const createConversation = (): Conversation => {
+contexts/user-context.tsx:193:        createConversation,
+components/ai-chat-fullscreen.tsx:15:  const { isAuthenticated, currentConversation, createConversation, updateConversation } = useUser()
+components/ai-chat-fullscreen.tsx:209:      const newConv = createConversation()
+components/chat-sidebar.tsx:19:    createConversation,
+components/chat-sidebar.tsx:205:              createConversation()
+contexts/user-context.tsx:36:  updateConversation: (id: string, messages: ChatMessage[]) => void
+contexts/user-context.tsx:161:  const updateConversation = (id: string, messages: ChatMessage[]) => {
+contexts/user-context.tsx:196:        updateConversation,
+components/ai-chat-fullscreen.tsx:15:  const { isAuthenticated, currentConversation, createConversation, updateConversation } = useUser()
+components/ai-chat-fullscreen.tsx:226:      updateConversation(convId, newMessages)
+components/ai-chat-fullscreen.tsx:246:        updateConversation(convId, updatedMessages)
+components/ai-chat-fullscreen.tsx:266:        updateConversation(convId, updatedMessages)
+contexts/user-context.tsx:28:  conversations: Conversation[]
+contexts/user-context.tsx:44:  const [conversations, setConversations] = useState<Conversation[]>([])
+contexts/user-context.tsx:50:    const savedConversations = localStorage.getItem("catholic_conversations")
+contexts/user-context.tsx:83:    if (conversations.length > 0) {
+contexts/user-context.tsx:84:      localStorage.setItem("catholic_conversations", JSON.stringify(conversations))
+contexts/user-context.tsx:86:  }, [conversations])
+contexts/user-context.tsx:132:    localStorage.removeItem("catholic_conversations")
+contexts/user-context.tsx:150:    const conv = conversations.find((c) => c.id === id)
+contexts/user-context.tsx:188:        conversations,
+components/chat-sidebar.tsx:17:    conversations,
+components/chat-sidebar.tsx:55:      noConversations: "No conversations",
+components/chat-sidebar.tsx:224:            {conversations.length === 0 ? (
+components/chat-sidebar.tsx:228:                {conversations.map((conv) => (
+
+==== SHOW user-context.tsx (first 260 lines) ====
+     1	"use client"
+     2	import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+     3	
+     4	export interface ChatMessage {
+     5	  id: string
+     6	  role: "user" | "assistant"
+     7	  content: string
+     8	  timestamp: Date
+     9	}
+    10	
+    11	export interface Conversation {
+    12	  id: string
+    13	  title: string
+    14	  messages: ChatMessage[]
+    15	  createdAt: Date
+    16	  updatedAt: Date
+    17	}
+    18	
+    19	export interface User {
+    20	  id: string
+    21	  name: string
+    22	  email: string
+    23	}
+    24	
+    25	interface UserContextType {
+    26	  user: User | null
+    27	  isAuthenticated: boolean
+    28	  conversations: Conversation[]
+    29	  currentConversation: Conversation | null
+    30	  login: (email: string, password: string, name?: string) => Promise<boolean>
+    31	  register: (name: string, email: string, password: string) => Promise<boolean>
+    32	  logout: () => void
+    33	  createConversation: () => Conversation
+    34	  selectConversation: (id: string) => void
+    35	  deleteConversation: (id: string) => void
+    36	  updateConversation: (id: string, messages: ChatMessage[]) => void
+    37	  renameConversation: (id: string, title: string) => void
+    38	}
+    39	
+    40	const UserContext = createContext<UserContextType | undefined>(undefined)
+    41	
+    42	export function UserProvider({ children }: { children: ReactNode }) {
+    43	  const [user, setUser] = useState<User | null>(null)
+    44	  const [conversations, setConversations] = useState<Conversation[]>([])
+    45	  const [currentConversation, setCurrentConversation] = useState<Conversation | null>(null)
+    46	
+    47	  useEffect(() => {
+    48	    // Cargar usuario y conversaciones del localStorage
+    49	    const savedUser = localStorage.getItem("catholic_user")
+    50	    const savedConversations = localStorage.getItem("catholic_conversations")
+    51	    const savedCurrentId = localStorage.getItem("catholic_current_conversation")
+    52	
+    53	    if (savedUser) {
+    54	      setUser(JSON.parse(savedUser))
+    55	    }
+    56	    if (savedConversations) {
+    57	      const convs = JSON.parse(savedConversations).map((c: Conversation) => ({
+    58	        ...c,
+    59	        createdAt: new Date(c.createdAt),
+    60	        updatedAt: new Date(c.updatedAt),
+    61	        messages: c.messages.map((m: ChatMessage) => ({
+    62	          ...m,
+    63	          timestamp: new Date(m.timestamp),
+    64	        })),
+    65	      }))
+    66	      setConversations(convs)
+    67	      if (savedCurrentId) {
+    68	        const current = convs.find((c: Conversation) => c.id === savedCurrentId)
+    69	        if (current) setCurrentConversation(current)
+    70	      }
+    71	    }
+    72	  }, [])
+    73	
+    74	  useEffect(() => {
+    75	    if (user) {
+    76	      localStorage.setItem("catholic_user", JSON.stringify(user))
+    77	    } else {
+    78	      localStorage.removeItem("catholic_user")
+    79	    }
+    80	  }, [user])
+    81	
+    82	  useEffect(() => {
+    83	    if (conversations.length > 0) {
+    84	      localStorage.setItem("catholic_conversations", JSON.stringify(conversations))
+    85	    }
+    86	  }, [conversations])
+    87	
+    88	  useEffect(() => {
+    89	    if (currentConversation) {
+    90	      localStorage.setItem("catholic_current_conversation", currentConversation.id)
+    91	    }
+    92	  }, [currentConversation])
+    93	
+    94	  const login = async (email: string, password: string, name?: string): Promise<boolean> => {
+    95	    // Simular login - conectar con tu backend
+    96	    const savedUsers = JSON.parse(localStorage.getItem("catholic_users") || "[]")
+    97	    const existingUser = savedUsers.find((u: { email: string; password: string }) => u.email === email)
+    98	
+    99	    if (existingUser && existingUser.password === password) {
+   100	      setUser({ id: existingUser.id, name: existingUser.name, email: existingUser.email })
+   101	      return true
+   102	    }
+   103	    return false
+   104	  }
+   105	
+   106	  const register = async (name: string, email: string, password: string): Promise<boolean> => {
+   107	    const savedUsers = JSON.parse(localStorage.getItem("catholic_users") || "[]")
+   108	    const existingUser = savedUsers.find((u: { email: string }) => u.email === email)
+   109	
+   110	    if (existingUser) {
+   111	      return false
+   112	    }
+   113	
+   114	    const newUser = {
+   115	      id: Date.now().toString(),
+   116	      name,
+   117	      email,
+   118	      password,
+   119	    }
+   120	
+   121	    savedUsers.push(newUser)
+   122	    localStorage.setItem("catholic_users", JSON.stringify(savedUsers))
+   123	    setUser({ id: newUser.id, name: newUser.name, email: newUser.email })
+   124	    return true
+   125	  }
+   126	
+   127	  const logout = () => {
+   128	    setUser(null)
+   129	    setConversations([])
+   130	    setCurrentConversation(null)
+   131	    localStorage.removeItem("catholic_user")
+   132	    localStorage.removeItem("catholic_conversations")
+   133	    localStorage.removeItem("catholic_current_conversation")
+   134	  }
+   135	
+   136	  const createConversation = (): Conversation => {
+   137	    const newConversation: Conversation = {
+   138	      id: Date.now().toString(),
+   139	      title: "Nueva conversación",
+   140	      messages: [],
+   141	      createdAt: new Date(),
+   142	      updatedAt: new Date(),
+   143	    }
+   144	    setConversations((prev) => [newConversation, ...prev])
+   145	    setCurrentConversation(newConversation)
+   146	    return newConversation
+   147	  }
+   148	
+   149	  const selectConversation = (id: string) => {
+   150	    const conv = conversations.find((c) => c.id === id)
+   151	    if (conv) setCurrentConversation(conv)
+   152	  }
+   153	
+   154	  const deleteConversation = (id: string) => {
+   155	    setConversations((prev) => prev.filter((c) => c.id !== id))
+   156	    if (currentConversation?.id === id) {
+   157	      setCurrentConversation(null)
+   158	    }
+   159	  }
+   160	
+   161	  const updateConversation = (id: string, messages: ChatMessage[]) => {
+   162	    setConversations((prev) =>
+   163	      prev.map((c) => {
+   164	        if (c.id === id) {
+   165	          const title = messages[0]?.content.slice(0, 30) + "..." || "Nueva conversación"
+   166	          return { ...c, messages, title, updatedAt: new Date() }
+   167	        }
+   168	        return c
+   169	      }),
+   170	    )
+   171	    if (currentConversation?.id === id) {
+   172	      setCurrentConversation((prev) => (prev ? { ...prev, messages, updatedAt: new Date() } : null))
+   173	    }
+   174	  }
+   175	
+   176	  const renameConversation = (id: string, title: string) => {
+   177	    setConversations((prev) => prev.map((c) => (c.id === id ? { ...c, title, updatedAt: new Date() } : c)))
+   178	    if (currentConversation?.id === id) {
+   179	      setCurrentConversation((prev) => (prev ? { ...prev, title } : null))
+   180	    }
+   181	  }
+   182	
+   183	  return (
+   184	    <UserContext.Provider
+   185	      value={{
+   186	        user,
+   187	        isAuthenticated: !!user,
+   188	        conversations,
+   189	        currentConversation,
+   190	        login,
+   191	        register,
+   192	        logout,
+   193	        createConversation,
+   194	        selectConversation,
+   195	        deleteConversation,
+   196	        updateConversation,
+   197	        renameConversation,
+   198	      }}
+   199	    >
+   200	      {children}
+   201	    </UserContext.Provider>
+   202	  )
+   203	}
+   204	
+   205	export function useUser() {
+   206	  const context = useContext(UserContext)
+   207	  if (!context) {
+   208	    throw new Error("useUser must be used within a UserProvider")
+   209	  }
+   210	  return context
+   211	}

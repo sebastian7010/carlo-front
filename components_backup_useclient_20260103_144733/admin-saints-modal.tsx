@@ -1,6 +1,7 @@
-"use client";
-
 import { T } from "@/components/t";
+
+'use client';
+
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";

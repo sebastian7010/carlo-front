@@ -39,3 +39,9 @@ next-env.d.ts
 *.bak_*
 nul
 _archive/
+
+# local backups / dumps
+*.bak.*
+*_backup_*/
+audit_*.txt
+bad_use_client.txt

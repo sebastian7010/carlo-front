@@ -22,15 +22,6 @@ export interface User {
   email: string
 }
 
-
-const RETENTION_DAYS = 90;
-const RETENTION_MS = RETENTION_DAYS * 24 * 60 * 60 * 1000;
-
-function pruneConversations(convs: Conversation[]): Conversation[] {
-  const cutoff = Date.now() - RETENTION_MS;
-  return convs.filter((c) => new Date(c.updatedAt).getTime() >= cutoff);
-}
-
 interface UserContextType {
   user: User | null
   isAuthenticated: boolean
@@ -63,7 +54,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       setUser(JSON.parse(savedUser))
     }
     if (savedConversations) {
-        const convs = JSON.parse(savedConversations).map((c: Conversation) => ({
+      const convs = JSON.parse(savedConversations).map((c: Conversation) => ({
         ...c,
         createdAt: new Date(c.createdAt),
         updatedAt: new Date(c.updatedAt),
@@ -72,13 +63,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
           timestamp: new Date(m.timestamp),
         })),
       }))
-        const pruned = pruneConversations(convs)
-        setConversations(pruned)
-        if (pruned.length !== convs.length) {
-          localStorage.setItem("catholic_conversations", JSON.stringify(pruned))
-        }
-        if (savedCurrentId) {
-          const current = pruned.find((c: Conversation) => c.id === savedCurrentId)
+      setConversations(convs)
+      if (savedCurrentId) {
+        const current = convs.find((c: Conversation) => c.id === savedCurrentId)
         if (current) setCurrentConversation(current)
       }
     }
@@ -93,8 +80,10 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }, [user])
 
   useEffect(() => {
+    if (conversations.length > 0) {
       localStorage.setItem("catholic_conversations", JSON.stringify(conversations))
-    }, [conversations])
+    }
+  }, [conversations])
 
   useEffect(() => {
     if (currentConversation) {
