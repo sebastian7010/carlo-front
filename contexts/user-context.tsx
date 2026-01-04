@@ -1,27 +1,34 @@
-"use client"
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+"use client";
+
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+
+const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+// CONVERSATIONS_API_PATCH
 
 export interface ChatMessage {
-  id: string
-  role: "user" | "assistant"
-  content: string
-  timestamp: Date
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: Date;
 }
 
 export interface Conversation {
-  id: string
-  title: string
-  messages: ChatMessage[]
-  createdAt: Date
-  updatedAt: Date
+  id: string;
+  title: string;
+  messages: ChatMessage[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface User {
-  id: string
-  name: string
-  email: string
+  id: string;
+  name: string;
+  email: string;
 }
 
+const LS_USER = "catholic_user";
+const LS_CONVS = "catholic_conversations";
+const LS_CURRENT = "catholic_current_conversation";
 
 const RETENTION_DAYS = 90;
 const RETENTION_MS = RETENTION_DAYS * 24 * 60 * 60 * 1000;
@@ -31,192 +38,373 @@ function pruneConversations(convs: Conversation[]): Conversation[] {
   return convs.filter((c) => new Date(c.updatedAt).getTime() >= cutoff);
 }
 
-interface UserContextType {
-  user: User | null
-  isAuthenticated: boolean
-  conversations: Conversation[]
-  currentConversation: Conversation | null
-  login: (email: string, password: string, name?: string) => Promise<boolean>
-  register: (name: string, email: string, password: string) => Promise<boolean>
-  logout: () => void
-  createConversation: () => Conversation
-  selectConversation: (id: string) => void
-  deleteConversation: (id: string) => void
-  updateConversation: (id: string, messages: ChatMessage[]) => void
-  renameConversation: (id: string, title: string) => void
+function genId() {
+  // browser-safe
+  const c: any = typeof crypto !== "undefined" ? crypto : null;
+  if (c?.randomUUID) return c.randomUUID();
+  return `${Date.now()}_${Math.random().toString(16).slice(2)}`;
 }
 
-const UserContext = createContext<UserContextType | undefined>(undefined)
+function reviveConversation(raw: any): Conversation {
+  return {
+    id: String(raw.id),
+    title: String(raw.title || "Nueva conversación"),
+    messages: Array.isArray(raw.messages)
+      ? raw.messages.map((m: any) => ({
+          id: String(m.id || genId()),
+          role: m.role === "assistant" ? "assistant" : "user",
+          content: String(m.content || ""),
+          timestamp: new Date(m.timestamp || m.createdAt || Date.now()),
+        }))
+      : [],
+    createdAt: new Date(raw.createdAt || Date.now()),
+    updatedAt: new Date(raw.updatedAt || Date.now()),
+  };
+}
+
+interface UserContextType {
+  user: User | null;
+  isAuthenticated: boolean;
+  conversations: Conversation[];
+  currentConversation: Conversation | null;
+
+  login: (email: string, password: string, _name?: string) => Promise<boolean>;
+  register: (name: string, email: string, password: string) => Promise<boolean>;
+  logout: () => void;
+
+  createConversation: () => Conversation;
+  selectConversation: (id: string) => void;
+  deleteConversation: (id: string) => void;
+  updateConversation: (id: string, messages: ChatMessage[]) => void;
+  renameConversation: (id: string, title: string) => void;
+}
+
+const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
-  const [conversations, setConversations] = useState<Conversation[]>([])
-  const [currentConversation, setCurrentConversation] = useState<Conversation | null>(null)
+  const [user, setUser] = useState<User | null>(null);
+  const [conversations, setConversations] = useState<Conversation[]>([]);
+  const [currentConversation, setCurrentConversation] = useState<Conversation | null>(null);
 
-  useEffect(() => {
-    // Cargar usuario y conversaciones del localStorage
-    const savedUser = localStorage.getItem("catholic_user")
-    const savedConversations = localStorage.getItem("catholic_conversations")
-    const savedCurrentId = localStorage.getItem("catholic_current_conversation")
+  const isAuthenticated = !!user;
 
-    if (savedUser) {
-      setUser(JSON.parse(savedUser))
-    }
-    if (savedConversations) {
-        const convs = JSON.parse(savedConversations).map((c: Conversation) => ({
-        ...c,
-        createdAt: new Date(c.createdAt),
-        updatedAt: new Date(c.updatedAt),
-        messages: c.messages.map((m: ChatMessage) => ({
-          ...m,
-          timestamp: new Date(m.timestamp),
-        })),
-      }))
-        const pruned = pruneConversations(convs)
-        setConversations(pruned)
-        if (pruned.length !== convs.length) {
-          localStorage.setItem("catholic_conversations", JSON.stringify(pruned))
-        }
-        if (savedCurrentId) {
-          const current = pruned.find((c: Conversation) => c.id === savedCurrentId)
-        if (current) setCurrentConversation(current)
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem("catholic_user", JSON.stringify(user))
-    } else {
-      localStorage.removeItem("catholic_user")
-    }
-  }, [user])
-
-  useEffect(() => {
-      localStorage.setItem("catholic_conversations", JSON.stringify(conversations))
-    }, [conversations])
-
-  useEffect(() => {
-    if (currentConversation) {
-      localStorage.setItem("catholic_current_conversation", currentConversation.id)
-    }
-  }, [currentConversation])
-
-  const login = async (email: string, password: string, name?: string): Promise<boolean> => {
-    // Simular login - conectar con tu backend
-    const savedUsers = JSON.parse(localStorage.getItem("catholic_users") || "[]")
-    const existingUser = savedUsers.find((u: { email: string; password: string }) => u.email === email)
-
-    if (existingUser && existingUser.password === password) {
-      setUser({ id: existingUser.id, name: existingUser.name, email: existingUser.email })
-      return true
-    }
-    return false
+  // --- helpers backend ---
+  async function fetchJSON(path: string, init?: RequestInit) {
+    const url = /^https?:\/\//.test(path) ? path : API + path;
+    const r = await fetch(url, {
+      ...init,
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        ...(init?.headers || {}),
+      },
+    });
+    return { r, json: await r.json().catch(() => ({})) };
   }
+
+  async function loadBackendConversations() {
+    const { r, json } = await fetchJSON(API + "/conversations", { method: "GET" });
+    if (!r.ok) return null;
+    const list = (json?.conversations || []).map((c: any) => ({
+      ...reviveConversation({ ...c, messages: [] }),
+      messages: [],
+    })) as Conversation[];
+    return list;
+  }
+
+  async function loadBackendMessages(convId: string) {
+    const { r, json } = await fetchJSON(`${API}/conversations/${convId}/messages`, { method: "GET" });
+    if (!r.ok) return null;
+
+    const msgs = (json?.messages || []).map((m: any) => ({
+      id: String(m.id || genId()),
+      role: m.role === "assistant" ? "assistant" : "user",
+      content: String(m.content || ""),
+      timestamp: new Date(m.createdAt || Date.now()),
+    })) as ChatMessage[];
+
+    return msgs;
+  }
+
+  async function ensureBackendConversation(conv: Conversation) {
+    if (!isAuthenticated) return;
+    // upsert por id (para que el front pueda usar su id local)
+    await fetchJSON(API + "/conversations", {
+      method: "POST",
+      body: JSON.stringify({ id: conv.id, title: conv.title }),
+    });
+  }
+
+  async function persistNewMessagesToBackend(conv: Conversation, prevLen: number, nextMsgs: ChatMessage[]) {
+    if (!isAuthenticated) return;
+
+    // asegura conv en DB
+    await ensureBackendConversation(conv);
+
+    const appended = nextMsgs.slice(prevLen);
+    for (const m of appended) {
+      await fetchJSON(`${API}/conversations/${conv.id}/messages`, {
+        method: "POST",
+        body: JSON.stringify({
+          role: m.role,
+          content: m.content,
+          title: conv.title,
+        }),
+      });
+    }
+  }
+
+  // --- hydrate local + backend session ---
+  useEffect(() => {
+    // local first (para que la UI no quede vacía)
+    try {
+      const savedUser = localStorage.getItem(LS_USER);
+      const savedConversations = localStorage.getItem(LS_CONVS);
+      const savedCurrentId = localStorage.getItem(LS_CURRENT);
+
+      if (savedUser) setUser(JSON.parse(savedUser));
+      if (savedConversations) {
+        const convs = pruneConversations(JSON.parse(savedConversations).map(reviveConversation));
+        setConversations(convs);
+
+        const current = convs.find((c) => c.id === savedCurrentId) || convs[0] || null;
+        setCurrentConversation(current);
+      }
+    } catch {
+      // ignore
+    }
+
+    // backend session (cookie)
+    (async () => {
+      const { r, json } = await fetchJSON("/auth/me", { method: "GET" });
+      if (!r.ok) return;
+
+      if (json?.user) {
+        setUser(json.user);
+
+        const remote = await loadBackendConversations();
+        if (remote && remote.length > 0) {
+          setConversations(remote);
+          setCurrentConversation(remote[0] || null);
+          localStorage.setItem(LS_CURRENT, remote[0]?.id || "");
+        } else {
+          // si no hay convs remotas, intentamos “subir” las locales (best effort)
+          const local = (() => {
+            try {
+              const raw = localStorage.getItem(LS_CONVS);
+              if (!raw) return [];
+              return pruneConversations(JSON.parse(raw).map(reviveConversation));
+            } catch {
+              return [];
+            }
+          })();
+
+          for (const c of local) {
+            await ensureBackendConversation(c);
+            // sube mensajes
+            for (const m of c.messages) {
+              await fetchJSON(`${API}/conversations/${c.id}/messages`, {
+                method: "POST",
+                body: JSON.stringify({ role: m.role, content: m.content, title: c.title }),
+              });
+            }
+          }
+        
+    // REMOTE2_RELOAD_PATCH
+    // ✅ IMPORTANTE: vuelve a cargar del backend y pinta sidebar
+    const remote2 = await loadBackendConversations();
+    if (remote2) {
+      setConversations(remote2);
+      setCurrentConversation(remote2[0] || null);
+      localStorage.setItem(LS_CURRENT, remote2[0]?.id || "");
+    }
+}
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // persist local
+  useEffect(() => {
+    try {
+      if (user) localStorage.setItem(LS_USER, JSON.stringify(user));
+      else localStorage.removeItem(LS_USER);
+    } catch {}
+  }, [user]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LS_CONVS, JSON.stringify(conversations));
+    } catch {}
+  }, [conversations]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LS_CURRENT, currentConversation?.id || "");
+    } catch {}
+  }, [currentConversation?.id]);
+
+  // --- auth actions ---
+  const login = async (email: string, password: string): Promise<boolean> => {
+    const { r, json } = await fetchJSON("/auth/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!r.ok) return false;
+    setUser(json?.user || null);
+
+    const remote = await loadBackendConversations();
+    if (remote) {
+      setConversations(remote);
+      setCurrentConversation(remote[0] || null);
+    }
+    return true;
+  };
 
   const register = async (name: string, email: string, password: string): Promise<boolean> => {
-    const savedUsers = JSON.parse(localStorage.getItem("catholic_users") || "[]")
-    const existingUser = savedUsers.find((u: { email: string }) => u.email === email)
+    const { r, json } = await fetchJSON("/auth/register", {
+      method: "POST",
+      body: JSON.stringify({ name, email, password }),
+    });
 
-    if (existingUser) {
-      return false
+    if (!r.ok) return false;
+    setUser(json?.user || null);
+
+    const remote = await loadBackendConversations();
+    if (remote) {
+      setConversations(remote);
+      setCurrentConversation(remote[0] || null);
     }
-
-    const newUser = {
-      id: Date.now().toString(),
-      name,
-      email,
-      password,
-    }
-
-    savedUsers.push(newUser)
-    localStorage.setItem("catholic_users", JSON.stringify(savedUsers))
-    setUser({ id: newUser.id, name: newUser.name, email: newUser.email })
-    return true
-  }
+    return true;
+  };
 
   const logout = () => {
-    setUser(null)
-    setConversations([])
-    setCurrentConversation(null)
-    localStorage.removeItem("catholic_user")
-    localStorage.removeItem("catholic_conversations")
-    localStorage.removeItem("catholic_current_conversation")
-  }
+    fetch(API + "/auth/logout", { method: "POST", credentials: "include" }).catch(() => {});
+    setUser(null);
+    setConversations([]);
+    setCurrentConversation(null);
+    try {
+      localStorage.removeItem(LS_USER);
+      localStorage.removeItem(LS_CONVS);
+      localStorage.removeItem(LS_CURRENT);
+    } catch {}
+  };
 
+  // --- conversations actions ---
   const createConversation = (): Conversation => {
+    const now = new Date();
     const newConversation: Conversation = {
-      id: Date.now().toString(),
+      id: genId(),
       title: "Nueva conversación",
       messages: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }
-    setConversations((prev) => [newConversation, ...prev])
-    setCurrentConversation(newConversation)
-    return newConversation
-  }
+      createdAt: now,
+      updatedAt: now,
+    };
+
+    setConversations((prev) => [newConversation, ...prev]);
+    setCurrentConversation(newConversation);
+
+    // backend best-effort (no bloquea UI)
+    if (isAuthenticated) void ensureBackendConversation(newConversation);
+
+    return newConversation;
+  };
 
   const selectConversation = (id: string) => {
-    const conv = conversations.find((c) => c.id === id)
-    if (conv) setCurrentConversation(conv)
-  }
+    const conv = conversations.find((c) => c.id === id);
+    if (!conv) return;
+
+    setCurrentConversation(conv);
+
+    if (isAuthenticated) {
+      void (async () => {
+        const msgs = await loadBackendMessages(id);
+        if (!msgs) return;
+
+        setConversations((prev) =>
+          prev.map((c) => (c.id === id ? { ...c, messages: msgs, updatedAt: new Date() } : c))
+        );
+
+        setCurrentConversation((prev) => (prev?.id === id ? { ...prev, messages: msgs } : prev));
+      })();
+    }
+  };
 
   const deleteConversation = (id: string) => {
-    setConversations((prev) => prev.filter((c) => c.id !== id))
-    if (currentConversation?.id === id) {
-      setCurrentConversation(null)
+    setConversations((prev) => prev.filter((c) => c.id !== id));
+    if (currentConversation?.id === id) setCurrentConversation(null);
+
+    if (isAuthenticated) {
+      void fetchJSON(`${API}/conversations/${id}`, { method: "DELETE" });
     }
-  }
+  };
 
   const updateConversation = (id: string, messages: ChatMessage[]) => {
+    // importante: detectar append para persistir sin duplicar
+    let prevLen = 0;
+    const convSnapshot = conversations.find((c) => c.id === id);
+    if (convSnapshot) prevLen = convSnapshot.messages.length;
+
     setConversations((prev) =>
       prev.map((c) => {
-        if (c.id === id) {
-          const title = messages[0]?.content.slice(0, 30) + "..." || "Nueva conversación"
-          return { ...c, messages, title, updatedAt: new Date() }
-        }
-        return c
-      }),
-    )
+        if (c.id !== id) return c;
+        const title = (messages[0]?.content?.slice(0, 30) + "…") || c.title || "Nueva conversación";
+        return { ...c, messages, title, updatedAt: new Date() };
+      })
+    );
+
     if (currentConversation?.id === id) {
-      setCurrentConversation((prev) => (prev ? { ...prev, messages, updatedAt: new Date() } : null))
+      setCurrentConversation((prev) => (prev ? { ...prev, messages, updatedAt: new Date() } : null));
     }
-  }
+
+    // persist appended messages only
+    if (isAuthenticated) {
+      const conv = convSnapshot || currentConversation;
+      if (conv) {
+        const nextConv: Conversation = {
+          ...conv,
+          messages,
+          title: (messages[0]?.content?.slice(0, 30) + "…") || conv.title,
+          updatedAt: new Date(),
+        };
+        void persistNewMessagesToBackend(nextConv, prevLen, messages);
+      }
+    }
+  };
 
   const renameConversation = (id: string, title: string) => {
-    setConversations((prev) => prev.map((c) => (c.id === id ? { ...c, title, updatedAt: new Date() } : c)))
-    if (currentConversation?.id === id) {
-      setCurrentConversation((prev) => (prev ? { ...prev, title } : null))
-    }
-  }
+    setConversations((prev) => prev.map((c) => (c.id === id ? { ...c, title, updatedAt: new Date() } : c)));
+    if (currentConversation?.id === id) setCurrentConversation((prev) => (prev ? { ...prev, title } : null));
 
-  return (
-    <UserContext.Provider
-      value={{
-        user,
-        isAuthenticated: !!user,
-        conversations,
-        currentConversation,
-        login,
-        register,
-        logout,
-        createConversation,
-        selectConversation,
-        deleteConversation,
-        updateConversation,
-        renameConversation,
-      }}
-    >
-      {children}
-    </UserContext.Provider>
-  )
+    if (isAuthenticated) {
+      void fetchJSON(`${API}/conversations/${id}`, { method: "PATCH", body: JSON.stringify({ title }) });
+    }
+  };
+
+  const value = useMemo(
+    () => ({
+      user,
+      isAuthenticated,
+      conversations,
+      currentConversation,
+      login,
+      register,
+      logout,
+      createConversation,
+      selectConversation,
+      deleteConversation,
+      updateConversation,
+      renameConversation,
+    }),
+    [user, isAuthenticated, conversations, currentConversation]
+  );
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
 
 export function useUser() {
-  const context = useContext(UserContext)
-  if (!context) {
-    throw new Error("useUser must be used within a UserProvider")
-  }
-  return context
+  const context = useContext(UserContext);
+  if (!context) throw new Error("useUser must be used within a UserProvider");
+  return context;
 }
