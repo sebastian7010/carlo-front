@@ -33,7 +33,12 @@ const featuredPrayers = [
   },
 ]
 
-export function FeaturedPrayers() {
+type FeaturedPrayersProps = {
+  prayers?: any[];
+};
+
+export function FeaturedPrayers({ prayers: _prayers }: FeaturedPrayersProps) {
+
   return (
     <div className="space-y-8">
       <div className="text-center">
