@@ -26,7 +26,7 @@ biography?: string | null;
 type AdminSaintsListProps = {
   saints: Saint[];
   onAddNew: () => void;
-  onEdit: (saint: Saint) => void;
+  onEdit: (_saint: Saint) => void;
 };
 
 export function AdminSaintsList({ saints, onAddNew, onEdit }: AdminSaintsListProps) {
@@ -96,26 +96,26 @@ export function AdminSaintsList({ saints, onAddNew, onEdit }: AdminSaintsListPro
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredSaints.map((saint) => {
+        {filteredSaints.map((_saint) => {
           const imgSrc =
-            saint.imageUrl?.startsWith("data:")
-              ? saint.imageUrl
-              : saint.imageUrl || "/placeholder.svg";
+            _saint.imageUrl?.startsWith("data:")
+              ? _saint.imageUrl
+              : _saint.imageUrl || "/placeholder.svg";
 
           return (
-          <Card key={saint.id} className="group hover:shadow-lg transition-all duration-300">
+          <Card key={_saint.id} className="group hover:shadow-lg transition-all duration-300">
             <div className="relative h-32 overflow-hidden rounded-t-lg">
               <Image
                 src={imgSrc}
-                alt={saint.name}
+                alt={_saint.name}
                 fill
                 className="object-cover"
                 unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-2 left-2 right-2">
-                <h3 className="font-playfair text-lg font-bold text-white truncate">{saint.name}</h3>
-                <p className="text-white/80 text-xs truncate">slug: {saint.slug}</p>
+                <h3 className="font-playfair text-lg font-bold text-white truncate">{_saint.name}</h3>
+                <p className="text-white/80 text-xs truncate">slug: {_saint.slug}</p>
               </div>
             </div>
 
@@ -123,11 +123,11 @@ export function AdminSaintsList({ saints, onAddNew, onEdit }: AdminSaintsListPro
               <div className="space-y-2 mb-4">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Calendar className="h-3 w-3" />
-                  <span>{new Date(saint.createdAt).toLocaleDateString()}</span>
+                  <span>{new Date(_saint.createdAt).toLocaleDateString()}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <MapPin className="h-3 w-3" />
-                  <span>{saint.country ?? "—"}</span>
+                  <span>{_saint.country ?? "—"}</span>
                 </div>
               </div>
 
@@ -136,7 +136,7 @@ export function AdminSaintsList({ saints, onAddNew, onEdit }: AdminSaintsListPro
                   size="sm"
                   variant="outline"
                   className="flex-1 bg-transparent"
-                  onClick={() => onEdit(saint)}
+                  onClick={() => onEdit(_saint)}
                 >
                   <Edit className="h-3 w-3 mr-1" />
                   Editar
@@ -145,8 +145,8 @@ export function AdminSaintsList({ saints, onAddNew, onEdit }: AdminSaintsListPro
                 <Button
                   size="sm"
                   variant="outline"
-                  onClick={() => onDelete(saint.id)}
-                  disabled={deletingId === saint.id}
+                  onClick={() => onDelete(_saint.id)}
+                  disabled={deletingId === _saint.id}
                   className="text-destructive hover:bg-destructive hover:text-destructive-foreground bg-transparent"
                 >
                   <Trash2 className="h-3 w-3" />

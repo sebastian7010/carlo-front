@@ -97,7 +97,7 @@ export function WorldMap() {
             draggable={false}
           />
 
-          {countries.map((country, index) => {
+          {countries.map((country, _index) => {
             // Convertir coordenadas geográficas a posición en la imagen
             const x = ((country.coordinates[1] + 180) / 360) * 100
             const y = ((90 - country.coordinates[0]) / 180) * 100

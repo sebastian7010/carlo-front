@@ -10,7 +10,7 @@ import { Save, ArrowLeft } from "lucide-react"
 
 interface PrayerFormProps {
   onClose: () => void
-  onSave: (prayer: any) => void
+  onSave: (_prayer: any) => void
   prayer?: any
 }
 

@@ -12,7 +12,7 @@ import { X, Plus, Save, ArrowLeft } from "lucide-react"
 
 interface MiracleFormProps {
   onClose: () => void
-  onSave: (miracle: any) => void
+  onSave: (_miracle: any) => void
   miracle?: any
 }
 
