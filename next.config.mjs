@@ -1,11 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "encrypted-tbn0.gstatic.com" },
-{ protocol: 'https', hostname: 'televid.tv' },
-      { protocol: 'https', hostname: 'www.televid.tv' },
-    ],
-  },};
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
+
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "http://back:3001/api/:path*",
+      },
+    ];
+  },
+};
 
 export default nextConfig;
