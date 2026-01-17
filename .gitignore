@@ -47,3 +47,8 @@ audit_*.txt
 bad_use_client.txt
 .env
 .env.*
+
+# backups locales
+components_backup_*/
+*.bak.*
+
