@@ -1,16 +1,21 @@
-/** @type {import('next').NextConfig} */
+﻿/** @type {import('next').NextConfig} */
 const nextConfig = {
   async rewrites() {
-    const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "https://njnpudxawz.us-east-1.awsapprunner.com";
+    const BACKEND =
+      process.env.NEXT_PUBLIC_BACKEND_URL || "https://njnpudxawz.us-east-1.awsapprunner.com";
+
     return [
-      { source: "/api/:path*", destination: `${BACKEND}/api/:path*` },
-      { source: "/ai/:path*", destination: `${BACKEND}/ai/:path*` },
-      { source: "/discover-saint", destination: `${BACKEND}/discover-saint` },
-      { source: "/descubrir-saint", destination: `${BACKEND}/descubrir-saint` },
-      { source: "/saints/:path*", destination: `${BACKEND}/saints/:path*` },
-      { source: "/prayers/:path*", destination: `${BACKEND}/prayers/:path*` },
-      { source: "/miracles/:path*", destination: `${BACKEND}/miracles/:path*` },
-      { source: "/health", destination: `${BACKEND}/health` },
+      { source: "/api/:path*", destination: BACKEND + "/api/:path*" },
+      { source: "/ai/:path*", destination: BACKEND + "/ai/:path*" },
+
+      { source: "/discover-saint", destination: BACKEND + "/discover-saint" },
+      { source: "/descubrir-saint", destination: BACKEND + "/descubrir-saint" },
+
+      { source: "/saints/:path*", destination: BACKEND + "/saints/:path*" },
+      { source: "/prayers/:path*", destination: BACKEND + "/prayers/:path*" },
+      { source: "/miracles/:path*", destination: BACKEND + "/miracles/:path*" },
+
+      { source: "/health", destination: BACKEND + "/health" },
     ];
   },
   ,experimental: { disableOptimizedLoading: true }
