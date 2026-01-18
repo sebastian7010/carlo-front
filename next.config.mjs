@@ -13,6 +13,7 @@ const nextConfig = {
       { source: "/health", destination: `${BACKEND}/health` },
     ];
   },
+  ,experimental: { disableOptimizedLoading: true }
 };
 
 export default nextConfig;
