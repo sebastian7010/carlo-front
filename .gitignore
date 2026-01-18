@@ -52,3 +52,5 @@ bad_use_client.txt
 components_backup_*/
 *.bak.*
 
+
+api_search_report_*.txt
