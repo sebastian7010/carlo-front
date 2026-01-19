@@ -15,10 +15,10 @@ type MiracleApi = {
 };
 
 async function getMiraclesBySaintId(saintId: string) {
-
-  const res = await fetch(apiUrl("/saints/" + encodeURIComponent(saintId) + "/miracles"), { cache: "no-store",
-    cache: "no-store",
-  });
+  const res = await fetch(
+    apiUrl("/saints/" + encodeURIComponent(saintId) + "/miracles"),
+    { cache: "no-store" }
+  );
 
   if (!res.ok) return [];
 
@@ -36,10 +36,10 @@ async function getMiraclesBySaintId(saintId: string) {
 }
 
 async function getSaint(slug: string): Promise<Saint> {
-
-  const res = await fetch(apiUrl("/saints/" + encodeURIComponent(slug)), { cache: "no-store",
-    cache: "no-store",
-  });
+  const res = await fetch(
+    apiUrl("/saints/" + encodeURIComponent(slug)),
+    { cache: "no-store" }
+  );
 
   if (res.status === 404) notFound();
   if (!res.ok) throw new Error(`Error al traer santo: ${res.status}`);
