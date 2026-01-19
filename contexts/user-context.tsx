@@ -2,8 +2,8 @@
 
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
-const API = '';
-// CONVERSATIONS_API_PATCH
+// En el browser SIEMPRE relativo (evita CORS). Vercel rewrites lo manda al backend.
+const API = "";
 
 export interface ChatMessage {
   id: string;
@@ -39,7 +39,6 @@ function pruneConversations(convs: Conversation[]): Conversation[] {
 }
 
 function genId() {
-  // browser-safe
   const c: any = typeof crypto !== "undefined" ? crypto : null;
   if (c?.randomUUID) return c.randomUUID();
   return `${Date.now()}_${Math.random().toString(16).slice(2)}`;
@@ -48,7 +47,7 @@ function genId() {
 function reviveConversation(raw: any): Conversation {
   return {
     id: String(raw.id),
-    title: String(raw.title || "Nueva conversaciÃ³n"),
+    title: String(raw.title || "Nueva conversación"),
     messages: Array.isArray(raw.messages)
       ? raw.messages.map((m: any) => ({
           id: String(m.id || genId()),
@@ -90,30 +89,35 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   // --- helpers backend ---
   async function fetchJSON(path: string, init?: RequestInit) {
-    const url = /^https?:\/\//.test(path) ? path : API + path;
+    const url = /^https?:\/\//.test(path) ? path : API + (path.startsWith("/") ? path : `/${path}`);
+
     const r = await fetch(url, {
       ...init,
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
+        ...(init?.body ? { "Content-Type": "application/json" } : {}),
         ...(init?.headers || {}),
       },
     });
-    return { r, json: await r.json().catch(() => ({})) };
+
+    const json = await r.json().catch(() => ({} as any));
+    return { r, json };
   }
 
   async function loadBackendConversations() {
-    const { r, json } = await fetchJSON(API + "/conversations", { method: "GET" });
+    const { r, json } = await fetchJSON("/conversations", { method: "GET" });
     if (!r.ok) return null;
+
     const list = (json?.conversations || []).map((c: any) => ({
       ...reviveConversation({ ...c, messages: [] }),
       messages: [],
     })) as Conversation[];
+
     return list;
   }
 
   async function loadBackendMessages(convId: string) {
-    const { r, json } = await fetchJSON(`${API}/conversations/${convId}/messages`, { method: "GET" });
+    const { r, json } = await fetchJSON(`/conversations/${convId}/messages`, { method: "GET" });
     if (!r.ok) return null;
 
     const msgs = (json?.messages || []).map((m: any) => ({
@@ -128,8 +132,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   async function ensureBackendConversation(conv: Conversation) {
     if (!isAuthenticated) return;
-    // upsert por id (para que el front pueda usar su id local)
-    await fetchJSON(API + "/conversations", {
+    await fetchJSON("/conversations", {
       method: "POST",
       body: JSON.stringify({ id: conv.id, title: conv.title }),
     });
@@ -138,12 +141,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
   async function persistNewMessagesToBackend(conv: Conversation, prevLen: number, nextMsgs: ChatMessage[]) {
     if (!isAuthenticated) return;
 
-    // asegura conv en DB
     await ensureBackendConversation(conv);
 
     const appended = nextMsgs.slice(prevLen);
     for (const m of appended) {
-      await fetchJSON(`${API}/conversations/${conv.id}/messages`, {
+      await fetchJSON(`/conversations/${conv.id}/messages`, {
         method: "POST",
         body: JSON.stringify({
           role: m.role,
@@ -156,7 +158,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   // --- hydrate local + backend session ---
   useEffect(() => {
-    // local first (para que la UI no quede vacÃ­a)
+    // local first
     try {
       const savedUser = localStorage.getItem(LS_USER);
       const savedConversations = localStorage.getItem(LS_CONVS);
@@ -177,7 +179,17 @@ export function UserProvider({ children }: { children: ReactNode }) {
     // backend session (cookie)
     (async () => {
       const { r, json } = await fetchJSON("/auth/me", { method: "GET" });
-      if (!r.ok) return;
+
+      // ✅ 401 = normal (no logueado). No rompas la app.
+      if (r.status === 401) {
+        setUser(null);
+        return;
+      }
+
+      if (!r.ok) {
+        // fallo raro, pero no tumbar UI
+        return;
+      }
 
       if (json?.user) {
         setUser(json.user);
@@ -187,38 +199,37 @@ export function UserProvider({ children }: { children: ReactNode }) {
           setConversations(remote);
           setCurrentConversation(remote[0] || null);
           localStorage.setItem(LS_CURRENT, remote[0]?.id || "");
-        } else {
-          // si no hay convs remotas, intentamos â€œsubirâ€ las locales (best effort)
-          const local = (() => {
-            try {
-              const raw = localStorage.getItem(LS_CONVS);
-              if (!raw) return [];
-              return pruneConversations(JSON.parse(raw).map(reviveConversation));
-            } catch {
-              return [];
-            }
-          })();
+          return;
+        }
 
-          for (const c of local) {
-            await ensureBackendConversation(c);
-            // sube mensajes
-            for (const m of c.messages) {
-              await fetchJSON(`${API}/conversations/${c.id}/messages`, {
-                method: "POST",
-                body: JSON.stringify({ role: m.role, content: m.content, title: c.title }),
-              });
-            }
+        // si no hay convs remotas, subimos locales best-effort
+        const local = (() => {
+          try {
+            const raw = localStorage.getItem(LS_CONVS);
+            if (!raw) return [];
+            return pruneConversations(JSON.parse(raw).map(reviveConversation));
+          } catch {
+            return [];
           }
-        
-    // REMOTE2_RELOAD_PATCH
-    // âœ… IMPORTANTE: vuelve a cargar del backend y pinta sidebar
-    const remote2 = await loadBackendConversations();
-    if (remote2) {
-      setConversations(remote2);
-      setCurrentConversation(remote2[0] || null);
-      localStorage.setItem(LS_CURRENT, remote2[0]?.id || "");
-    }
-}
+        })();
+
+        for (const c of local) {
+          await ensureBackendConversation(c);
+          for (const m of c.messages) {
+            await fetchJSON(`/conversations/${c.id}/messages`, {
+              method: "POST",
+              body: JSON.stringify({ role: m.role, content: m.content, title: c.title }),
+            });
+          }
+        }
+
+        // recarga para pintar sidebar
+        const remote2 = await loadBackendConversations();
+        if (remote2) {
+          setConversations(remote2);
+          setCurrentConversation(remote2[0] || null);
+          localStorage.setItem(LS_CURRENT, remote2[0]?.id || "");
+        }
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -252,6 +263,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     });
 
     if (!r.ok) return false;
+
     setUser(json?.user || null);
 
     const remote = await loadBackendConversations();
@@ -259,6 +271,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       setConversations(remote);
       setCurrentConversation(remote[0] || null);
     }
+
     return true;
   };
 
@@ -269,6 +282,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     });
 
     if (!r.ok) return false;
+
     setUser(json?.user || null);
 
     const remote = await loadBackendConversations();
@@ -276,11 +290,12 @@ export function UserProvider({ children }: { children: ReactNode }) {
       setConversations(remote);
       setCurrentConversation(remote[0] || null);
     }
+
     return true;
   };
 
   const logout = () => {
-    fetch(API + "/auth/logout", { method: "POST", credentials: "include" }).catch(() => {});
+    fetch("/auth/logout", { method: "POST", credentials: "include" }).catch(() => {});
     setUser(null);
     setConversations([]);
     setCurrentConversation(null);
@@ -296,7 +311,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     const now = new Date();
     const newConversation: Conversation = {
       id: genId(),
-      title: "Nueva conversaciÃ³n",
+      title: "Nueva conversación",
       messages: [],
       createdAt: now,
       updatedAt: now,
@@ -305,7 +320,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setConversations((prev) => [newConversation, ...prev]);
     setCurrentConversation(newConversation);
 
-    // backend best-effort (no bloquea UI)
     if (isAuthenticated) void ensureBackendConversation(newConversation);
 
     return newConversation;
@@ -336,12 +350,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
     if (currentConversation?.id === id) setCurrentConversation(null);
 
     if (isAuthenticated) {
-      void fetchJSON(`${API}/conversations/${id}`, { method: "DELETE" });
+      void fetchJSON(`/conversations/${id}`, { method: "DELETE" });
     }
   };
 
   const updateConversation = (id: string, messages: ChatMessage[]) => {
-    // importante: detectar append para persistir sin duplicar
     let prevLen = 0;
     const convSnapshot = conversations.find((c) => c.id === id);
     if (convSnapshot) prevLen = convSnapshot.messages.length;
@@ -349,7 +362,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setConversations((prev) =>
       prev.map((c) => {
         if (c.id !== id) return c;
-        const title = (messages[0]?.content?.slice(0, 30) + "â€¦") || c.title || "Nueva conversaciÃ³n";
+        const title = (messages[0]?.content?.slice(0, 30) + "…") || c.title || "Nueva conversación";
         return { ...c, messages, title, updatedAt: new Date() };
       })
     );
@@ -358,14 +371,13 @@ export function UserProvider({ children }: { children: ReactNode }) {
       setCurrentConversation((prev) => (prev ? { ...prev, messages, updatedAt: new Date() } : null));
     }
 
-    // persist appended messages only
     if (isAuthenticated) {
       const conv = convSnapshot || currentConversation;
       if (conv) {
         const nextConv: Conversation = {
           ...conv,
           messages,
-          title: (messages[0]?.content?.slice(0, 30) + "â€¦") || conv.title,
+          title: (messages[0]?.content?.slice(0, 30) + "…") || conv.title,
           updatedAt: new Date(),
         };
         void persistNewMessagesToBackend(nextConv, prevLen, messages);
@@ -374,11 +386,16 @@ export function UserProvider({ children }: { children: ReactNode }) {
   };
 
   const renameConversation = (id: string, title: string) => {
-    setConversations((prev) => prev.map((c) => (c.id === id ? { ...c, title, updatedAt: new Date() } : c)));
-    if (currentConversation?.id === id) setCurrentConversation((prev) => (prev ? { ...prev, title } : null));
+    setConversations((prev) =>
+      prev.map((c) => (c.id === id ? { ...c, title, updatedAt: new Date() } : c))
+    );
+
+    if (currentConversation?.id === id) {
+      setCurrentConversation((prev) => (prev ? { ...prev, title } : null));
+    }
 
     if (isAuthenticated) {
-      void fetchJSON(`${API}/conversations/${id}`, { method: "PATCH", body: JSON.stringify({ title }) });
+      void fetchJSON(`/conversations/${id}`, { method: "PATCH", body: JSON.stringify({ title }) });
     }
   };
 
@@ -408,4 +425,3 @@ export function useUser() {
   if (!context) throw new Error("useUser must be used within a UserProvider");
   return context;
 }
-
