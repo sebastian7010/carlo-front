@@ -24,7 +24,6 @@ async function getMiraclesBySaintId(saintId: string) {
 
   const api = (await res.json()) as MiracleApi[];
 
-  // Map backend -> UI
   return (Array.isArray(api) ? api : []).map((m) => ({
     id: m.id,
     title: m.title ?? "Milagro",
@@ -36,10 +35,9 @@ async function getMiraclesBySaintId(saintId: string) {
 }
 
 async function getSaint(slug: string): Promise<Saint> {
-  const res = await fetch(
-    apiUrl("/saints/" + encodeURIComponent(slug)),
-    { cache: "no-store" }
-  );
+  const res = await fetch(apiUrl("/saints/" + encodeURIComponent(slug)), {
+    cache: "no-store",
+  });
 
   if (res.status === 404) notFound();
   if (!res.ok) throw new Error(`Error al traer santo: ${res.status}`);
@@ -48,7 +46,6 @@ async function getSaint(slug: string): Promise<Saint> {
 
   const miracles = api?.id ? await getMiraclesBySaintId(String(api.id)) : [];
 
-  // Map: tu backend usa imageUrl, tu UI usa image
   return {
     id: api.id ?? slug,
     slug: api.slug ?? slug,
@@ -67,7 +64,6 @@ async function getSaint(slug: string): Promise<Saint> {
     symbols: Array.isArray(api.symbols) ? api.symbols : [],
     prayers: Array.isArray(api.prayers) ? api.prayers : [],
 
-    // ✅ ahora sí: milagros listados y con shape correcto para SaintDetail
     miracles,
   };
 }
