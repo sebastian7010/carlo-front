@@ -1,4 +1,4 @@
-import { Header } from "@/components/header";
+﻿import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PrayersIntroduction } from "@/components/prayers-introduction";
 import { PrayersSearch } from "@/components/prayers-search";
@@ -38,14 +38,14 @@ function slugify(input: string) {
 }
 
 async function getApprovedPrayers(): Promise<DbPrayer[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL?.trim() || "http://localhost:3001";
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL?.trim() || "";
   const res = await fetch(`${baseUrl}/prayers/approved`, { cache: "no-store" });
   if (!res.ok) throw new Error(`Error cargando oraciones aprobadas: ${res.status}`);
   return res.json();
 }
 
 async function getSaintNames(): Promise<string[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL?.trim() || "http://localhost:3001";
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL?.trim() || "";
   const res = await fetch(`${baseUrl}/saints`, { cache: "no-store" });
   if (!res.ok) return [];
   const saints = (await res.json()) as Saint[];
@@ -113,7 +113,7 @@ export default async function OracionesPage({
     });
   }
 
-  // Destacadas: últimas 4 por updatedAt (dataset real)
+  // Destacadas: Ãºltimas 4 por updatedAt (dataset real)
   const featured = [...approvedPrayers]
     .sort((a, b) => +new Date(b.updatedAt) - +new Date(a.updatedAt))
     .slice(0, 4);
@@ -150,3 +150,4 @@ export default async function OracionesPage({
     </div>
   );
 }
+

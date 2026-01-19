@@ -24,7 +24,7 @@ export type PrayerFormData = {
 type PrayerPatchData = Partial<PrayerFormData>
 
 function getBaseUrl() {
-  return (process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001").trim()
+  return ('').trim()
 }
 
 async function jsonOrThrow(res: Response) {
@@ -75,3 +75,4 @@ export async function deletePrayer(id: string): Promise<void> {
     throw new Error(`HTTP ${res.status} ${txt}`.trim())
   }
 }
+

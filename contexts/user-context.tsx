@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
-const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+const API = '';
 // CONVERSATIONS_API_PATCH
 
 export interface ChatMessage {
@@ -48,7 +48,7 @@ function genId() {
 function reviveConversation(raw: any): Conversation {
   return {
     id: String(raw.id),
-    title: String(raw.title || "Nueva conversación"),
+    title: String(raw.title || "Nueva conversaciÃ³n"),
     messages: Array.isArray(raw.messages)
       ? raw.messages.map((m: any) => ({
           id: String(m.id || genId()),
@@ -156,7 +156,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   // --- hydrate local + backend session ---
   useEffect(() => {
-    // local first (para que la UI no quede vacía)
+    // local first (para que la UI no quede vacÃ­a)
     try {
       const savedUser = localStorage.getItem(LS_USER);
       const savedConversations = localStorage.getItem(LS_CONVS);
@@ -188,7 +188,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
           setCurrentConversation(remote[0] || null);
           localStorage.setItem(LS_CURRENT, remote[0]?.id || "");
         } else {
-          // si no hay convs remotas, intentamos “subir” las locales (best effort)
+          // si no hay convs remotas, intentamos â€œsubirâ€ las locales (best effort)
           const local = (() => {
             try {
               const raw = localStorage.getItem(LS_CONVS);
@@ -211,7 +211,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
           }
         
     // REMOTE2_RELOAD_PATCH
-    // ✅ IMPORTANTE: vuelve a cargar del backend y pinta sidebar
+    // âœ… IMPORTANTE: vuelve a cargar del backend y pinta sidebar
     const remote2 = await loadBackendConversations();
     if (remote2) {
       setConversations(remote2);
@@ -296,7 +296,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     const now = new Date();
     const newConversation: Conversation = {
       id: genId(),
-      title: "Nueva conversación",
+      title: "Nueva conversaciÃ³n",
       messages: [],
       createdAt: now,
       updatedAt: now,
@@ -349,7 +349,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setConversations((prev) =>
       prev.map((c) => {
         if (c.id !== id) return c;
-        const title = (messages[0]?.content?.slice(0, 30) + "…") || c.title || "Nueva conversación";
+        const title = (messages[0]?.content?.slice(0, 30) + "â€¦") || c.title || "Nueva conversaciÃ³n";
         return { ...c, messages, title, updatedAt: new Date() };
       })
     );
@@ -365,7 +365,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         const nextConv: Conversation = {
           ...conv,
           messages,
-          title: (messages[0]?.content?.slice(0, 30) + "…") || conv.title,
+          title: (messages[0]?.content?.slice(0, 30) + "â€¦") || conv.title,
           updatedAt: new Date(),
         };
         void persistNewMessagesToBackend(nextConv, prevLen, messages);
@@ -408,3 +408,4 @@ export function useUser() {
   if (!context) throw new Error("useUser must be used within a UserProvider");
   return context;
 }
+

@@ -14,7 +14,7 @@ export function AdminPrayersStatsCard() {
     ;(async () => {
       try {
         setError(null)
-        const baseUrl = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001").trim()
+        const baseUrl = ('').trim()
         const res = await fetch(`${baseUrl}/prayers`, { cache: "no-store" })
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
         const data = (await res.json()) as PrayerApi[]
@@ -40,3 +40,4 @@ export function AdminPrayersStatsCard() {
     </Card>
   )
 }
+

@@ -14,7 +14,7 @@ export function AdminMiraclesStatsCard() {
     ;(async () => {
       try {
         setError(null)
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
+        const baseUrl = ''
         const res = await fetch(`${baseUrl}/miracles`, { cache: "no-store" })
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
         const data = (await res.json()) as MiracleApi[]
@@ -40,3 +40,4 @@ export function AdminMiraclesStatsCard() {
     </Card>
   )
 }
+

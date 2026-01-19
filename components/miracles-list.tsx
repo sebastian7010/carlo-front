@@ -53,7 +53,7 @@ export function MiraclesList() {
   const [saints, setSaints] = useState<SaintApi[]>([])
   const [allMiracles, setAllMiracles] = useState<MiracleUi[]>([])
 
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
+  const baseUrl = ''
 
   useEffect(() => {
     let mounted = true
@@ -133,12 +133,12 @@ export function MiraclesList() {
       return matchesSearch && matchesSaint && matchesVerified && matchesType
     })
 
-    // Orden: más recientes primero (createdAt desc)
+    // Orden: mÃ¡s recientes primero (createdAt desc)
     filtered.sort((a, b) => {
       // 1) Verificados primero
       if (a.verified !== b.verified) return a.verified ? -1 : 1
 
-      // 2) Más recientes primero
+      // 2) MÃ¡s recientes primero
       const ta = Date.parse(a.createdAt || "")
       const tb = Date.parse(b.createdAt || "")
       return (isNaN(tb) ? 0 : tb) - (isNaN(ta) ? 0 : ta)
@@ -236,7 +236,7 @@ export function MiraclesList() {
           <CardContent className="text-center py-12">
             <Sparkles className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
             <h3 className="font-playfair text-xl font-semibold mb-2">No se encontraron milagros</h3>
-            <p className="text-muted-foreground">Intenta ajustar los filtros de búsqueda</p>
+            <p className="text-muted-foreground">Intenta ajustar los filtros de bÃºsqueda</p>
           </CardContent>
         </Card>
       ) : (
@@ -310,3 +310,4 @@ export function MiraclesList() {
     </div>
   )
 }
+

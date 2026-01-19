@@ -40,7 +40,7 @@ export function validateSaintData(saint: SaintFormData): { isValid: boolean; err
 }
 
 function getBaseUrl() {
-  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+  return '';
 }
 
 export async function saveSaint(
@@ -109,7 +109,7 @@ export async function deleteSaint(saintId: string): Promise<{ success: boolean; 
 }
 
 // ===============================
-// ✅ MIRACLES API (Backend Acutis)
+// âœ… MIRACLES API (Backend Acutis)
 // ===============================
 
 export type MiracleFormData = {
@@ -199,7 +199,7 @@ export async function updateMiracle(
 ): Promise<MiracleFormData> {
   const baseUrl = getBaseUrl();
 
-  // ✅ IMPORTANTE:
+  // âœ… IMPORTANTE:
   // En PATCH solo enviamos campos definidos.
   // Esto evita que un toggle de approved/verified sobre-escriba title/details con "".
   const payload: any = {};
@@ -244,7 +244,7 @@ export async function deleteMiracle(miracleId: string): Promise<void> {
 }
 
 // ===============================
-// ✅ PRAYERS API (Backend Acutis)
+// âœ… PRAYERS API (Backend Acutis)
 // ===============================
 
 export type PrayerFormData = {
@@ -289,7 +289,7 @@ export async function createPrayer(formData: PrayerFormData): Promise<PrayerApi>
   })
   if (!res.ok) {
     const txt = await res.text().catch(() => "")
-    throw new Error(`Error creando oración (${res.status}). ${txt}`)
+    throw new Error(`Error creando oraciÃ³n (${res.status}). ${txt}`)
   }
   return res.json()
 }
@@ -304,7 +304,7 @@ export async function updatePrayer(prayerId: string, formData: Partial<PrayerFor
   })
   if (!res.ok) {
     const txt = await res.text().catch(() => "")
-    throw new Error(`Error editando oración (${res.status}). ${txt}`)
+    throw new Error(`Error editando oraciÃ³n (${res.status}). ${txt}`)
   }
   return res.json()
 }
@@ -317,6 +317,7 @@ export async function deletePrayer(prayerId: string): Promise<void> {
   })
   if (!res.ok) {
     const txt = await res.text().catch(() => "")
-    throw new Error(`Error eliminando oración (${res.status}). ${txt}`)
+    throw new Error(`Error eliminando oraciÃ³n (${res.status}). ${txt}`)
   }
 }
+

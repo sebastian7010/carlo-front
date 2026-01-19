@@ -31,7 +31,7 @@ type AdminSaintsListProps = {
 
 export function AdminSaintsList({ saints, onAddNew, onEdit }: AdminSaintsListProps) {
   const router = useRouter();
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+  const baseUrl = '';
 
   const [searchTerm, setSearchTerm] = useState("");
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -48,7 +48,7 @@ export function AdminSaintsList({ saints, onAddNew, onEdit }: AdminSaintsListPro
   }, [saints, searchTerm]);
 
   async function onDelete(id: string) {
-    const ok = confirm("¿Seguro que quieres eliminar este santo?");
+    const ok = confirm("Â¿Seguro que quieres eliminar este santo?");
     if (!ok) return;
 
     setDeletingId(id);
@@ -72,8 +72,8 @@ export function AdminSaintsList({ saints, onAddNew, onEdit }: AdminSaintsListPro
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-playfair text-3xl font-bold">Gestión de Santos</h2>
-          <p className="text-muted-foreground">Administre la información de todos los santos</p>
+          <h2 className="font-playfair text-3xl font-bold">GestiÃ³n de Santos</h2>
+          <p className="text-muted-foreground">Administre la informaciÃ³n de todos los santos</p>
         </div>
 
         <Button onClick={onAddNew} className="bg-primary">
@@ -127,7 +127,7 @@ export function AdminSaintsList({ saints, onAddNew, onEdit }: AdminSaintsListPro
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <MapPin className="h-3 w-3" />
-                  <span>{_saint.country ?? "—"}</span>
+                  <span>{_saint.country ?? "â€”"}</span>
                 </div>
               </div>
 
@@ -160,3 +160,4 @@ export function AdminSaintsList({ saints, onAddNew, onEdit }: AdminSaintsListPro
     </div>
   );
 }
+

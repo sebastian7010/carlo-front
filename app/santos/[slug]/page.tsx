@@ -15,7 +15,6 @@ type MiracleApi = {
 };
 
 async function getMiraclesBySaintId(saintId: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "";
 
   const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(saintId)}/miracles`, {
     cache: "no-store",
@@ -37,7 +36,6 @@ async function getMiraclesBySaintId(saintId: string) {
 }
 
 async function getSaint(slug: string): Promise<Saint> {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "";
 
   const res = await fetch(`${baseUrl}/saints/${encodeURIComponent(slug)}`, {
     cache: "no-store",

@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 
 export function AdminSaintsCreate() {
   const router = useRouter();
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+  const baseUrl = '';
 
   const [slug, setSlug] = useState("");
   const [name, setName] = useState("");
@@ -41,15 +41,15 @@ export function AdminSaintsCreate() {
         throw new Error(text || `Error ${res.status}`);
       }
 
-      setMsg("✅ Santo creado.");
+      setMsg("âœ… Santo creado.");
       setSlug("");
       setName("");
       setCountry("");
 
-      // refresca lo que esté mostrando lista en el admin
+      // refresca lo que estÃ© mostrando lista en el admin
       router.refresh();
     } catch (e: any) {
-      setMsg(`❌ ${e?.message ?? "Error creando santo"}`);
+      setMsg(`âŒ ${e?.message ?? "Error creando santo"}`);
     } finally {
       setLoading(false);
     }
@@ -82,7 +82,7 @@ export function AdminSaintsCreate() {
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="country">País</Label>
+          <Label htmlFor="country">PaÃ­s</Label>
           <Input
             id="country"
             placeholder="ej: Italia"
@@ -100,3 +100,4 @@ export function AdminSaintsCreate() {
     </Card>
   );
 }
+

@@ -31,7 +31,7 @@ export function WorldMapLeaflet() {
   const [saints, setSaints] = useState<ApiSaint[]>([])
   const [error, setError] = useState<string | null>(null)
 
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
+  const baseUrl = ''
 
   // 1) Traer santos desde el API
   useEffect(() => {
@@ -52,7 +52,7 @@ export function WorldMapLeaflet() {
     }
   }, [baseUrl])
 
-  // Agrupar por país (para la tarjeta superior)
+  // Agrupar por paÃ­s (para la tarjeta superior)
   const countriesData = useMemo(() => {
     const acc: Record<string, ApiSaint[]> = {}
     for (const s of saints) {
@@ -94,11 +94,11 @@ export function WorldMapLeaflet() {
 
       const L = (window as any).L
 
-      // ✅ evita doble init (StrictMode/FastRefresh)
+      // âœ… evita doble init (StrictMode/FastRefresh)
       if (!mapRef.current) return
       if (leafletMapRef.current) return
 
-      // ✅ si Fast Refresh dejó el contenedor “sucio”, limpia el id interno
+      // âœ… si Fast Refresh dejÃ³ el contenedor â€œsucioâ€, limpia el id interno
       const container: any = mapRef.current
       if (container && container._leaflet_id) {
         container._leaflet_id = null
@@ -118,7 +118,7 @@ export function WorldMapLeaflet() {
 
       leafletMapRef.current = leafletMap
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        attribution: 'Â© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         maxZoom: 19,
       }).addTo(leafletMap)
 
@@ -186,7 +186,7 @@ export function WorldMapLeaflet() {
         .bindPopup(`
           <div class="saint-popup">
             <h3 class="font-playfair text-lg font-semibold text-primary mb-1">${saint.name}</h3>
-            <p class="text-sm text-muted-foreground mb-2">${country}${continent ? " • " + continent : ""}</p>
+            <p class="text-sm text-muted-foreground mb-2">${country}${continent ? " â€¢ " + continent : ""}</p>
             <div class="flex gap-2">
               <button onclick="window.goToSaint('${saint.slug}')" class="w-full bg-primary text-primary-foreground px-3 py-2 rounded text-sm hover:bg-primary/90 transition-colors">
                 Ver Santo
@@ -250,7 +250,7 @@ export function WorldMapLeaflet() {
                 Error cargando santos del API: <span className="font-mono">{error}</span>
               </p>
               <p className="text-xs text-muted-foreground mt-1">
-                Revisa NEXT_PUBLIC_API_URL o que el backend esté prendido en {baseUrl}.
+                Revisa NEXT_PUBLIC_API_URL o que el backend estÃ© prendido en {baseUrl}.
               </p>
             </CardContent>
           </Card>
@@ -267,7 +267,7 @@ export function WorldMapLeaflet() {
                   {selectedCountry}
                 </h3>
                 <Button variant="ghost" size="sm" onClick={() => setSelectedCountry(null)} className="h-8 w-8 p-0">
-                  ✕
+                  âœ•
                 </Button>
               </div>
 
@@ -278,7 +278,7 @@ export function WorldMapLeaflet() {
                 </div>
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
                   <Star className="h-4 w-4" />
-                  Tradición católica
+                  TradiciÃ³n catÃ³lica
                 </div>
               </div>
 
@@ -290,7 +290,7 @@ export function WorldMapLeaflet() {
                 ))}
                 {countriesData[selectedCountry].length > 4 && (
                   <Badge variant="outline" className="text-xs">
-                    +{countriesData[selectedCountry].length - 4} más
+                    +{countriesData[selectedCountry].length - 4} mÃ¡s
                   </Badge>
                 )}
               </div>
@@ -305,3 +305,4 @@ export function WorldMapLeaflet() {
     </div>
   )
 }
+

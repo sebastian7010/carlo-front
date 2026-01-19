@@ -4,6 +4,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { SaintsList } from "@/components/saints-list";
 import { SaintsFilters } from "@/components/saints-filters";
+import { apiUrl } from "@/lib/api-url";
+
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +27,7 @@ export type Saint = {
 };
 
 async function getSaints(): Promise<Saint[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+  const baseUrl = '';
 
   const res = await fetch(`${baseUrl}/saints`, { cache: "no-store" });
   if (!res.ok) throw new Error(`Error al traer santos: ${res.status}`);
@@ -59,3 +61,4 @@ export default async function SaintsPage() {
     </div>
   );
 }
+

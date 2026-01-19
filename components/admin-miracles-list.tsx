@@ -58,7 +58,7 @@ export function AdminMiraclesList() {
   const [savingEdit, setSavingEdit] = useState(false)
 
 
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
+  const baseUrl = ''
 
   const resetCreateForm = useCallback(() => {
     setTitle("")
@@ -127,7 +127,7 @@ export function AdminMiraclesList() {
       return
     }
     if (!title.trim()) {
-      setError("El título del milagro es obligatorio.")
+      setError("El tÃ­tulo del milagro es obligatorio.")
       return
     }
 
@@ -174,7 +174,7 @@ export function AdminMiraclesList() {
   async function onSaveEdit() {
     if (!editingId) return
     if (!editTitle.trim()) {
-      setError("El título del milagro es obligatorio.")
+      setError("El tÃ­tulo del milagro es obligatorio.")
       return
     }
 
@@ -208,7 +208,7 @@ export function AdminMiraclesList() {
   }
 
 async function onDelete(miracleId: string, miracleTitle: string) {
-    if (!confirm(`¿Eliminar el milagro "${miracleTitle}"?`)) return
+    if (!confirm(`Â¿Eliminar el milagro "${miracleTitle}"?`)) return
     try {
       await deleteMiracle(miracleId)
       alert("Milagro eliminado.")
@@ -219,11 +219,11 @@ async function onDelete(miracleId: string, miracleTitle: string) {
   }
   const toggleApproved = async (miracleId: string, current: boolean) => {
     try {
-      // updateMiracle ya debería mapear verified->approved, pero mandamos approved directo por seguridad
+      // updateMiracle ya deberÃ­a mapear verified->approved, pero mandamos approved directo por seguridad
       await updateMiracle(miracleId, { approved: !current, verified: !current } as any)
       await reload()
     } catch (e: any) {
-      alert(e?.message ? String(e.message) : "Error cambiando verificación")
+      alert(e?.message ? String(e.message) : "Error cambiando verificaciÃ³n")
     }
   }
 
@@ -233,7 +233,7 @@ async function onDelete(miracleId: string, miracleTitle: string) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-playfair text-3xl font-bold">Gestión de Milagros</h2>
+          <h2 className="font-playfair text-3xl font-bold">GestiÃ³n de Milagros</h2>
           <p className="text-muted-foreground">Administre todos los milagros documentados</p>
         </div>
 <Button className="bg-primary" onClick={() => setCreateOpen(true)}>
@@ -313,11 +313,11 @@ async function onDelete(miracleId: string, miracleTitle: string) {
                         await toggleApproved(String(miracle.id), !!(miracle.approved ?? miracle.verified));
                         await reload();
                       } catch (e: any) {
-                        alert(e?.message ? String(e.message) : "Error cambiando verificación");
+                        alert(e?.message ? String(e.message) : "Error cambiando verificaciÃ³n");
                       }
                     }}
                   >
-                    {(miracle.approved ?? miracle.verified) ? "Quitar verificación" : "Verificar"}
+                    {(miracle.approved ?? miracle.verified) ? "Quitar verificaciÃ³n" : "Verificar"}
                   </Button>
 
 
@@ -359,12 +359,12 @@ async function onDelete(miracleId: string, miracleTitle: string) {
 
             <CardContent className="space-y-4">
               <div className="grid gap-2">
-                <label className="text-sm font-medium">Título</label>
+                <label className="text-sm font-medium">TÃ­tulo</label>
                 <Input value={editTitle} onChange={(e) => setEditTitle(e.target.value)} disabled={savingEdit} />
               </div>
 
               <div className="grid gap-2">
-                <label className="text-sm font-medium">Descripción</label>
+                <label className="text-sm font-medium">DescripciÃ³n</label>
                 <textarea
                   value={editDescription}
                   onChange={(e) => setEditDescription(e.target.value)}
@@ -433,7 +433,7 @@ async function onDelete(miracleId: string, miracleTitle: string) {
               <div>
                 <div className="text-lg font-semibold">Nuevo Milagro</div>
                 <div className="text-sm text-muted-foreground">
-                  Crea un milagro y se asociará al santo seleccionado.
+                  Crea un milagro y se asociarÃ¡ al santo seleccionado.
                 </div>
               </div>
               <Button variant="outline" onClick={() => setCreateOpen(false)} disabled={creating}>
@@ -459,12 +459,12 @@ async function onDelete(miracleId: string, miracleTitle: string) {
               </div>
 
               <div className="grid gap-2">
-                <label className="text-sm font-medium">Título</label>
+                <label className="text-sm font-medium">TÃ­tulo</label>
                 <Input value={title} onChange={(e) => setTitle(e.target.value)} disabled={creating} />
               </div>
 
               <div className="grid gap-2">
-                <label className="text-sm font-medium">Descripción</label>
+                <label className="text-sm font-medium">DescripciÃ³n</label>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
@@ -522,3 +522,4 @@ async function onDelete(miracleId: string, miracleTitle: string) {
     </div>
   )
 }
+

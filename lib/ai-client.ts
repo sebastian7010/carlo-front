@@ -1,4 +1,4 @@
-export async function withBackoff<T>(fn: () => Promise<T>, max = 5) {
+﻿export async function withBackoff<T>(fn: () => Promise<T>, max = 5) {
   let delay = 500
   for (let i = 0; i < max; i++) {
     try {
@@ -16,7 +16,7 @@ export async function withBackoff<T>(fn: () => Promise<T>, max = 5) {
 export async function postAiChat(params: { message: string; lang?: string; sessionId?: string }) {
   const base = (typeof process !== "undefined" && (process as any)?.env?.NEXT_PUBLIC_BACKEND_URL)
     ? (process as any).env.NEXT_PUBLIC_BACKEND_URL
-    : "http://localhost:3001"
+    : ""
 
   return await withBackoff(async () => {
     const url = `${base}/ai/chat`
@@ -51,7 +51,7 @@ export async function postAiTranslate(params: { text: string; targetLang: string
       ? (process as any).env.NEXT_PUBLIC_BACKEND_URL
       : "";
 
-  const url = `${base || "http://localhost:3001"}/ai/translate`;
+  const url = `${base || ""}/ai/translate`;
 
   return await withBackoff(async () => {
     const res = await fetch(url, {
@@ -73,3 +73,4 @@ export async function postAiTranslate(params: { text: string; targetLang: string
     return data as { translated: string; cached?: boolean };
   });
 }
+

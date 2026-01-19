@@ -33,9 +33,9 @@ function canonContinent(c: string | null) {
   if (!v) return { key: "desconocido", label: "Desconocido" }
   if (v.includes("europa")) return { key: "europa", label: "Europa" }
   if (v.includes("asia")) return { key: "asia", label: "Asia" }
-  if (v.includes("america")) return { key: "america", label: "América" }
-  if (v.includes("africa")) return { key: "africa", label: "África" }
-  if (v.includes("oceania")) return { key: "oceania", label: "Oceanía" }
+  if (v.includes("america")) return { key: "america", label: "AmÃ©rica" }
+  if (v.includes("africa")) return { key: "africa", label: "Ãfrica" }
+  if (v.includes("oceania")) return { key: "oceania", label: "OceanÃ­a" }
   return { key: v, label: c || "Desconocido" }
 }
 
@@ -44,7 +44,7 @@ export function SaintsMapSidebar() {
   const [saints, setSaints] = useState<ApiSaint[]>([])
   const [error, setError] = useState<string | null>(null)
 
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
+  const baseUrl = ''
 
   useEffect(() => {
     let cancelled = false
@@ -76,7 +76,7 @@ export function SaintsMapSidebar() {
       if (!acc[c.key]) acc[c.key] = { label: c.label, count: 0 }
       acc[c.key].count++
     }
-    // orden bonito: Europa/Asia/América/África/Oceanía/otros
+    // orden bonito: Europa/Asia/AmÃ©rica/Ãfrica/OceanÃ­a/otros
     const order = ["europa", "asia", "america", "africa", "oceania", "desconocido"]
     const entries = Object.entries(acc)
     entries.sort((a, b) => {
@@ -95,7 +95,7 @@ export function SaintsMapSidebar() {
         <CardHeader>
           <CardTitle className="font-playfair flex items-center gap-2 text-lg">
             <Filter className="h-5 w-5 text-primary" />
-            Filtrar por Región
+            Filtrar por RegiÃ³n
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -107,9 +107,9 @@ export function SaintsMapSidebar() {
               <SelectItem value="all">Todos los continentes</SelectItem>
               <SelectItem value="europa">Europa</SelectItem>
               <SelectItem value="asia">Asia</SelectItem>
-              <SelectItem value="america">América</SelectItem>
-              <SelectItem value="africa">África</SelectItem>
-              <SelectItem value="oceania">Oceanía</SelectItem>
+              <SelectItem value="america">AmÃ©rica</SelectItem>
+              <SelectItem value="africa">Ãfrica</SelectItem>
+              <SelectItem value="oceania">OceanÃ­a</SelectItem>
               <SelectItem value="desconocido">Desconocido</SelectItem>
             </SelectContent>
           </Select>
@@ -122,10 +122,10 @@ export function SaintsMapSidebar() {
         </CardContent>
       </Card>
 
-      {/* Estadísticas */}
+      {/* EstadÃ­sticas */}
       <Card>
         <CardHeader>
-          <CardTitle className="font-playfair text-lg">Estadísticas Globales</CardTitle>
+          <CardTitle className="font-playfair text-lg">EstadÃ­sticas Globales</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
@@ -151,7 +151,7 @@ export function SaintsMapSidebar() {
           <div className="space-y-4 max-h-96 overflow-y-auto">
             {filteredSaints.map((saint) => {
               const country = saint.country?.trim() || "Desconocido"
-              const feastDay = saint.feastDay?.trim() || "—"
+              const feastDay = saint.feastDay?.trim() || "â€”"
               const img = saint.imageUrl || "/placeholder.svg"
               const hasCoords = typeof saint.lat === "number" && typeof saint.lng === "number"
 
@@ -176,7 +176,7 @@ export function SaintsMapSidebar() {
                       <MapPin className="h-3 w-3" />
                       <span className="truncate">
                         {country}
-                        {!hasCoords && <span className="ml-2 text-[10px] opacity-70">(sin ubicación)</span>}
+                        {!hasCoords && <span className="ml-2 text-[10px] opacity-70">(sin ubicaciÃ³n)</span>}
                       </span>
                     </div>
 
@@ -199,19 +199,20 @@ export function SaintsMapSidebar() {
       {/* Info */}
       <Card>
         <CardHeader>
-          <CardTitle className="font-playfair text-lg">¿Sabías que...?</CardTitle>
+          <CardTitle className="font-playfair text-lg">Â¿SabÃ­as que...?</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-3 text-sm text-muted-foreground">
             <p>
               Los santos provienen de todos los continentes, mostrando la universalidad de la santidad en la Iglesia
-              Católica.
+              CatÃ³lica.
             </p>
             <p>Cada marcador en el mapa representa el lugar de nacimiento o ministerio principal del santo.</p>
-            <p>Puedes hacer clic en cualquier país para ver información detallada de sus santos.</p>
+            <p>Puedes hacer clic en cualquier paÃ­s para ver informaciÃ³n detallada de sus santos.</p>
           </div>
         </CardContent>
       </Card>
     </div>
   )
 }
+

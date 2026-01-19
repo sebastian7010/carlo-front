@@ -8,17 +8,17 @@ import { Badge } from "@/components/ui/badge"
 import { Loader2, Sparkles } from "lucide-react"
 import { SaintMatcherResults, type DiscoverSaintResult } from "@/components/saint-matcher-results"
 
-const API = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001").replace(/\/$/, "")
+const API = ('').replace(/\/$/, "")
 
 const personalityTraits = [
   "Compasivo","Determinado","Humilde","Valiente","Paciente","Generoso","Contemplativo","Activo",
-  "Estudioso","Servicial","Líder","Obediente","Creativo","Disciplinado","Alegre","Serio",
-  "Sociable","Reservado","Aventurero","Prudente","Optimista","Realista","Intuitivo","Analítico",
+  "Estudioso","Servicial","LÃ­der","Obediente","Creativo","Disciplinado","Alegre","Serio",
+  "Sociable","Reservado","Aventurero","Prudente","Optimista","Realista","Intuitivo","AnalÃ­tico",
 ]
 
 const challenges = [
   "Impaciencia","Orgullo","Miedo","Ira","Pereza","Envidia","Dudas de fe","Ansiedad","Perfeccionismo",
-  "Procrastinación","Crítica excesiva","Pesimismo","Terquedad","Impulsividad","Desorganización",
+  "ProcrastinaciÃ³n","CrÃ­tica excesiva","Pesimismo","Terquedad","Impulsividad","DesorganizaciÃ³n",
   "Timidez","Materialismo","Vanidad",
 ]
 
@@ -89,7 +89,7 @@ export function SaintMatcherForm() {
     <div className="space-y-6">
       <Card className="border-amber-200">
         <CardHeader>
-          <CardTitle className="font-playfair text-xl text-gray-900">Cuéntanos sobre ti</CardTitle>
+          <CardTitle className="font-playfair text-xl text-gray-900">CuÃ©ntanos sobre ti</CardTitle>
         </CardHeader>
 
         <CardContent className="space-y-6">
@@ -103,7 +103,7 @@ export function SaintMatcherForm() {
               onChange={(e) => setDescription(e.target.value)}
               className="min-h-32 resize-none"
             />
-            <p className="text-xs text-gray-500 mt-1">Mínimo 20 caracteres para un análisis más preciso</p>
+            <p className="text-xs text-gray-500 mt-1">MÃ­nimo 20 caracteres para un anÃ¡lisis mÃ¡s preciso</p>
           </div>
 
           <div>
@@ -127,7 +127,7 @@ export function SaintMatcherForm() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Áreas donde buscas crecimiento</label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Ãreas donde buscas crecimiento</label>
             <div className="flex flex-wrap gap-2">
               {challenges.map((challenge) => (
                 <Badge
@@ -171,3 +171,4 @@ export function SaintMatcherForm() {
     </div>
   )
 }
+

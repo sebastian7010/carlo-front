@@ -32,7 +32,7 @@ type Props = {
 
 export function AdminSaintsModal({ open, onClose, saint }: Props) {
   const router = useRouter();
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+  const baseUrl = '';
   const isEdit = !!saint?.id;
 
   const initial = useMemo(() => {
@@ -101,12 +101,12 @@ export function AdminSaintsModal({ open, onClose, saint }: Props) {
     const lngNum = lng.trim() === "" ? null : Number(lng);
 
     if ((latNum === null) !== (lngNum === null)) {
-      setMsg("Debes llenar lat y lng juntos (o dejar ambos vacíos).");
+      setMsg("Debes llenar lat y lng juntos (o dejar ambos vacÃ­os).");
       setLoading(false);
       return;
     }
     if ((latNum !== null && Number.isNaN(latNum)) || (lngNum !== null && Number.isNaN(lngNum))) {
-      setMsg("lat/lng deben ser números.");
+      setMsg("lat/lng deben ser nÃºmeros.");
       setLoading(false);
       return;
     }
@@ -142,7 +142,7 @@ export function AdminSaintsModal({ open, onClose, saint }: Props) {
       router.refresh();
       onClose();
     } catch (e: any) {
-      setMsg(`❌ ${e?.message ?? "Error guardando santo"}`);
+      setMsg(`âŒ ${e?.message ?? "Error guardando santo"}`);
     } finally {
       setLoading(false);
     }
@@ -187,7 +187,7 @@ export function AdminSaintsModal({ open, onClose, saint }: Props) {
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="country">País</Label>
+            <Label htmlFor="country">PaÃ­s</Label>
             <Input id="country" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="ej: Italia" />
           </div>
 
@@ -229,12 +229,12 @@ export function AdminSaintsModal({ open, onClose, saint }: Props) {
 
 
           <div className="grid gap-2">
-            <Label htmlFor="title">Título (Beato / Santo / etc.)</Label>
+            <Label htmlFor="title">TÃ­tulo (Beato / Santo / etc.)</Label>
             <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="ej: Beato" />
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="feastDay">Día festivo</Label>
+            <Label htmlFor="feastDay">DÃ­a festivo</Label>
             <Input id="feastDay" value={feastDay} onChange={(e) => setFeastDay(e.target.value)} placeholder="ej: 12/10" />
           </div>
 
@@ -247,13 +247,13 @@ export function AdminSaintsModal({ open, onClose, saint }: Props) {
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="biography">Biografía</Label>
+            <Label htmlFor="biography">BiografÃ­a</Label>
             <textarea
               id="biography"
               value={biography}
               onChange={(e) => setBiography(e.target.value)}
               className="min-h-[120px] w-full rounded-md border bg-background px-3 py-2 text-sm"
-              placeholder="Escribe la biografía..."
+              placeholder="Escribe la biografÃ­a..."
             />
           </div>
 
@@ -272,3 +272,4 @@ export function AdminSaintsModal({ open, onClose, saint }: Props) {
     </div>
   );
 }
+
