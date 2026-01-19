@@ -8,6 +8,9 @@ const nextConfig = {
       { source: "/api/:path*", destination: BACKEND + "/api/:path*" },
       { source: "/ai/:path*", destination: BACKEND + "/ai/:path*" },
 
+      { source: "/auth/:path*", destination: BACKEND + "/auth/:path*" },
+      { source: "/conversations/:path*", destination: BACKEND + "/conversations/:path*" },
+
       { source: "/discover-saint", destination: BACKEND + "/discover-saint" },
       { source: "/descubrir-saint", destination: BACKEND + "/descubrir-saint" },
 
@@ -18,9 +21,6 @@ const nextConfig = {
       { source: "/health", destination: BACKEND + "/health" },
     ];
   },
-  experimental: { disableOptimizedLoading: true }
 };
 
 export default nextConfig;
-
-
