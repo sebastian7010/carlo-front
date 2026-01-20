@@ -40,7 +40,9 @@ export function validateSaintData(saint: SaintFormData): { isValid: boolean; err
 }
 
 function getBaseUrl() {
-  return '';
+  const env = process.env.NEXT_PUBLIC_API_URL;
+  const url = (env && String(env).trim()) ? String(env).trim() : "http://localhost:3001";
+  return url.replace(/\/+$/, "");
 }
 
 export async function saveSaint(
@@ -172,7 +174,7 @@ function mapApiToFormMiracle(input: MiracleApi): MiracleFormData {
 export async function getMiraclesBySaintId(saintId: string): Promise<MiracleFormData[]> {
   const baseUrl = getBaseUrl();
   const res = await fetch(`${baseUrl}/saints/${saintId}/miracles`, { cache: "no-store", credentials: "include" });
-  if (!res.ok) throw new Error(await res.text());
+    if (!res.ok) return [];
   const data = (await res.json()) as MiracleApi[];
   return data.map(mapApiToFormMiracle);
 }
