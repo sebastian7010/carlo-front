@@ -1,3 +1,7 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+
 import { AdminPrayersList } from "@/components/admin-prayers-list"
 
 export default function AdminPrayersPage() {
