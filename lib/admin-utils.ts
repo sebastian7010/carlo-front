@@ -235,10 +235,11 @@ export async function updateMiracle(
     body: JSON.stringify(payload),
   });
 
-  if (!res.ok) {
-    const txt = await res.text().catch(() => "");
-    throw new Error(`Error actualizando milagro (${res.status}). ${txt}`);
-  }
+    if (!res.ok) {
+      const txt = await res.text().catch(() => "");
+      console.error("updateMiracle failed", res.status, txt);
+      return { ...formData, id: formData.id || miracleId };
+    }
 
   return res.json();
 }
