@@ -4,7 +4,6 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { SaintsList } from "@/components/saints-list";
 import { SaintsFilters } from "@/components/saints-filters";
-import { apiUrl } from "@/lib/api-url";
 
 
 export const dynamic = "force-dynamic";
