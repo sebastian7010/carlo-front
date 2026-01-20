@@ -4,6 +4,7 @@ import type { Saint } from "@/components/saint-detail";
 import { apiUrl } from "@/lib/api-url";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 type MiracleApi = {
   id: string;
