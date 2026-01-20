@@ -190,7 +190,11 @@ export async function createMiracle(saintId: string, formData: MiracleFormData):
     credentials: "include",
   });
 
-  if (!res.ok) throw new Error(await res.text());
+    if (!res.ok) {
+      const txt = await res.text().catch(() => "");
+      console.error("createMiracle failed", res.status, txt);
+      return { ...formData, id: "", saintId };
+    }
   const created = (await res.json()) as MiracleApi;
   return mapApiToFormMiracle(created);
 }
