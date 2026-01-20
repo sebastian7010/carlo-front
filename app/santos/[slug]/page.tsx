@@ -43,7 +43,6 @@ async function getSaint(slug: string): Promise<Saint> {
   if (!res.ok) throw new Error(`Error al traer santo: ${res.status}`);
 
   const api = (await res.json()) as any;
-
   const miracles = api?.id ? await getMiraclesBySaintId(String(api.id)) : [];
 
   return {
@@ -51,19 +50,15 @@ async function getSaint(slug: string): Promise<Saint> {
     slug: api.slug ?? slug,
     name: api.name ?? "Santo",
     country: api.country ?? null,
-
     title: api.title ?? null,
     feastDay: api.feastDay ?? null,
     birthYear: api.birthYear ?? null,
     canonizationYear: api.canonizationYear ?? null,
     biography: api.biography ?? null,
-
     image: api.imageUrl ?? api.image ?? null,
-
     patronOf: Array.isArray(api.patronOf) ? api.patronOf : [],
     symbols: Array.isArray(api.symbols) ? api.symbols : [],
     prayers: Array.isArray(api.prayers) ? api.prayers : [],
-
     miracles,
   };
 }
