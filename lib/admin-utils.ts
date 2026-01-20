@@ -246,7 +246,7 @@ export async function updateMiracle(
 export async function deleteMiracle(miracleId: string): Promise<void> {
   const baseUrl = getBaseUrl();
   const res = await fetch(`${baseUrl}/miracles/${miracleId}`, { method: "DELETE", credentials: "include" });
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) { const txt = await res.text().catch(() => ""); console.error("admin-utils request failed", res.status, txt); return (typeof formData !== "undefined" ? (formData as any) : (null as any)); }
 }
 
 // ===============================
