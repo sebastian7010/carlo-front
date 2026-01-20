@@ -46,7 +46,7 @@ export async function postAiChat(params: { message: string; lang?: string; sessi
   });
 }
 
-export async function postAiTranslate(params: { text: string; to: string; from?: string }) {
+export async function postAiTranslate(params: { text: string; targetLang: string }) {
   return await withBackoff(async () => {
     const res = await fetch("/ai/translate", {
       method: "POST",
