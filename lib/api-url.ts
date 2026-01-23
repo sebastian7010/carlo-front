@@ -1,15 +1,16 @@
 export function apiUrl(path: string) {
   const p = path.startsWith("/") ? path : `/${path}`;
-  const base = process.env.NEXT_PUBLIC_API_URL || "";
+  const apiBase = (process.env.NEXT_PUBLIC_API_URL || "").trim();
 
-  // En SERVER (Node): una URL relativa revienta. Mejor fallar rápido con mensaje claro.
-  if (!base) {
-    if (typeof window === "undefined") {
-      throw new Error("NEXT_PUBLIC_API_URL is missing in server runtime. Set it in Vercel env vars.");
-    }
-    // En CLIENT podrías permitir relativo, pero idealmente también configuras base.
-    return p;
-  }
+  // Si está configurada la API pública, úsala siempre
+  if (apiBase) return apiBase.replace(/\/+$/, "") + p;
 
-  return base.replace(/\/+$/, "") + p;
+  // Fallback SSR: usar el origin del deploy (Vercel) o localhost
+  const origin =
+    typeof window !== "undefined"
+      ? window.location.origin
+      : (process.env.NEXT_PUBLIC_SITE_URL ||
+         (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"));
+
+  return origin.replace(/\/+$/, "") + p;
 }
